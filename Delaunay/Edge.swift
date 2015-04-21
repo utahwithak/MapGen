@@ -71,7 +71,7 @@ public final class Edge
     //		private static let GRAPHICS:Graphics = LINESPRITE.graphics;
     //
     //		private var _delaunayLineBmp:BitmapData;
-    //		internal func get delaunayLineBmp()->BitmapData
+    //		func get delaunayLineBmp()->BitmapData
     //		{
     //			if (!_delaunayLineBmp)
     //			{
@@ -81,7 +81,7 @@ public final class Edge
     //		}
     //
     //		// making this available to Voronoi; running out of memory in AIR so I cannot cache the bmp
-    //		internal func makeDelaunayLineBmp()->BitmapData
+    //		func makeDelaunayLineBmp()->BitmapData
     //		{
     //			var p0:CGPoint = leftSite.coord;
     //			var p1:CGPoint = rightSite.coord;
@@ -126,18 +126,18 @@ public final class Edge
     static let DELETED:Edge = Edge();
     
     // the equation of the edge: ax + by = c
-    internal var a:CGFloat = 0, b:CGFloat = 0, c:CGFloat = 0;
+    var a:CGFloat = 0, b:CGFloat = 0, c:CGFloat = 0;
     
     // the two Voronoi vertices that the edge connects
     //		(if one of them is nil, the edge extends to infinity)
     var leftVertex:Vertex? = nil;
     var rightVertex:Vertex? = nil;
     
-    internal func vertex(leftRight:LR)->Vertex
+    func vertex(leftRight:LR)->Vertex
     {
         return (leftRight == LR.LEFT) ? leftVertex! : rightVertex!;
     }
-    internal func setVertex(leftRight:LR, v:Vertex)
+    func setVertex(leftRight:LR, v:Vertex)
     {
         if (leftRight == LR.LEFT)
         {
@@ -262,7 +262,7 @@ public final class Edge
     * @param bounds
     *
     */
-    internal func clipVertices(bounds:CGRect)
+    func clipVertices(bounds:CGRect)
     {
         var xmin:CGFloat = bounds.minX;
         var ymin:CGFloat = bounds.minY;

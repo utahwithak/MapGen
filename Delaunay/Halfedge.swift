@@ -79,7 +79,7 @@ public final class Halfedge{
             Halfedge.pool.append(self);
 		}
 
-		internal func isLeftOf(p:CGPoint)->Bool
+		func isLeftOf(p:CGPoint)->Bool
         {
 			var topSite:Site;
 			var rightOfSite:Bool, above:Bool, fast:Bool;

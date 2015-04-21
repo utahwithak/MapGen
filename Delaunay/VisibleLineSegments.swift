@@ -1,6 +1,6 @@
 
 	
-internal func visibleLineSegments(edges:[Edge]) -> [LineSegment]
+func visibleLineSegments(edges:[Edge]) -> [LineSegment]
 {
     var segments:[LineSegment] =  [LineSegment]();
 

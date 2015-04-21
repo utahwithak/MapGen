@@ -1,20 +1,20 @@
 import Foundation
 
 public final class Site:ICoord{
-//		private static var pool:[Site] = [Site]();
-//		public static func create(p:CGPoint, index:Int, weight:CGFloat, color:uint):Site
-//		{
-//			if (_pool.length > 0)
-//			{
-//				return _pool.pop().init(p, index, weight, color);
-//			}
-//			else
-//			{
-//				return new Site(PrivateConstructorEnforcer, p, index, weight, color);
-//			}
-//		}
-//		
-//		internal static func sortSites(sites:[Site>)
+		private static var pool:[Site] = [Site]();
+		public static func create(p:CGPoint, index:Int, weight:CGFloat, color:UInt)->Site
+		{
+			if (pool.count > 0)
+			{
+				return pool.removeLast().refresh(p, index: index, weight: weight, color: color);
+			}
+			else
+			{
+				return  Site( p: p, index: index, weight: weight, color: color);
+			}
+		}
+//
+//		static func sortSites(sites:[Site>)
 //		{
 //			sites.sort(Site.compare);
 //		}
@@ -69,11 +69,11 @@ public final class Site:ICoord{
 //			return _coord;
 //		}
 //		
-//		internal var color:uint;
-//		internal var weight:CGFloat;
-//		
-//		private var _siteIndex:uint;
-//		
+		var color:UInt = 0;
+		var weight:CGFloat = 0;
+
+		private var siteIndex:Int = 0;
+
 		// the edges that define this Site's Voronoi region:
 		private var edges:[Edge] = [Edge]();
     
@@ -81,27 +81,23 @@ public final class Site:ICoord{
 		private var edgeOrientations = [LR]();
 		// ordered list of points that define the region clipped to bounds:
 		private var region = [CGPoint]();
+
+		public init( p:CGPoint, index:Int, weight:CGFloat, color:UInt)
+		{
+			refresh(p, index: index, weight: weight, color: color);
+		}
+		
+		private func refresh(p:CGPoint, index:Int, weight:CGFloat, color:UInt)->Site
+		{
+			coord = p;
+			siteIndex = index;
+			self.weight = weight;
+			self.color = color;
+			edges.removeAll(keepCapacity: true)
+			region.removeAll(keepCapacity: true)
+			return self
+		}
 //
-//		public func Site(lock:Class, p:CGPoint, index:Int, weight:CGFloat, color:uint)
-//		{
-//			if (lock != PrivateConstructorEnforcer)
-//			{
-//				throw new Error("Site constructor is private");
-//			}
-//			init(p, index, weight, color);
-//		}
-//		
-//		private func init(p:CGPoint, index:Int, weight:CGFloat, color:uint):Site
-//		{
-//			_coord = p;
-//			_siteIndex = index;
-//			this.weight = weight;
-//			this.color = color;
-//			_edges = new [Edge]();
-//			_region = nil;
-//			return this;
-//		}
-//		
 //		public func toString()->String
 //		{
 //			return "Site " + _siteIndex + ": " + coord;
@@ -144,13 +140,13 @@ public final class Site:ICoord{
 			edges.append(edge);
 		}
 //
-//		internal func nearestEdge()->Edge
+//		func nearestEdge()->Edge
 //		{
 //			_edges.sort(Edge.compareSitesDistances);
 //			return _edges[0];
 //		}
 //		
-//		internal func neighborSites()->[Site>
+//		func neighborSites()->[Site>
 //		{
 //			if (_edges == nil || _edges.length == 0)
 //			{
@@ -182,13 +178,13 @@ public final class Site:ICoord{
 //			return nil;
 //		}
 //		
-//		internal func region(clippingBounds:Rectangle):[Point>
-//		{
-//			if (_edges == nil || _edges.length == 0)
+		func region(clippingBounds:CGRect)->[CGPoint]
+		{
+//			if (edges == nil || edges.count == 0)
 //			{
-//				return new [Point>();
+				return [CGPoint]();
 //			}
-//			if (_edgeOrientations == nil)
+//			if (edgeOrientations == nil)
 //			{ 
 //				reorderEdges();
 //				_region = clipToBounds(clippingBounds);
@@ -198,8 +194,8 @@ public final class Site:ICoord{
 //				}
 //			}
 //			return _region;
-//		}
-//		
+		}
+//
 //		private func reorderEdges()
 //		{
 //			//trace("_edges:", _edges);

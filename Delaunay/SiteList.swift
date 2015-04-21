@@ -1,16 +1,16 @@
 public final class SiteList:IDisposable
 {
-//		private var sites:[Site];
-//		private var currentIndex:UInt;
-//		
-//		private var sorted:Bool;
+		private var sites:[Site];
+		private var currentIndex:UInt = 0;
+
+		private var sorted:Bool;
 		
-//		public func SiteList()
-//		{
-//			_sites = new [Site>();
-//			_sorted = false;
-//		}
-//		
+		public init()
+		{
+			sites = [Site]();
+            sorted = false;
+		}
+
 		public func dispose()
 		{
 //			if (_sites)
@@ -24,12 +24,13 @@ public final class SiteList:IDisposable
 //			}
 		}
 //
-//		public func push(site:Site):uint
-//		{
-//			_sorted = false;
-//			return _sites.push(site);
-//		}
-//		
+		public func push(site:Site)->UInt
+		{
+			sorted = false;
+			sites.append(site);
+            return UInt(sites.count)
+		}
+//
 //		public func get length()->uint
 //		{
 //			return _sites.length;
@@ -51,7 +52,7 @@ public final class SiteList:IDisposable
 //			}
 //		}
 //
-//		internal func getSitesBounds()->Rectangle
+//		func getSitesBounds()->Rectangle
 //		{
 //			if (_sorted == false)
 //			{
@@ -94,15 +95,14 @@ public final class SiteList:IDisposable
 //			return colors;
 //		}
 //
-//		public func siteCoords()->[Point>
-//		{
-//			var coords:[Point> = new [Point>();
-//			for each (var site:Site in _sites)
-//			{
-//				coords.push(site.coord);
-//			}
-//			return coords;
-//		}
+		public func siteCoords()->[CGPoint]
+		{
+			var coords:[CGPoint] = [CGPoint]();
+			for site in sites{
+				coords.append(site.coord);
+			}
+			return coords;
+		}
 //
 //		/**
 //		 * 
@@ -124,15 +124,14 @@ public final class SiteList:IDisposable
 //			return circles;
 //		}
 //
-//		public func regions(plotBounds:Rectangle):[[Point>>
-//		{
-//			var regions:[[Point>> = new [[Point>>();
-//			for each (var site:Site in _sites)
-//			{
-//				regions.push(site.region(plotBounds));
-//			}
-//			return regions;
-//		}
+		public func regions(plotBounds:CGRect)->[[CGPoint]]
+		{
+			var regions:[[CGPoint]] = [[CGPoint]]();
+			for site in sites{
+				regions.append(site.region(plotBounds));
+			}
+			return regions;
+		}
 //
 //		/**
 //		 * 

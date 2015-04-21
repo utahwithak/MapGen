@@ -1,5 +1,5 @@
 
-internal func selectNonIntersectingEdges(keepOutMask:NSData?, edgesToTest:[Edge])->[Edge]
+func selectNonIntersectingEdges(keepOutMask:NSData?, edgesToTest:[Edge])->[Edge]
 {
     if (keepOutMask == nil)
     {

@@ -1,6 +1,6 @@
 import Foundation
 
-internal final class HalfedgePriorityQueue // also known as heap
+final class HalfedgePriorityQueue // also known as heap
 {
 //    private var _hash:[HalfEdge];
 //    private var _count:Int;

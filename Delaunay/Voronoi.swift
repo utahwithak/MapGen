@@ -12,17 +12,17 @@
  * OF THIS SOFTWARE OR ITS FITNESS FOR ANY PARTICULAR PURPOSE.
  */
 	
-public final class Voronoi
+public class Voronoi
 {
-//		private var sites:SiteList;
-//		private var sitesIndexedByLocation;
-//		private var triangles = [Triangle]()
-//        private var edges = [Edge]
-//		
-//		// TODO generalize this so it doesn't have to be a rectangle;
-//		// then we can make the fractal voronois-within-voronois
-//		public var plotBounds:Rectangle;
-//		
+	private var sites = SiteList();
+    private var sitesIndexedByLocation = [CGPoint:Site]();
+    private var triangles = [Triangle]()
+    private var edges = [Edge]()
+
+	// TODO generalize this so it doesn't have to be a rectangle;
+	// then we can make the fractal voronois-within-voronois
+    public var plotBounds:CGRect = CGRect.zeroRect;
+//
 //		public func dispose()
 //		{
 //			var i:Int, n:Int;
@@ -55,48 +55,39 @@ public final class Voronoi
 //			_sitesIndexedByLocation = nil;
 //		}
 //		
-//		public func Voronoi(points:[Point], colors:[uint], plotBounds:Rectangle)
-//		{
-//			_sites = new SiteList();
-//			_sitesIndexedByLocation = new Dictionary(true);
-//			addSites(points, colors);
-//			_plotBounds = plotBounds;
-//			_triangles = new [Triangle>();
-//			_edges = new [Edge]();
-//			fortunesAlgorithm();
-//		}
-//		
-//		private func addSites(points:[Point], colors:[uint>)
-//		{
-//			var length:uint = points.length;
-//			for (var i:uint = 0; i < length; ++i)
-//			{
-//				addSite(points[i], colors ? colors[i] : 0, i);
-//			}
-//		}
-//		
-//		private func addSite(p:CGPoint, color:uint, index:Int)
-//		{
-//			var weight:CGFloat = Math.random() * 100;
-//			var site:Site = Site.create(p, index, weight, color);
-//			_sites.push(site);
-//			_sitesIndexedByLocation[p] = site;
-//		}
-//
-//                public func edges()->[Edge]
-//                {
-//                	return _edges;
-//                }
-//          
-//		public func region(p:CGPoint)->[Point]
-//		{
-//			var site:Site = _sitesIndexedByLocation[p];
-//			if (!site)
-//			{
-//				return  [Point]();
-//			}
-//			return site.region(_plotBounds);
-//		}
+		public init(points:[CGPoint], colors:[UInt]?, plotBounds:CGRect)
+		{
+			addSites(points, colors: colors);
+			self.plotBounds = plotBounds;
+			fortunesAlgorithm();
+		}
+
+		private func addSites(points:[CGPoint], colors:[UInt]?)
+		{
+			var length = points.count;
+			for (var i = 0; i < length; ++i)
+			{
+				addSite(points[i], color: colors != nil ? colors![i] : 0, index: i);
+			}
+		}
+		
+		private func addSite(p:CGPoint, color:UInt, index:Int)
+		{
+			var weight:CGFloat = CGFloat(random() * 100);
+			var site:Site = Site.create(p, index: index, weight: weight, color: color);
+			sites.push(site);
+			sitesIndexedByLocation[p] = site;
+		}
+
+          
+		public func region(p:CGPoint)->[CGPoint]
+		{
+            if let site = sitesIndexedByLocation[p]	{
+                return site.region(plotBounds);
+			}
+            return  [CGPoint]();
+
+		}
 //
 //          // TODO: bug: if you call this before you call region(), something goes wrong :(
 //		public func neighborSitesForSite(coord:CGPoint):[Point>
@@ -213,13 +204,13 @@ public final class Voronoi
 //			return _sites.nearestSitePoint(proximityMap, x, y);
 //		}
 //		
-//		public func siteCoords()->[Point>
-//		{
-//			return _sites.siteCoords();
-//		}
-//
-//		private func fortunesAlgorithm()
-//		{
+		public func siteCoords()->[CGPoint]
+		{
+			return sites.siteCoords();
+		}
+
+		private func fortunesAlgorithm()
+		{
 //			var newSite:Site, bottomSite:Site, topSite:Site, tempSite:Site;
 //			var v:Vertex, vertex:Vertex;
 //			var newintstar:CGPoint;
@@ -393,9 +384,9 @@ public final class Voronoi
 //				}
 //				return edge.site(LR.other(he.leftRight));
 //			}
-//		}
-//
-		internal static func compareByYThenX(s1:Site, s2:Site)->Bool
+		}
+
+		static func compareByYThenX(s1:Site, s2:Site)->Bool
 		{
             if (s1.y < s2.y){ return true;}
             if (s1.y > s2.y){ return false;}
