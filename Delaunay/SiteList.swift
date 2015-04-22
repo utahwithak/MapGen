@@ -79,16 +79,15 @@ public final class SiteList:IDisposable
 			
 			return CGRect(x: xmin, y: ymin, width: xmax - xmin, height: ymax - ymin);
 		}
-//
-//		public func siteColors(referenceImage:BitmapData = nil):[uint>
-//		{
-//			var colors:[uint> = new [uint>();
-//			for each (var site:Site in _sites)
-//			{
-//				colors.push(referenceImage ? referenceImage.getPixel(site.x, site.y) : site.color);
-//			}
-//			return colors;
-//		}
+
+		public func siteColors(/*referenceImage:BitmapData = nil*/)->[UInt]
+		{
+			var colors = [UInt]()
+			for site in sites{
+				colors.append(site.color);
+			}
+			return colors;
+		}
 
 		public func siteCoords()->[CGPoint]
 		{

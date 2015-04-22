@@ -74,122 +74,118 @@ public class Voronoi
             return  [CGPoint]();
 
 		}
-//
-//          // TODO: bug: if you call this before you call region(), something goes wrong :(
-//		public func neighborSitesForSite(coord:CGPoint):[Point>
-//		{
-//			var points:[Point> = new [Point>();
-//			var site:Site = _sitesIndexedByLocation[coord];
-//			if (!site)
-//			{
-//				return points;
-//			}
-//			var sites:[Site> = site.neighborSites();
-//			var neighbor:Site;
-//			for each (neighbor in sites)
-//			{
-//				points.push(neighbor.coord);
-//			}
-//			return points;
-//		}
-//
+
+
+    // TODO: bug: if you call this before you call region(), something goes wrong :(
+		public func neighborSitesForSite(coord:CGPoint)->[CGPoint]
+		{
+			var points = [CGPoint]();
+			var site = sitesIndexedByLocation[coord];
+			if (site == nil)
+			{
+				return points;
+			}
+			var sites = site!.neighborSites();
+			for neighbor in sites
+			{
+				points.append(neighbor.coord);
+			}
+			return points;
+		}
+
 		public func circles()->[Circle]
 		{
 			return sites.circles();
 		}
-//
-//		public func voronoiBoundaryForSite(coord:CGPoint):[LineSegment]
-//		{
-//			return visibleLineSegments(selectEdgesForSitePoint(coord, _edges));
-//		}
-//
-//		public func delaunayLinesForSite(coord:CGPoint):[LineSegment]
-//		{
-//			return delaunayLinesForEdges(selectEdgesForSitePoint(coord, _edges));
-//		}
-//		
-//		public func voronoiDiagram()->[LineSegment]
-//		{
-//			return visibleLineSegments(_edges);
-//		}
-//		
-//		public func delaunayTriangulation(keepOutMask:BitmapData = nil):[LineSegment]
-//		{
-//			return delaunayLinesForEdges(selectNonIntersectingEdges(keepOutMask, _edges));
-//		}
-//		
-//		public func hull()->[LineSegment]
-//		{
-//			return delaunayLinesForEdges(hullEdges());
-//		}
-//		
-//		private func hullEdges()->[Edge]
-//		{
-//			return _edges.filter(myTest);
-//		
-//			func myTest(edge:Edge, index:Int, vector:[Edge])->Bool
-//			{
-//				return (edge.isPartOfConvexHull());
-//			}
-//		}
-//
-//		public func hullPointsInOrder()->[Point>
-//		{
-//			var hullEdges:[Edge] = hullEdges();
-//			
-//			var points:[Point> = new [Point>();
-//			if (hullEdges.length == 0)
-//			{
-//				return points;
-//			}
-//			
-//			var reorderer:EdgeReorderer = new EdgeReorderer(hullEdges, Site);
-//			hullEdges = reorderer.edges;
-//			var orientations:[LR> = reorderer.edgeOrientations;
-//			reorderer.dispose();
-//			
-//			var orientation:LR;
-//
-//			var n:Int = hullEdges.length;
-//			for (var i:Int = 0; i < n; ++i)
-//			{
-//				var edge:Edge = hullEdges[i];
-//				orientation = orientations[i];
-//				points.push(edge.site(orientation).coord);
-//			}
-//			return points;
-//		}
-//		
-//		public func spanningTree(type:String = "minimum", keepOutMask:BitmapData = nil):[LineSegment]
-//		{
-//			var edges:[Edge] = selectNonIntersectingEdges(keepOutMask, _edges);
-//			var segments:[LineSegment] = delaunayLinesForEdges(edges);
-//			return kruskal(segments, type);
-//		}
-//
-//		public func regions()->[[Point>>
-//		{
-//			return _sites.regions(_plotBounds);
-//		}
-//		
-//		public func siteColors(referenceImage:BitmapData = nil):[uint>
-//		{
-//			return _sites.siteColors(referenceImage);
-//		}
-//		
-//		/**
-//		 * 
-//		 * @param proximityMap a BitmapData whose regions are filled with the site index values; see PlanePointsCanvas::fillRegions()
-//		 * @param x
-//		 * @param y
-//		 * @return coordinates of nearest Site to (x, y)
-//		 * 
-//		 */
-//		public func nearestSitePoint(proximityMap:BitmapData, x:CGFloat, y:CGFloat):CGPoint
-//		{
-//			return _sites.nearestSitePoint(proximityMap, x, y);
-//		}
-//		
+
+		public func voronoiBoundaryForSite(coord:CGPoint)->[LineSegment]
+		{
+			return visibleLineSegments(selectEdgesForSitePoint(coord, edges));
+		}
+
+		public func delaunayLinesForSite(coord:CGPoint)->[LineSegment]
+		{
+			return delaunayLinesForEdges(selectEdgesForSitePoint(coord, edges));
+		}
+
+		public func voronoiDiagram()->[LineSegment]
+		{
+			return visibleLineSegments(edges);
+		}
+
+		public func delaunayTriangulation(/*keepOutMask:BitmapData = nil*/) -> [LineSegment]
+		{
+			return delaunayLinesForEdges(selectNonIntersectingEdges(/*keepOutMask,*/ edges));
+		}
+		
+		public func hull()->[LineSegment]
+		{
+			return delaunayLinesForEdges(hullEdges());
+		}
+		
+		private func hullEdges()->[Edge]
+		{
+            return edges.filter{
+                return $0.isPartOfConvexHull();
+			}
+		}
+
+		public func hullPointsInOrder()->[CGPoint]
+		{
+			var hullEdges = self.hullEdges();
+			
+			var points =  [CGPoint]();
+			if (hullEdges.count == 0)
+			{
+				return points;
+			}
+			
+			var reorderer = EdgeReorderer(origEdges: hullEdges, criterion: .Site);
+			hullEdges = reorderer.edges;
+			let orientations = reorderer.edgeOrientations;
+			reorderer.dispose();
+			
+			var orientation:LR;
+
+			var n:Int = hullEdges.count;
+			for i in 0..<n{
+				let edge = hullEdges[i];
+				orientation = orientations[i];
+				points.append(edge.site(orientation).coord);
+			}
+			return points;
+		}
+
+		public func spanningTree(type:SpanningType = .Minimum/*, keepOutMask:BitmapData = nil*/) -> [LineSegment]
+		{
+			let edges = selectNonIntersectingEdges(/*keepOutMask,*/self.edges);
+			var segments:[LineSegment] = delaunayLinesForEdges(edges);
+			return Kruskal(segments, type: type);
+		}
+
+		public func regions()->[[CGPoint]]
+		{
+			return sites.regions(plotBounds);
+		}
+		
+		public func siteColors(/*referenceImage:BitmapData = nil*/)->[UInt]
+		{
+			return sites.siteColors(/*referenceImage*/);
+		}
+		
+		/**
+		 * 
+		 * @param proximityMap a BitmapData whose regions are filled with the site index values; see PlanePointsCanvas::fillRegions()
+		 * @param x
+		 * @param y
+		 * @return coordinates of nearest Site to (x, y)
+		 * 
+		 */
+		public func nearestSitePoint(/*proximityMap:BitmapData,*/ x:CGFloat, y:CGFloat)->CGPoint
+		{
+			return sites.nearestSitePoint(/*proximityMap,*/ x, y);
+		}
+
 		public func siteCoords()->[CGPoint]
 		{
 			return sites.siteCoords();

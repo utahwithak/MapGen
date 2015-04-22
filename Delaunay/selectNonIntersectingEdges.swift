@@ -1,12 +1,12 @@
 
-func selectNonIntersectingEdges(keepOutMask:NSData?, edgesToTest:[Edge])->[Edge]
+func selectNonIntersectingEdges(/*keepOutMask:NSData?,*/ edgesToTest:[Edge])->[Edge]
 {
-    if (keepOutMask == nil)
-    {
-        return edgesToTest;
-    }
+//    if (keepOutMask == nil)
+//    {
+//        return edgesToTest;
+//    }
 //
-    var zeroPoint:CGPoint = CGPoint.zeroPoint
+//    var zeroPoint:CGPoint = CGPoint.zeroPoint
     return edgesToTest
 //
 //    function myTest(edge:Edge, index:Int, vector:Vector.<Edge>)->Bool

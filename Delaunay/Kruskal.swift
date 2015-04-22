@@ -4,7 +4,13 @@ import Foundation
  * Skiena: The Algorithm Design Manual, p. 196ff
  * Note: the sites are implied: they consist of the end points of the line segments
 */
-public func Kruskal(lineSegs:[LineSegment], type:String = "minimum")->[LineSegment]
+
+public enum SpanningType{
+    case Minimum
+    case Maximum
+}
+
+public func Kruskal(lineSegs:[LineSegment], type:SpanningType = .Minimum)->[LineSegment]
 {
     var lineSegments = lineSegs
     var nodes = [CGPoint:Node]()
@@ -15,7 +21,7 @@ public func Kruskal(lineSegs:[LineSegment], type:String = "minimum")->[LineSegme
     {
         // note that the compare funcs are the reverse of what you'd expect
         // because (see below) we traverse the lineSegments in reverse order for speed
-        case "maximum":
+        case .Maximum:
             lineSegments.sort(LineSegment.compareLengths);
             break;
         default:
