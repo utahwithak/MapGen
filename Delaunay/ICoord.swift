@@ -1,6 +1,6 @@
 import Foundation
 
-protocol ICoord
+protocol ICoord:class
 {
     var coord:CGPoint{get};
 }

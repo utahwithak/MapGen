@@ -22,39 +22,25 @@ public class Voronoi
 	// TODO generalize this so it doesn't have to be a rectangle;
 	// then we can make the fractal voronois-within-voronois
     public var plotBounds:CGRect = CGRect.zeroRect;
-//
-//		public func dispose()
-//		{
-//			var i:Int, n:Int;
-//			if (_sites)
-//			{
-//				_sites.dispose();
-//				_sites = nil;
-//			}
-//			if (_triangles)
-//			{
-//				n = _triangles.length;
-//				for (i = 0; i < n; ++i)
-//				{
-//					_triangles[i].dispose();
-//				}
-//				_triangles.length = 0;
-//				_triangles = nil;
-//			}
-//			if (_edges)
-//			{
-//				n = _edges.length;
-//				for (i = 0; i < n; ++i)
-//				{
-//					_edges[i].dispose();
-//				}
-//				_edges.length = 0;
-//				_edges = nil;
-//			}
-//			_plotBounds = nil;
-//			_sitesIndexedByLocation = nil;
-//		}
-//		
+
+		public func dispose()
+		{
+			var i:Int, n:Int;
+            sites.dispose();
+            for tri in triangles{
+                tri.dispose()
+            }
+            triangles.removeAll(keepCapacity: true)
+            
+            for edge in edges{
+                edge.dispose()
+            }
+            
+            edges.removeAll(keepCapacity: false)
+            plotBounds = CGRect.zeroRect;
+			sitesIndexedByLocation.removeAll(keepCapacity: true)
+		}
+		
 		public init(points:[CGPoint], colors:[UInt]?, plotBounds:CGRect)
 		{
 			addSites(points, colors: colors);
@@ -107,11 +93,11 @@ public class Voronoi
 //			return points;
 //		}
 //
-//		public func circles()->[Circle]
-//		{
-//			return _sites.circles();
-//		}
-//		
+		public func circles()->[Circle]
+		{
+			return sites.circles();
+		}
+//
 //		public func voronoiBoundaryForSite(coord:CGPoint):[LineSegment]
 //		{
 //			return visibleLineSegments(selectEdgesForSitePoint(coord, _edges));
@@ -386,14 +372,13 @@ public class Voronoi
 //			}
 		}
 
-		static func compareByYThenX(s1:Site, s2:Site)->Bool
+		static func compareByYThenX(s1:Site, s2:Site)->Int
 		{
-            if (s1.y < s2.y){ return true;}
-            if (s1.y > s2.y){ return false;}
-            if (s1.x < s2.x){ return false;}
-            if (s1.x > s2.x){ return true;}
-			return false;
+            if (s1.y < s2.y){ return -1;}
+            if (s1.y > s2.y){ return 1;}
+            if (s1.x < s2.x){ return -1;}
+            if (s1.x > s2.x){ return 1;}
+			return 0;
 		}
-//
-//	}
+
 }

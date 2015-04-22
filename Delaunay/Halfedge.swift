@@ -1,6 +1,6 @@
 import Foundation
 
-public final class Halfedge{
+public final class Halfedge:Printable{
 		private static var pool:[Halfedge] = [Halfedge]();
     
 		public static func create(edge:Edge?, lr:LR)->Halfedge
@@ -44,12 +44,12 @@ public final class Halfedge{
             vertex = nil;
             return self
         }
-//
-//		public func toString()->String
-//		{
-//			return "Halfedge (leftRight: " + leftRight + "; vertex: " + vertex + ")";
-//		}
-//		
+
+        public var description:String
+		{
+			return "Halfedge (leftRight: \(leftRight); vertex: \(vertex))";
+		}
+		
 		public func dispose()
 		{
 			if (edgeListLeftNeighbor != nil || edgeListRightNeighbor != nil)

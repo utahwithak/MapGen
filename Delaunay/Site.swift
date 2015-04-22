@@ -1,6 +1,6 @@
 import Foundation
 
-public final class Site:ICoord{
+public final class Site:ICoord,IDisposable{
 		private static var pool:[Site] = [Site]();
 		public static func create(p:CGPoint, index:Int, weight:CGFloat, color:UInt)->Site
 		{
@@ -13,11 +13,11 @@ public final class Site:ICoord{
 				return  Site( p: p, index: index, weight: weight, color: color);
 			}
 		}
-//
-//		static func sortSites(sites:[Site>)
-//		{
-//			sites.sort(Site.compare);
-//		}
+
+		static func sortSites(inout sites:[Site])
+		{
+			sites.sort(Site.compare);
+		}
 //
 //		/**
 //		 * sort sites on y, then x, coord
@@ -27,48 +27,45 @@ public final class Site:ICoord{
 //		 * haha "also" - means more than one responsibility...
 //		 * 
 //		 */
-//		private static func compare(s1:Site, s2:Site):CGFloat
-//		{
-//			var returnValue:Int = Voronoi.compareByYThenX(s1, s2);
-//			
-//			// swap _siteIndex values if necessary to match new ordering:
-//			var tempIndex:Int;
-//			if (returnValue == -1)
-//			{
-//				if (s1._siteIndex > s2._siteIndex)
-//				{
-//					tempIndex = s1._siteIndex;
-//					s1._siteIndex = s2._siteIndex;
-//					s2._siteIndex = tempIndex;
-//				}
-//			}
-//			else if (returnValue == 1)
-//			{
-//				if (s2._siteIndex > s1._siteIndex)
-//				{
-//					tempIndex = s2._siteIndex;
-//					s2._siteIndex = s1._siteIndex;
-//					s1._siteIndex = tempIndex;
-//				}
-//				
-//			}
-//			
-//			return returnValue;
-//		}
-//
-//
-//		private static const EPSILON:CGFloat = .005;
-//		private static func closeEnough(p0:CGPoint, p1:CGPoint)->Bool
-//		{
-//			return Point.distance(p0, p1) < EPSILON;
-//		}
-//				
+		private static func compare(s1:Site, s2:Site) -> Bool
+		{
+			var returnValue:Int = Voronoi.compareByYThenX(s1, s2: s2);
+			
+			// swap _siteIndex values if necessary to match new ordering:
+			var tempIndex:Int;
+			if (returnValue == -1)
+			{
+				if (s1.siteIndex > s2.siteIndex)
+				{
+					tempIndex = s1.siteIndex;
+					s1.siteIndex = s2.siteIndex;
+					s2.siteIndex = tempIndex;
+				}
+			}
+			else if (returnValue == 1)
+			{
+				if (s2.siteIndex > s1.siteIndex)
+				{
+					tempIndex = s2.siteIndex;
+					s2.siteIndex = s1.siteIndex;
+					s1.siteIndex = tempIndex;
+				}
+				
+			}
+			
+			return returnValue <= 0;
+		}
+
+
+		private static let EPSILON:CGFloat = 0.005;
+		private static func closeEnough(p0:CGPoint, p1:CGPoint)->Bool
+		{
+			return CGPoint.distance(p0, p1) < EPSILON;
+		}
+
 		public var coord:CGPoint = CGPoint.zeroPoint;
-//		public func get coord()->Point
-//		{
-//			return _coord;
-//		}
-//		
+
+		
 		var color:UInt = 0;
 		var weight:CGFloat = 0;
 
@@ -103,290 +100,280 @@ public final class Site:ICoord{
 //			return "Site " + _siteIndex + ": " + coord;
 //		}
 //		
-//		private func move(p:CGPoint)
-//		{
-//			clear();
-//			_coord = p;
-//		}
-//		
-//		public func dispose()
-//		{
-//			_coord = nil;
-//			clear();
-//			_pool.push(this);
-//		}
-//		
-//		private func clear()
-//		{
-//			if (_edges)
-//			{
-//				_edges.length = 0;
-//				_edges = nil;
-//			}
-//			if (_edgeOrientations)
-//			{
-//				_edgeOrientations.length = 0;
-//				_edgeOrientations = nil;
-//			}
-//			if (_region)
-//			{
-//				_region.length = 0;
-//				_region = nil;
-//			}
-//		}
-//		
+		private func move(p:CGPoint)
+		{
+			clear();
+			coord = p;
+		}
+
+		public func dispose()
+		{
+			coord = CGPoint.zeroPoint;
+			clear();
+			Site.pool.append(self);
+		}
+
+		private func clear()
+		{
+            edges.removeAll(keepCapacity: true)
+            edgeOrientations.removeAll(keepCapacity: true)
+			region.removeAll(keepCapacity: true)
+		}
+
         func addEdge(edge:Edge)
 		{
 			edges.append(edge);
 		}
-//
-//		func nearestEdge()->Edge
-//		{
-//			_edges.sort(Edge.compareSitesDistances);
-//			return _edges[0];
-//		}
-//		
-//		func neighborSites()->[Site>
-//		{
-//			if (_edges == nil || _edges.length == 0)
-//			{
-//				return new [Site>();
-//			}
-//			if (_edgeOrientations == nil)
-//			{ 
-//				reorderEdges();
-//			}
-//			var list:[Site> = new [Site>();
-//			var edge:Edge;
-//			for each (edge in _edges)
-//			{
-//				list.push(neighborSite(edge));
-//			}
-//			return list;
-//		}
-//			
-//		private func neighborSite(edge:Edge):Site
-//		{
-//			if (this == edge.leftSite)
-//			{
-//				return edge.rightSite;
-//			}
-//			if (this == edge.rightSite)
-//			{
-//				return edge.leftSite;
-//			}
-//			return nil;
-//		}
-//		
+
+		func nearestEdge()->Edge
+		{
+			edges.sort(Edge.compareSitesDistances);
+			return edges[0];
+		}
+
+		func neighborSites()->[Site]
+		{
+			if (edges.count == 0)
+			{
+				return [Site]();
+			}
+			if (edgeOrientations.count == 0)
+			{ 
+				reorderEdges();
+			}
+			var list = [Site]();
+
+			for edge in edges
+			{
+                if let site = neighborSite(edge){
+                    list.append(site);
+                }
+			}
+			return list;
+		}
+			
+		private func neighborSite(edge:Edge)->Site?
+		{
+			if (self === edge.leftSite)
+			{
+				return edge.rightSite;
+			}
+			if (self === edge.rightSite)
+			{
+				return edge.leftSite;
+			}
+			return nil;
+		}
+		
 		func region(clippingBounds:CGRect)->[CGPoint]
 		{
-//			if (edges == nil || edges.count == 0)
-//			{
+			if (edges.count == 0)
+			{
 				return [CGPoint]();
-//			}
-//			if (edgeOrientations == nil)
-//			{ 
-//				reorderEdges();
-//				_region = clipToBounds(clippingBounds);
-//				if ((new Polygon(_region)).winding() == Winding.CLOCKWISE)
-//				{
-//					_region = _region.reverse();
-//				}
-//			}
-//			return _region;
+			}
+			if (edgeOrientations.count == 0)
+			{ 
+				reorderEdges();
+				region = clipToBounds(clippingBounds);
+                if (( Polygon(vertices:region)).winding() == Winding.CLOCKWISE)
+				{
+					region = region.reverse();
+				}
+			}
+			return region;
+		}
+
+		private func reorderEdges()
+		{
+			//trace("_edges:", _edges);
+			var reorderer:EdgeReorderer = EdgeReorderer(origEdges: edges, criterion: .Vertex);
+			edges = reorderer.edges;
+			//trace("reordered:", _edges);
+			edgeOrientations = reorderer.edgeOrientations;
+			reorderer.dispose();
+		}
+
+		private func clipToBounds(bounds:CGRect) -> [CGPoint]
+		{
+			var points:[CGPoint] = [CGPoint]();
+			var n:Int = edges.count;
+			var i:Int = 0;
+			var edge:Edge;
+			while (i < n && (edges[i].visible == false))
+			{
+				++i;
+			}
+			
+			if (i == n)
+			{
+				// no edges visible
+				return [CGPoint]();
+			}
+			edge = edges[i];
+			var orientation:LR = edgeOrientations[i];
+			points.append(edge.clippedVertices[orientation]!);
+			points.append(edge.clippedVertices[LR.other(orientation)]!);
+			
+			for (var j:Int = i + 1; j < n; ++j)
+			{
+				edge = edges[j];
+				if (edge.visible == false)
+				{
+					continue;
+				}
+				connect(&points, j: j, bounds: bounds);
+			}
+			// close up the polygon by adding another corner point of the bounds if needed:
+			connect(&points, j: i, bounds: bounds, closingUp: true);
+			
+			return points;
+		}
+
+		private func connect(inout points:[CGPoint], j:Int, bounds:CGRect, closingUp:Bool = false)
+		{
+			var rightPoint:CGPoint = points[points.count - 1];
+			var newEdge:Edge = edges[j] as Edge;
+			var newOrientation:LR = edgeOrientations[j];
+			// the point that  must be connected to rightPoint:
+			var newPoint:CGPoint = newEdge.clippedVertices[newOrientation]!;
+			if (!Site.closeEnough(rightPoint, p1: newPoint))
+			{
+				// The points do not coincide, so they must have been clipped at the bounds;
+				// see if they are on the same border of the bounds:
+				if (rightPoint.x != newPoint.x
+				&&  rightPoint.y != newPoint.y)
+				{
+					// They are on different borders of the bounds;
+					// insert one or two corners of bounds as needed to hook them up:
+					// (NOTE this will not be correct if the region should take up more than
+					// half of the bounds rect, for then we will have gone the wrong way
+					// around the bounds and included the smaller part rather than the larger)
+					var rightCheck:Int = BoundsCheck.check(rightPoint, bounds: bounds);
+					var newCheck:Int = BoundsCheck.check(newPoint, bounds: bounds);
+					var px:CGFloat, py:CGFloat;
+					if (rightCheck & BoundsCheck.RIGHT != 0)
+					{
+						px = bounds.maxX;
+						if (newCheck & BoundsCheck.BOTTOM != 0)
+						{
+							py = bounds.minY;
+							points.append(CGPoint(x: px, y: py));
+						}
+						else if (newCheck & BoundsCheck.TOP != 0)
+						{
+							py = bounds.maxY;
+                            points.append(CGPoint(x:px,y: py));
+						}
+						else if (newCheck & BoundsCheck.LEFT != 0)
+						{
+							if (rightPoint.y - bounds.origin.y + newPoint.y - bounds.origin.y < bounds.height)
+							{
+								py = bounds.maxY;
+							}
+							else
+							{
+								py = bounds.minY;
+							}
+                            points.append(CGPoint(x:px,y: py));
+                            points.append(CGPoint(x:bounds.minX,y: py));
+						}
+					}
+					else if (rightCheck & BoundsCheck.LEFT != 0)
+					{
+						px = bounds.minX;
+						if (newCheck & BoundsCheck.BOTTOM != 0)
+						{
+							py = bounds.minY;
+                            points.append(CGPoint(x:px,y: py));
+						}
+						else if (newCheck & BoundsCheck.TOP != 0)
+						{
+							py = bounds.maxY;
+                            points.append(CGPoint(x:px,y: py));
+						}
+						else if (newCheck & BoundsCheck.RIGHT != 0)
+						{
+							if (rightPoint.y - bounds.origin.y + newPoint.y - bounds.origin.y < bounds.height)
+							{
+								py = bounds.maxY;
+							}
+							else
+							{
+								py = bounds.minY;
+							}
+                            points.append(CGPoint(x:px,y: py));
+                            points.append(CGPoint(x:bounds.maxX,y: py));
+						}
+					}
+					else if (rightCheck & BoundsCheck.TOP != 0)
+					{
+						py = bounds.maxY;
+						if (newCheck & BoundsCheck.RIGHT != 0)
+						{
+							px = bounds.maxX;
+                            points.append(CGPoint(x:px,y: py));
+						}
+						else if (newCheck & BoundsCheck.LEFT != 0)
+						{
+							px = bounds.minX;
+                            points.append(CGPoint(x:px,y: py));
+						}
+						else if (newCheck & BoundsCheck.BOTTOM != 0)
+						{
+							if (rightPoint.x - bounds.origin.x + newPoint.x - bounds.origin.x < bounds.width)
+							{
+								px = bounds.minX;
+							}
+							else
+							{
+								px = bounds.maxX;
+							}
+                            points.append(CGPoint(x:px,y: py));
+                            points.append(CGPoint(x:px,y: bounds.minY));
+						}
+					}
+					else if (rightCheck & BoundsCheck.BOTTOM != 0)
+					{
+						py = bounds.minY;
+						if (newCheck & BoundsCheck.RIGHT != 0)
+						{
+							px = bounds.maxX;
+                            points.append(CGPoint(x:px,y: py));
+						}
+						else if (newCheck & BoundsCheck.LEFT != 0)
+						{
+							px = bounds.minX;
+                            points.append(CGPoint(x:px,y: py));
+						}
+						else if (newCheck & BoundsCheck.TOP != 0)
+						{
+							if (rightPoint.x - bounds.origin.x + newPoint.x - bounds.origin.x < bounds.width)
+							{
+								px = bounds.minX;
+							}
+							else
+							{
+								px = bounds.maxX;
+							}
+                            points.append(CGPoint(x:px,y: py));
+                            points.append(CGPoint(x:px,y: bounds.maxY));
+						}
+					}
+				}
+				if (closingUp)
+				{
+					// newEdge's ends have already been added
+					return;
+				}
+				points.append(newPoint);
+			}
+			var newRightPoint:CGPoint = newEdge.clippedVertices[LR.other(newOrientation)]!;
+			if (!Site.closeEnough(points[0], p1: newRightPoint))
+			{
+				points.append(newRightPoint);
+			}
 		}
 //
-//		private func reorderEdges()
-//		{
-//			//trace("_edges:", _edges);
-//			var reorderer:EdgeReorderer = new EdgeReorderer(_edges, Vertex);
-//			_edges = reorderer.edges;
-//			//trace("reordered:", _edges);
-//			_edgeOrientations = reorderer.edgeOrientations;
-//			reorderer.dispose();
-//		}
-//		
-//		private func clipToBounds(bounds:Rectangle):[Point>
-//		{
-//			var points:[Point> = new [Point>;
-//			var n:Int = _edges.length;
-//			var i:Int = 0;
-//			var edge:Edge;
-//			while (i < n && ((_edges[i] as Edge).visible == false))
-//			{
-//				++i;
-//			}
-//			
-//			if (i == n)
-//			{
-//				// no edges visible
-//				return new [Point>();
-//			}
-//			edge = _edges[i];
-//			var orientation:LR = _edgeOrientations[i];
-//			points.push(edge.clippedEnds[orientation]);
-//			points.push(edge.clippedEnds[LR.other(orientation)]);
-//			
-//			for (var j:Int = i + 1; j < n; ++j)
-//			{
-//				edge = _edges[j];
-//				if (edge.visible == false)
-//				{
-//					continue;
-//				}
-//				connect(points, j, bounds);
-//			}
-//			// close up the polygon by adding another corner point of the bounds if needed:
-//			connect(points, i, bounds, true);
-//			
-//			return points;
-//		}
-//		
-//		private func connect(points:[Point>, j:Int, bounds:Rectangle, closingUp:Bool = false)
-//		{
-//			var rightPoint:CGPoint = points[points.length - 1];
-//			var newEdge:Edge = _edges[j] as Edge;
-//			var newOrientation:LR = _edgeOrientations[j];
-//			// the point that  must be connected to rightPoint:
-//			var newPoint:CGPoint = newEdge.clippedEnds[newOrientation];
-//			if (!closeEnough(rightPoint, newPoint))
-//			{
-//				// The points do not coincide, so they must have been clipped at the bounds;
-//				// see if they are on the same border of the bounds:
-//				if (rightPoint.x != newPoint.x
-//				&&  rightPoint.y != newPoint.y)
-//				{
-//					// They are on different borders of the bounds;
-//					// insert one or two corners of bounds as needed to hook them up:
-//					// (NOTE this will not be correct if the region should take up more than
-//					// half of the bounds rect, for then we will have gone the wrong way
-//					// around the bounds and included the smaller part rather than the larger)
-//					var rightCheck:Int = BoundsCheck.check(rightPoint, bounds);
-//					var newCheck:Int = BoundsCheck.check(newPoint, bounds);
-//					var px:CGFloat, py:CGFloat;
-//					if (rightCheck & BoundsCheck.RIGHT)
-//					{
-//						px = bounds.right;
-//						if (newCheck & BoundsCheck.BOTTOM)
-//						{
-//							py = bounds.bottom;
-//							points.push(new Point(px, py));
-//						}
-//						else if (newCheck & BoundsCheck.TOP)
-//						{
-//							py = bounds.top;
-//							points.push(new Point(px, py));
-//						}
-//						else if (newCheck & BoundsCheck.LEFT)
-//						{
-//							if (rightPoint.y - bounds.y + newPoint.y - bounds.y < bounds.height)
-//							{
-//								py = bounds.top;
-//							}
-//							else
-//							{
-//								py = bounds.bottom;
-//							}
-//							points.push(new Point(px, py));
-//							points.push(new Point(bounds.left, py));
-//						}
-//					}
-//					else if (rightCheck & BoundsCheck.LEFT)
-//					{
-//						px = bounds.left;
-//						if (newCheck & BoundsCheck.BOTTOM)
-//						{
-//							py = bounds.bottom;
-//							points.push(new Point(px, py));
-//						}
-//						else if (newCheck & BoundsCheck.TOP)
-//						{
-//							py = bounds.top;
-//							points.push(new Point(px, py));
-//						}
-//						else if (newCheck & BoundsCheck.RIGHT)
-//						{
-//							if (rightPoint.y - bounds.y + newPoint.y - bounds.y < bounds.height)
-//							{
-//								py = bounds.top;
-//							}
-//							else
-//							{
-//								py = bounds.bottom;
-//							}
-//							points.push(new Point(px, py));
-//							points.push(new Point(bounds.right, py));
-//						}
-//					}
-//					else if (rightCheck & BoundsCheck.TOP)
-//					{
-//						py = bounds.top;
-//						if (newCheck & BoundsCheck.RIGHT)
-//						{
-//							px = bounds.right;
-//							points.push(new Point(px, py));
-//						}
-//						else if (newCheck & BoundsCheck.LEFT)
-//						{
-//							px = bounds.left;
-//							points.push(new Point(px, py));
-//						}
-//						else if (newCheck & BoundsCheck.BOTTOM)
-//						{
-//							if (rightPoint.x - bounds.x + newPoint.x - bounds.x < bounds.width)
-//							{
-//								px = bounds.left;
-//							}
-//							else
-//							{
-//								px = bounds.right;
-//							}
-//							points.push(new Point(px, py));
-//							points.push(new Point(px, bounds.bottom));
-//						}
-//					}
-//					else if (rightCheck & BoundsCheck.BOTTOM)
-//					{
-//						py = bounds.bottom;
-//						if (newCheck & BoundsCheck.RIGHT)
-//						{
-//							px = bounds.right;
-//							points.push(new Point(px, py));
-//						}
-//						else if (newCheck & BoundsCheck.LEFT)
-//						{
-//							px = bounds.left;
-//							points.push(new Point(px, py));
-//						}
-//						else if (newCheck & BoundsCheck.TOP)
-//						{
-//							if (rightPoint.x - bounds.x + newPoint.x - bounds.x < bounds.width)
-//							{
-//								px = bounds.left;
-//							}
-//							else
-//							{
-//								px = bounds.right;
-//							}
-//							points.push(new Point(px, py));
-//							points.push(new Point(px, bounds.top));
-//						}
-//					}
-//				}
-//				if (closingUp)
-//				{
-//					// newEdge's ends have already been added
-//					return;
-//				}
-//				points.push(newPoint);
-//			}
-//			var newRightPoint:CGPoint = newEdge.clippedEnds[LR.other(newOrientation)];
-//			if (!closeEnough(points[0], newRightPoint))
-//			{
-//				points.push(newRightPoint);
-//			}
-//		}
-//								
         var x:CGFloat
 		{
 			return coord.x;
@@ -398,54 +385,47 @@ public final class Site:ICoord{
         func dist(p:ICoord)->CGFloat{
 			return CGPoint.distance(p.coord, coord);
 		}
-//
-//	}
-//}
-//
-//	class PrivateConstructorEnforcer {}
-//
-//	import flash.geom.Point;
-//	import flash.geom.Rectangle;
-//	
-//	final class BoundsCheck
-//	{
-//		public static const TOP:Int = 1;
-//		public static const BOTTOM:Int = 2;
-//		public static const LEFT:Int = 4;
-//		public static const RIGHT:Int = 8;
-//		
-//		/**
-//		 * 
-//		 * @param point
-//		 * @param bounds
-//		 * @return an int with the appropriate bits set if the Point lies on the corresponding bounds lines
-//		 * 
-//		 */
-//		public static func check(point:CGPoint, bounds:Rectangle):Int
-//		{
-//			var value:Int = 0;
-//			if (point.x == bounds.left)
-//			{
-//				value |= LEFT;
-//			}
-//			if (point.x == bounds.right)
-//			{
-//				value |= RIGHT;
-//			}
-//			if (point.y == bounds.top)
-//			{
-//				value |= TOP;
-//			}
-//			if (point.y == bounds.bottom)
-//			{
-//				value |= BOTTOM;
-//			}
-//			return value;
-//		}
-//		
-//		public func BoundsCheck()
-//		{
-//			throw new Error("BoundsCheck constructor unused");
-//		}
+}
 
-	}
+public class BoundsCheck
+{
+    public static let TOP:Int = 1;
+    public static let BOTTOM:Int = 2;
+    public static let LEFT:Int = 4;
+    public static let RIGHT:Int = 8;
+    
+    /**
+     * 
+     * @param point
+     * @param bounds
+     * @return an int with the appropriate bits set if the Point lies on the corresponding bounds lines
+     * 
+     */
+    public static func check(point:CGPoint, bounds:CGRect)->Int
+    {
+        var value:Int = 0;
+        if (point.x == bounds.minX)
+        {
+            value |= LEFT;
+        }
+        if (point.x == bounds.maxX)
+        {
+            value |= RIGHT;
+        }
+        if (point.y == bounds.maxY)
+        {
+            value |= TOP;
+        }
+        if (point.y == bounds.minY)
+        {
+            value |= BOTTOM;
+        }
+        return value;
+    }
+    
+    public init()
+    {
+        assert(false, "ILLEGAL TO CREATE ONE!")
+    }
+
+}
