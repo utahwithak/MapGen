@@ -31,9 +31,7 @@ extension Point :Hashable{
     }
     
     public var hashValue : Int {
-        get {
-            return "\(self.x),\(self.y)".hashValue
-        }
+            return self.x.hashValue^self.y.hashValue
     }
 }
 

@@ -25,7 +25,7 @@ public final class Halfedge:Printable{
         public var edgeListRightNeighbor:Halfedge? = nil
 		public var nextInPriorityQueue:Halfedge? = nil;
 		
-		public var edge:Edge? = nil;
+		public var edge:Edge!;
 		public var leftRight:LR = .Unknown;
 		public var vertex:Vertex? = nil;
 
@@ -81,12 +81,12 @@ public final class Halfedge:Printable{
 
 		func isLeftOf(p:Point)->Bool
         {
-			var topSite:Site;
-			var rightOfSite:Bool, above:Bool, fast:Bool;
-			var dxp:Double, dyp:Double, dxs:Double, t1:Double, t2:Double, t3:Double, yl:Double;
+
+			var above:Bool
 			
-			topSite = edge!.rightSite!;
-			rightOfSite = p.x > topSite.x;
+			let topSite = edge.rightSite!;
+			let rightOfSite = p.x > topSite.x;
+            
 			if (rightOfSite && leftRight == LR.LEFT)
 			{
 				return true;
@@ -98,18 +98,18 @@ public final class Halfedge:Printable{
 			
 			if (edge!.a == 1.0)
 			{
-				dyp = p.y - topSite.y;
-				dxp = p.x - topSite.x;
-				fast = false;
-				if ((!rightOfSite && edge!.b < 0.0) || (rightOfSite && edge!.b >= 0.0) )
+				let dyp = p.y - topSite.y;
+				let dxp = p.x - topSite.x;
+				var fast = false;
+				if ((!rightOfSite && edge.b < 0.0) || (rightOfSite && edge.b >= 0.0) )
 				{
-					above = dyp >= edge!.b * dxp;
+					above = dyp >= edge.b * dxp;
 					fast = above;
 				}
 				else 
 				{
-					above = p.x + p.y * edge!.b > edge!.c;
-					if (edge!.b < 0.0)
+					above = p.x + p.y * edge.b > edge!.c;
+					if (edge.b < 0.0)
 					{
 						above = !above;
 					}
@@ -120,8 +120,8 @@ public final class Halfedge:Printable{
 				}
 				if (!fast)
 				{
-					dxs = topSite.x - edge!.leftSite!.x;
-					above = edge!.b * (dxp * dxp - dyp * dyp) <
+					let dxs = topSite.x - edge.leftSite!.x;
+					above = edge.b * (dxp * dxp - dyp * dyp) <
 					        dxs * dyp * (1.0 + 2.0 * dxp/dxs + edge!.b * edge!.b);
 					if (edge!.b < 0.0)
 					{
@@ -131,10 +131,10 @@ public final class Halfedge:Printable{
 			}
 			else  /* edge.b == 1.0 */
 			{
-				yl = edge!.c - edge!.a * p.x;
-				t1 = p.y - yl;
-				t2 = p.x - topSite.x;
-				t3 = yl - topSite.y;
+				let yl = edge.c - edge.a * p.x;
+				let t1 = p.y - yl;
+				let t2 = p.x - topSite.x;
+				let t3 = yl - topSite.y;
 				above = t1 * t1 > t2 * t2 + t3 * t3;
 			}
 			return leftRight == LR.LEFT ? above : !above;

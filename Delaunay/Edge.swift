@@ -196,30 +196,21 @@ public final class Edge
     var visible:Bool{
         return clippedVertices != nil;
     }
-    //
-    //		// the two input Sites for which this Edge is a bisector:
-    private var sites = [LR:Site]();
-    var leftSite:Site?{
-        get{
-            return sites[LR.LEFT]
-        }
-        set{
-            sites[LR.LEFT] = newValue
-        }
-    }
-    
-    var rightSite:Site?{
-        get{
-            return sites[LR.RIGHT]
-        }
-        set{
-            sites[LR.RIGHT] = newValue;
-        }
-    }
+
+    var leftSite:Site!
+    var rightSite:Site!
     
     func site(leftRight:LR)->Site
     {
-        return sites[leftRight]!;
+        switch (leftRight)
+        {
+        case .LEFT:
+            return leftSite
+        case .RIGHT:
+            return rightSite
+        case .Unknown:
+            assert(false, "INVALID SITE!")
+        }
     }
     //
     private let edgeIndex:Int;
@@ -234,7 +225,8 @@ public final class Edge
         leftVertex = nil;
         rightVertex = nil;
         clippedVertices = nil
-        sites.removeAll(keepCapacity: true)
+        leftSite = nil;
+        rightSite = nil
         Edge.pool.append(self);
     }
     
@@ -246,13 +238,14 @@ public final class Edge
     //
     private func refresh()
     {
-        sites.removeAll(keepCapacity: true)
+        leftSite = nil;
+        rightSite = nil
     }
     
     public var description:String{
         let lVert = leftVertex != nil ? "\(leftVertex!.vertexIndex)" : "nil"
         let rVert = rightVertex != nil ? "\(rightVertex!.vertexIndex)" : "nil"
-    	return "Edge \(edgeIndex); sites \(sites[LR.LEFT]), \(sites[LR.RIGHT]); endVertices \(lVert), \(rVert)::";
+    	return "Edge \(edgeIndex); sites \(leftSite), \(rightSite); endVertices \(lVert), \(rVert)::";
     }
     
     /**
