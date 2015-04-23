@@ -75,7 +75,7 @@ class ViewController: UIViewController,UIScrollViewDelegate {
             var voronoi:Voronoi
             var region:[Point];
             var points = ViewController.generateRandom(size, seed: seed)(numPoints: numPoints);
-            for (i = 0; i < 100; i++) {
+            for (i = 0; i < 3; i++) {
                 voronoi = Voronoi(points: points, colors: nil, plotBounds: Rectangle(x: 0, y: 0, width: size, height: size));
                 for pIn in points {
                     var p = pIn

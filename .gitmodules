@@ -1,0 +1,3 @@
+[submodule "ThirdParty/as3delaunay-Swift"]
+	path = ThirdParty/as3delaunay-Swift
+	url = git@github.com:utahwithak/as3delaunay-Swift.git
