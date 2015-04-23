@@ -17,7 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
         let relaxed = generateRelaxed(2000, seed: 412342)
-        let points = relaxed(500)
+        let points = relaxed(10)
     }
     
     // Generate points at random locations
@@ -50,6 +50,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             voronoi = Voronoi(points: points, colors: nil, plotBounds: Rectangle(x: 0, y: 0, width: size, height: size));
             for pIn in points {
                 var p = pIn
+                println("Point:\(p)")
                 region = voronoi.region(p);
                 p.x = 0.0;
                 p.y = 0.0;

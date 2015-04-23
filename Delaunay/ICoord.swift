@@ -2,5 +2,5 @@ import Foundation
 
 protocol ICoord:class
 {
-    var coord:Point{get};
+    var coord:Point!{get};
 }

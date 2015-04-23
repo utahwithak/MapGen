@@ -12,7 +12,6 @@
 		463B0CD11AE6D8C300E0E335 /* DelaunayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463B0CD01AE6D8C300E0E335 /* DelaunayTests.swift */; };
 		463B0CD41AE6D8C300E0E335 /* Delaunay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 463B0CBD1AE6D8C300E0E335 /* Delaunay.framework */; };
 		463B0CD51AE6D8C300E0E335 /* Delaunay.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 463B0CBD1AE6D8C300E0E335 /* Delaunay.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		463B0CDE1AE6D8F300E0E335 /* CGPointUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463B0CDC1AE6D8F300E0E335 /* CGPointUtils.swift */; };
 		463B0CDF1AE6D8F300E0E335 /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463B0CDD1AE6D8F300E0E335 /* Circle.swift */; };
 		463B0CE81AE6D8FC00E0E335 /* DelaunayLinesForEdges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463B0CE01AE6D8FC00E0E335 /* DelaunayLinesForEdges.swift */; };
 		463B0CE91AE6D8FC00E0E335 /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463B0CE11AE6D8FC00E0E335 /* Edge.swift */; };
@@ -99,7 +98,6 @@
 		463B0CC71AE6D8C300E0E335 /* DelaunayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DelaunayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		463B0CCF1AE6D8C300E0E335 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		463B0CD01AE6D8C300E0E335 /* DelaunayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelaunayTests.swift; sourceTree = "<group>"; };
-		463B0CDC1AE6D8F300E0E335 /* CGPointUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGPointUtils.swift; sourceTree = "<group>"; };
 		463B0CDD1AE6D8F300E0E335 /* Circle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Circle.swift; sourceTree = "<group>"; };
 		463B0CE01AE6D8FC00E0E335 /* DelaunayLinesForEdges.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DelaunayLinesForEdges.swift; sourceTree = "<group>"; };
 		463B0CE11AE6D8FC00E0E335 /* Edge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Edge.swift; sourceTree = "<group>"; };
@@ -227,7 +225,6 @@
 		463B0D0A1AE6D91500E0E335 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				463B0CDC1AE6D8F300E0E335 /* CGPointUtils.swift */,
 				463B0CE61AE6D8FC00E0E335 /* ICoord.swift */,
 				463B0CE71AE6D8FC00E0E335 /* IDisposable.swift */,
 			);
@@ -241,8 +238,8 @@
 				46A1BBE21AE8B798004E3E9D /* Rectangle.swift */,
 				463B0CDD1AE6D8F300E0E335 /* Circle.swift */,
 				463B0CF11AE6D90300E0E335 /* LineSegment.swift */,
-				463B0CFC1AE6D90300E0E335 /* Winding.swift */,
 				463B0CF31AE6D90300E0E335 /* Polygon.swift */,
+				463B0CFC1AE6D90300E0E335 /* Winding.swift */,
 			);
 			name = Geometry;
 			sourceTree = "<group>";
@@ -498,7 +495,6 @@
 				463B0CEB1AE6D8FC00E0E335 /* EdgeReorderer.swift in Sources */,
 				463B0D091AE6D90300E0E335 /* Winding.swift in Sources */,
 				46A1BBE31AE8B798004E3E9D /* Rectangle.swift in Sources */,
-				463B0CDE1AE6D8F300E0E335 /* CGPointUtils.swift in Sources */,
 				463B0D061AE6D90300E0E335 /* Vertex.swift in Sources */,
 				463B0D021AE6D90300E0E335 /* selectNonIntersectingEdges.swift in Sources */,
 				463B0CE81AE6D8FC00E0E335 /* DelaunayLinesForEdges.swift in Sources */,

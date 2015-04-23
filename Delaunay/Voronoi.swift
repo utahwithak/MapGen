@@ -206,7 +206,7 @@ public class Voronoi
         
         let heap:HalfedgePriorityQueue = HalfedgePriorityQueue(ymin: Double(dataBounds.y), deltay: Double(dataBounds.height), sqrtnsites: sqrt_nsites);
         
-        let edgeList:EdgeList = EdgeList(xmin:Double( dataBounds.x), deltax:Double( dataBounds.width), sqrt_nsites: sqrt_nsites);
+        let edgeList:EdgeList = EdgeList(xmin:dataBounds.x, deltax: dataBounds.width, sqrt_nsites: sqrt_nsites);
         var halfEdges:[Halfedge] = [Halfedge]();
         var vertices:[Vertex] = [Vertex]();
         

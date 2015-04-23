@@ -1,8 +1,8 @@
 func delaunayLinesForEdges(edges:[Edge])->[LineSegment]
 {
-    var segments:[LineSegment] = [LineSegment]();
+    var segments = [LineSegment]();
     for edge in edges{
-        segments.append(edge.delaunayLine());
+        segments.append(edge.delaunayLine);
     }
     return segments;
 }

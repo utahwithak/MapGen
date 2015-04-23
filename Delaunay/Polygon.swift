@@ -2,20 +2,17 @@ import Foundation
 
 public class Polygon
 {
-    private var vertices:[Point];
+    private let vertices:[Point];
 
-    public init(vertices:[Point])
-    {
+    public init(vertices:[Point]){
         self.vertices = vertices;
     }
 
-    public func area() -> Double
-    {
+    public func area() -> Double{
         return abs(signedDoubleArea() * 0.5);
     }
 
-    public func winding()->Winding
-    {
+    public func winding()->Winding{
         var sDoubleArea = signedDoubleArea();
         if (sDoubleArea < 0)
         {
@@ -28,20 +25,14 @@ public class Polygon
         return Winding.NONE;
     }
 
-    private func signedDoubleArea()->Double
-    {
-
-        var nextIndex:Int;
+    private func signedDoubleArea()->Double{
         var n = vertices.count;
-        var point:Point, next:Point;
         var signedDoubleArea:Double = 0;
-        
-        var index:Int
-        for (index = 0; index < n; ++index)
-        {
-            nextIndex = (index + 1) % n;
-            point = vertices[index]
-            next = vertices[nextIndex]
+    
+        for i in 0..<n{
+            let nextIndex = (i + 1) % n;
+            let point = vertices[i]
+            let next = vertices[nextIndex]
             signedDoubleArea += point.x * next.y - next.x * point.y;
         }
         return signedDoubleArea;

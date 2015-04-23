@@ -7,12 +7,36 @@
 //
 
 import Foundation
-public class Point{
-    static let zeroPoint = Point(x: 0, y: 0)
+public class Point:Printable{
     public var x:Double
     public var y:Double
     public init(x:Double, y:Double){
         self.x = x;
         self.y = y
     }
+    
+    public var description:String{
+        let xstr = String(format:"%.2f",x)
+        let ystr = String(format:"%.2f",y)
+        return "(\(xstr), \(ystr))"
+    }
+}
+
+
+extension Point :Hashable{
+    static func distance( lhs:Point, _ rhs:Point)->Double{
+        let dx = lhs.x - rhs.x;
+        let dy = lhs.y - rhs.y;
+        return sqrt((dx * dx) + (dy * dy))
+    }
+    
+    public var hashValue : Int {
+        get {
+            return "\(self.x),\(self.y)".hashValue
+        }
+    }
+}
+
+public func ==(lhs: Point, rhs: Point) -> Bool {
+    return lhs.hashValue == rhs.hashValue
 }

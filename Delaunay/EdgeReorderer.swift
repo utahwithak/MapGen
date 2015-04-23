@@ -10,8 +10,6 @@ public class EdgeReorderer{
     }
     public init(origEdges:[Edge], criterion:Criteria)
     {
-        let clasType = Vertex.self
-        
         edges =  [Edge]();
         edgeOrientations = [LR]();
         if (origEdges.count > 0)
@@ -35,7 +33,7 @@ public class EdgeReorderer{
         // we're going to reorder the edges in order of traversal
         var done = [Bool](count:n, repeatedValue:false);
         var nDone:Int = 0;
-        var newEdges:[Edge] = [Edge]();
+        var newEdges = [Edge]();
         
         let useVert = criterion == Criteria.Vertex
         i = 0;

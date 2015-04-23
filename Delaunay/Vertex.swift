@@ -24,8 +24,8 @@ public final class Vertex: ICoord{
     
     private static var nvertices:Int = 0;
     
-    public var coord:Point = Point.zeroPoint;
-    private var vertexIndex:Int = 0;
+    public var coord:Point!
+    var vertexIndex:Int = 0;
     
     public init( x:Double, y:Double)
     {

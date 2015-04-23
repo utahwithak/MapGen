@@ -1,12 +1,12 @@
 import Foundation
 
 public class Circle:Printable{
-    public var center:Point;
-    public var radius:Double;
+    public let center:Point;
+    public let radius:Double;
     
     public init(centerX:Double, centerY:Double, radius:Double)
     {
-        self.center =  Point(x:centerX, y:centerY);
+        self.center = Point(x:centerX, y:centerY);
         self.radius = radius;
     }
     

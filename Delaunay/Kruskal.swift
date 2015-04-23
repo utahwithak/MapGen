@@ -22,11 +22,9 @@ public func Kruskal(lineSegs:[LineSegment], type:SpanningType = .Minimum)->[Line
         // note that the compare funcs are the reverse of what you'd expect
         // because (see below) we traverse the lineSegments in reverse order for speed
         case .Maximum:
-            lineSegments.sort(LineSegment.compareLengths);
-            break;
+            lineSegments.sort{ return LineSegment.compareLengths($0,edge1: $1) < 0;}
         default:
-            lineSegments.sort(LineSegment.compareLengths_MAX);
-            break;
+            lineSegments.sort{return LineSegment.compareLengths_MAX($0,segment1: $1) < 0;}
     }
 
     for (var i:Int = lineSegments.count - 1; i > -1; i--)

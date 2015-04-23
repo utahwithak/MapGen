@@ -15,26 +15,31 @@ public final class Edge
     * @return
     *
     */
-    static func createBisectingEdge(site0:Site, site1:Site)->Edge
+    public static func createBisectingEdge(site0:Site, site1:Site)->Edge
     {
-        var dx:Double, dy:Double, absdx:Double, absdy:Double;
-        var a:Double, b:Double, c:Double;
         
-        dx = site1.x - site0.x;
-        dy = site1.y - site0.y;
-        absdx = dx > 0 ? dx : -dx;
-        absdy = dy > 0 ? dy : -dy;
-        c = site0.x * dx + site0.y * dy + (dx * dx + dy * dy) * 0.5;
+        let dx = site1.x - site0.x;
+        let dy = site1.y - site0.y;
+        let absdx = dx > 0 ? dx : -dx;
+        let absdy = dy > 0 ? dy : -dy;
+
+        var c = site0.x * dx + site0.y * dy + (dx * dx + dy * dy) * 0.5;
+        let a:Double
+        let b:Double
         if (absdx > absdy)
         {
-            a = 1.0; b = dy/dx; c /= dx;
+            a = 1.0;
+            b = dy / dx;
+            c /= dx;
         }
         else
         {
-            b = 1.0; a = dx/dy; c /= dy;
+            b = 1.0;
+            a = dx / dy;
+            c /= dy;
         }
         
-        var edge:Edge = Edge.create();
+        let edge = Edge.create();
         
         edge.leftSite = site0;
         edge.rightSite = site1;
@@ -48,7 +53,6 @@ public final class Edge
         edge.b = b;
         edge.c = c;
         //trace("createBisectingEdge: a ", edge.a, "b", edge.b, "c", edge.c);
-        
         return edge;
     }
     
@@ -70,14 +74,14 @@ public final class Edge
     //		private static let LINESPRITE:Sprite =  Sprite();
     //		private static let GRAPHICS:Graphics = LINESPRITE.graphics;
     //
-    //		private var _delaunayLineBmp:BitmapData;
+    //		private var delaunayLineBmp:BitmapData;
     //		func get delaunayLineBmp()->BitmapData
     //		{
-    //			if (!_delaunayLineBmp)
+    //			if (!delaunayLineBmp)
     //			{
-    //				_delaunayLineBmp = makeDelaunayLineBmp();
+    //				delaunayLineBmp = makeDelaunayLineBmp();
     //			}
-    //			return _delaunayLineBmp;
+    //			return delaunayLineBmp;
     //		}
     //
     //		// making this available to Voronoi; running out of memory in AIR so I cannot cache the bmp
@@ -107,7 +111,7 @@ public final class Edge
     //			return bmp;
     //		}
     //
-    public func delaunayLine()->LineSegment
+    public var delaunayLine:LineSegment
     {
         // draw a line connecting the input Sites for which the edge is a bisector:
         return LineSegment(p0: leftSite!.coord, p1: rightSite!.coord);
@@ -116,7 +120,8 @@ public final class Edge
     public func voronoiEdge()->LineSegment
     {
         if (!visible){
-            return LineSegment(p0: Point.zeroPoint, p1: Point.zeroPoint);
+            println("ERROR!");
+            return LineSegment();
         }
         return  LineSegment(p0:clippedVertices[LR.LEFT]!, p1:clippedVertices[LR.RIGHT]!);
     }
@@ -162,35 +167,34 @@ public final class Edge
         return Point.distance(leftSite!.coord, rightSite!.coord);
     }
     //
-    public static func compareSitesDistances_MAX(edge0:Edge, edge1:Edge)->Bool
+    public static func compareSitesDistancesMAX(edge0:Edge, edge1:Edge)->Int
     {
         var length0:Double = edge0.sitesDistance();
         var length1:Double = edge1.sitesDistance();
         if (length0 < length1)
         {
-            return true;
+            return 1;
         }
         if (length0 > length1)
         {
-            return false;
+            return -1;
         }
-        return false;
+        return 0;
     }
     
-    public static func compareSitesDistances(edge0:Edge, edge1:Edge) ->Bool
+    public static func compareSitesDistances(edge0:Edge, edge1:Edge)->Int
     {
-        return !compareSitesDistances_MAX(edge0, edge1:edge1);
+        return -1 * compareSitesDistancesMAX(edge0, edge1:edge1);
     }
     //
     //		// Once clipVertices() is called, this Dictionary will hold two Points
     //		// representing the clipped coordinates of the left and right ends...
-    public var clippedVertices = [LR:Point]()
+    public var clippedVertices:[LR:Point]!
     
     //		// unless the entire Edge is outside the bounds.
     //		// In that case visible will be false:
-    var visible:Bool
-        {
-            return clippedVertices.count > 0;
+    var visible:Bool{
+        return clippedVertices != nil;
     }
     //
     //		// the two input Sites for which this Edge is a bisector:
@@ -222,22 +226,15 @@ public final class Edge
     //
     public func dispose()
     {
-        //			if (_delaunayLineBmp)
+        //			if (delaunayLineBmp)
         //			{
-        //				_delaunayLineBmp.dispose();
-        //				_delaunayLineBmp = nil;
+        //				delaunayLineBmp.dispose();
+        //				delaunayLineBmp = nil;
         //			}
         leftVertex = nil;
         rightVertex = nil;
-        if (clippedVertices.count > 0)
-        {
-            clippedVertices[LR.LEFT] = nil;
-            clippedVertices[LR.RIGHT] = nil;
-            
-        }
-        sites[LR.LEFT] = nil;
-        sites[LR.RIGHT] = nil;
-        
+        clippedVertices.removeAll(keepCapacity: true)
+        sites.removeAll(keepCapacity: true)
         Edge.pool.append(self);
     }
     
@@ -251,108 +248,97 @@ public final class Edge
     {
         sites.removeAll(keepCapacity: true)
     }
-    //
-    //		public func toString()->String
-    //		{
-    //			return "Edge " + _edgeIndex + "; sites " + _sites[LR.LEFT] + ", " + _sites[LR.RIGHT]
-    //					+ "; endVertices " + (_leftVertex ? _leftVertex.vertexIndex : "nil") + ", "
-    //					 + (_rightVertex ? _rightVertex.vertexIndex : "nil") + "::";
-    //		}
-    //
+    
+    public var description:String{
+        let lVert = leftVertex != nil ? "\(leftVertex!.vertexIndex)" : "nil"
+        let rVert = rightVertex != nil ? "\(rightVertex!.vertexIndex)" : "nil"
+    	return "Edge \(edgeIndex); sites \(sites[LR.LEFT]), \(sites[LR.RIGHT]); endVertices \(lVert), \(rVert)::";
+    }
+    
     /**
-    * Set _clippedVertices to contain the two ends of the portion of the Voronoi edge that is visible
-    * within the bounds.  If no part of the Edge falls within the bounds, leave _clippedVertices nil.
+    * Set clippedVertices to contain the two ends of the portion of the Voronoi edge that is visible
+    * within the bounds.  If no part of the Edge falls within the bounds, leave clippedVertices nil.
     * @param bounds
     *
     */
     func clipVertices(bounds:Rectangle)
     {
-        var xmin = Double(bounds.minX)
-        var ymin = Double(bounds.minY)
-        var xmax = Double(bounds.maxX)
-        var ymax = Double(bounds.maxY)
-        
-        var vertex0:Vertex?, vertex1:Vertex?;
+        let xmin = Double(bounds.minX)
+        let ymin = Double(bounds.minY)
+        let xmax = Double(bounds.maxX)
+        let ymax = Double(bounds.maxY)
+
         var x0:Double, x1:Double, y0:Double, y1:Double;
         
-        if (a == 1.0 && b >= 0.0)
-        {
+        
+        let vertex0:Vertex?
+        let vertex1:Vertex?;
+
+        if (a == 1.0 && b >= 0.0){
             vertex0 = rightVertex;
             vertex1 = leftVertex;
         }
-        else
-        {
+        else{
             vertex0 = leftVertex;
             vertex1 = rightVertex;
         }
         
-        if (a == 1.0)
-        {
+        if (a == 1.0) {
             y0 = ymin;
-            if (vertex0 != nil && vertex0!.y > ymin)
-            {
+            if (vertex0 != nil && vertex0!.y > ymin) {
                 y0 = vertex0!.y;
             }
-            if (y0 > ymax)
-            {
+            if (y0 > ymax) {
                 return;
             }
             x0 = c - b * y0;
             
             y1 = ymax;
-            if (vertex1 != nil && vertex1!.y < ymax)
-            {
+            if (vertex1 != nil && vertex1!.y < ymax) {
                 y1 = vertex1!.y;
             }
-            if (y1 < ymin)
-            {
+            if (y1 < ymin) {
                 return;
             }
             x1 = c - b * y1;
             
-            if ((x0 > xmax && x1 > xmax) || (x0 < xmin && x1 < xmin))
-            {
+            if ((x0 > xmax && x1 > xmax) || (x0 < xmin && x1 < xmin)){
                 return;
             }
             
-            if (x0 > xmax)
-            {
-                x0 = xmax; y0 = (c - x0)/b;
+            if (x0 > xmax){
+                x0 = xmax;
+                y0 = (c - x0)/b;
             }
-            else if (x0 < xmin)
-            {
-                x0 = xmin; y0 = (c - x0)/b;
+            else if (x0 < xmin){
+                x0 = xmin;
+                y0 = (c - x0)/b;
             }
             
-            if (x1 > xmax)
-            {
-                x1 = xmax; y1 = (c - x1)/b;
+            if (x1 > xmax){
+                x1 = xmax;
+                y1 = (c - x1)/b;
             }
-            else if (x1 < xmin)
-            {
-                x1 = xmin; y1 = (c - x1)/b;
+            else if (x1 < xmin){
+                x1 = xmin;
+                y1 = (c - x1)/b;
             }
         }
-        else
-        {
+        else{
             x0 = xmin;
-            if (vertex0 != nil && vertex0!.x > xmin)
-            {
+            if (vertex0 != nil && vertex0!.x > xmin){
                 x0 = vertex0!.x;
             }
-            if (x0 > xmax)
-            {
+            if (x0 > xmax){
                 return;
             }
             y0 = c - a * x0;
             
             x1 = xmax;
-            if (vertex1 != nil && vertex1!.x < xmax)
-            {
+            if (vertex1 != nil && vertex1!.x < xmax){
                 x1 = vertex1!.x;
             }
-            if (x1 < xmin)
-            {
+            if (x1 < xmin){
                 return;
             }
             y1 = c - a * x1;
@@ -364,20 +350,24 @@ public final class Edge
             
             if (y0 > ymax)
             {
-                y0 = ymax; x0 = (c - y0)/a;
+                y0 = ymax;
+                x0 = (c - y0)/a;
             }
             else if (y0 < ymin)
             {
-                y0 = ymin; x0 = (c - y0)/a;
+                y0 = ymin;
+                x0 = (c - y0)/a;
             }
             
             if (y1 > ymax)
             {
-                y1 = ymax; x1 = (c - y1)/a;
+                y1 = ymax;
+                x1 = (c - y1)/a;
             }
             else if (y1 < ymin)
             {
-                y1 = ymin; x1 = (c - y1)/a;
+                y1 = ymin;
+                x1 = (c - y1)/a;
             }
         }
         
