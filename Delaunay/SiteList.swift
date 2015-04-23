@@ -47,7 +47,7 @@ public final class SiteList:IDisposable
 			}
 		}
 
-		func getSitesBounds()->CGRect
+		func getSitesBounds()->Rectangle
 		{
 			if (sorted == false)
 			{
@@ -55,13 +55,13 @@ public final class SiteList:IDisposable
 				currentIndex = 0;
 				sorted = true;
 			}
-			var xmin:CGFloat, xmax:CGFloat, ymin:CGFloat, ymax:CGFloat;
+			var xmin:Double, xmax:Double, ymin:Double, ymax:Double;
 			if (sites.count == 0)
 			{
-				return CGRect(x: 0, y: 0, width: 0, height: 0);
+				return Rectangle(x: 0, y: 0, width: 0, height: 0);
 			}
-			xmin = CGFloat.max
-			xmax = CGFloat.min;
+			xmin = Double(Int.max)
+			xmax = Double(Int.min);
 			for site in sites
 			{
 				if (site.x < xmin)
@@ -77,7 +77,7 @@ public final class SiteList:IDisposable
 			ymin = sites[0].y;
 			ymax = sites[sites.count - 1].y;
 			
-			return CGRect(x: xmin, y: ymin, width: xmax - xmin, height: ymax - ymin);
+			return Rectangle(x: xmin, y: ymin, width: xmax - xmin, height: ymax - ymin);
 		}
 
 		public func siteColors(/*referenceImage:BitmapData = nil*/)->[UInt]
@@ -89,9 +89,9 @@ public final class SiteList:IDisposable
 			return colors;
 		}
 
-		public func siteCoords()->[CGPoint]
+		public func siteCoords()->[Point]
 		{
-			var coords:[CGPoint] = [CGPoint]();
+			var coords:[Point] = [Point]();
 			for site in sites{
 				coords.append(site.coord);
 			}
@@ -108,7 +108,7 @@ public final class SiteList:IDisposable
 		{
 			var circles = [Circle]();
             for site in sites{
-				var radius:CGFloat = 0;
+				var radius:Double = 0;
 				var nearestEdge:Edge = site.nearestEdge();
 				
                 if(!nearestEdge.isPartOfConvexHull()){
@@ -119,30 +119,29 @@ public final class SiteList:IDisposable
 			return circles;
 		}
 
-		public func regions(plotBounds:CGRect)->[[CGPoint]]
+		public func regions(plotBounds:Rectangle)->[[Point]]
 		{
-			var regions:[[CGPoint]] = [[CGPoint]]();
+			var regions:[[Point]] = [[Point]]();
 			for site in sites{
 				regions.append(site.region(plotBounds));
 			}
 			return regions;
 		}
 
-//		/**
-//		 * 
-//		 * @param proximityMap a BitmapData whose regions are filled with the site index values; see PlanePointsCanvas::fillRegions()
-//		 * @param x
-//		 * @param y
-//		 * @return coordinates of nearest Site to (x, y)
-//		 * 
-//		 */
-//		public func nearestSitePoint(proximityMap:BitmapData, x:CGFloat, y:CGFloat)->CGPoint?
-//		{
+		/**
+		 * 
+		 * @param proximityMap a BitmapData whose regions are filled with the site index values; see PlanePointsCanvas::fillRegions()
+		 * @param x
+		 * @param y
+		 * @return coordinates of nearest Site to (x, y)
+		 * 
+		 */
+		public func nearestSitePoint(/*proximityMap:BitmapData,*/ x:Double, y:Double)->Point?{
 //			var index:uint = proximityMap.getPixel(x, y);
 //			if (index > sites.count - 1)
 //			{
-//				return nil;
+				return nil;
 //			}
 //			return sites[index].coord;
-//		}
+		}
 }

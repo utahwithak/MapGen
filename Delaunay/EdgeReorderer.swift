@@ -62,36 +62,36 @@ public class EdgeReorderer{
                     continue;
                 }
                 edge = origEdges[i];
-                var leftPoint:ICoord = useVert ? edge.leftVertex! : edge.leftSite!;
-                var rightPoint:ICoord = useVert ? edge.rightVertex! : edge.rightSite!;
+                var leftPoint:ICoord? = useVert ? edge.leftVertex : edge.leftSite;
+                var rightPoint:ICoord? = useVert ? edge.rightVertex : edge.rightSite;
                 if (leftPoint === Vertex.VERTEX_AT_INFINITY || rightPoint === Vertex.VERTEX_AT_INFINITY)
                 {
                     return [Edge]();
                 }
                 if (leftPoint === lastPoint)
                 {
-                    lastPoint = rightPoint;
+                    lastPoint = rightPoint!;
                     edgeOrientations.append(LR.LEFT);
                     newEdges.append(edge);
                     done[i] = true;
                 }
                 else if (rightPoint === firstPoint)
                 {
-                    firstPoint = leftPoint;
+                    firstPoint = leftPoint!;
                     edgeOrientations.insert(LR.LEFT, atIndex: 0);
                     newEdges.insert(edge,atIndex:0);
                     done[i] = true;
                 }
                 else if (leftPoint === firstPoint)
                 {
-                    firstPoint = rightPoint;
+                    firstPoint = rightPoint!;
                     edgeOrientations.insert(LR.RIGHT, atIndex:0);
                     newEdges.insert(edge, atIndex: 0)
                     done[i] = true;
                 }
                 else if (rightPoint === lastPoint)
                 {
-                    lastPoint = leftPoint;
+                    lastPoint = leftPoint!;
                     edgeOrientations.append(LR.RIGHT);
                     newEdges.append(edge);
                     done[i] = true;

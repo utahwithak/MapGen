@@ -6,7 +6,7 @@ func selectNonIntersectingEdges(/*keepOutMask:NSData?,*/ edgesToTest:[Edge])->[E
 //        return edgesToTest;
 //    }
 //
-//    var zeroPoint:CGPoint = CGPoint.zeroPoint
+//    var zeroPoint:Point = Point.zeroPoint
     return edgesToTest
 //
 //    function myTest(edge:Edge, index:Int, vector:Vector.<Edge>)->Bool

@@ -8,8 +8,8 @@ public class LineSegment
     {
         
 
-        var length0 = CGPoint.distance(segment0.p0, segment0.p1);
-        var length1 = CGPoint.distance(segment1.p0, segment1.p1);
+        var length0 = Point.distance(segment0.p0, segment0.p1);
+        var length1 = Point.distance(segment1.p0, segment1.p1);
         if (length0 < length1)
         {
             return true;
@@ -26,10 +26,10 @@ public class LineSegment
         return !compareLengths_MAX(edge0, segment1: edge1);
     }
 
-    public var p0:CGPoint;
-    public var p1:CGPoint;
+    public var p0:Point;
+    public var p1:Point;
     
-    public init(p0:CGPoint, p1:CGPoint)
+    public init(p0:Point, p1:Point)
     {
         self.p0 = p0;
         self.p1 = p1;

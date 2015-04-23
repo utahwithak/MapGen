@@ -7,10 +7,10 @@ public class HalfedgePriorityQueue // also known as heap
     private var minBucket:Int = 0;
     private var hashsize:Int = 0;
     
-    private var ymin:CGFloat = 0;
-    private var deltay:CGFloat = 0;
+    private var ymin:Double = 0;
+    private var deltay:Double = 0;
 
-    public init(ymin:CGFloat, deltay:CGFloat, sqrtnsites:Int)
+    public init(ymin:Double, deltay:Double, sqrtnsites:Int)
     {
         self.ymin = ymin;
         self.deltay = deltay;
@@ -37,7 +37,7 @@ public class HalfedgePriorityQueue // also known as heap
     
         count = 0;
         minBucket = 0;
-        hash =  [Halfedge?](count:hashsize, repeatedValue:nil);
+        hash = [Halfedge?](count:hashsize, repeatedValue:nil);
         // dummy Halfedge at the top of each hash
         for (i = 0; i < hashsize; ++i)
         {
@@ -49,7 +49,7 @@ public class HalfedgePriorityQueue // also known as heap
     public func insert(halfEdge:Halfedge)
     {
         var previous:Halfedge?, next:Halfedge?;
-        var insertionBucket:Int = bucket(halfEdge);
+        var insertionBucket = bucket(halfEdge);
         if (insertionBucket < minBucket)
         {
             minBucket = insertionBucket;
@@ -88,7 +88,7 @@ public class HalfedgePriorityQueue // also known as heap
 
     private func bucket(halfEdge:Halfedge)->Int
     {
-        var theBucket:Int = Int((halfEdge.ystar - ymin)/deltay) * hashsize;
+        var theBucket:Int = Int((halfEdge.ystar - ymin) / deltay) * hashsize;
         if (theBucket < 0){
             theBucket = 0;
         }
@@ -125,11 +125,11 @@ public class HalfedgePriorityQueue // also known as heap
      * @return coordinates of the Halfedge's vertex in V*, the transformed Voronoi diagram
      * 
      */
-    public func min()->CGPoint
+    public func min()->Point
     {
         adjustMinBucket();
         var answer:Halfedge = hash[minBucket]!.nextInPriorityQueue!;
-        return CGPoint(x:answer.vertex!.x,y: answer.ystar);
+        return Point(x:answer.vertex!.x,y: answer.ystar);
     }
 
     /**

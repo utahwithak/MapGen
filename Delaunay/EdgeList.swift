@@ -1,8 +1,8 @@
 
 	
 public final class EdgeList{
-		private var deltax:CGFloat = 0;
-		private var xmin:CGFloat = 0;
+		private var deltax:Double = 0;
+		private var xmin:Double = 0;
 		
 		private var hashsize:Int = 0;
 		private var hash:[Halfedge?];
@@ -10,7 +10,7 @@ public final class EdgeList{
 		
         public var rightEnd:Halfedge;
 		
-		public init(xmin:CGFloat, deltax:CGFloat, sqrt_nsites:Int)
+		public init(xmin:Double, deltax:Double, sqrt_nsites:Int)
 		{
 			self.xmin = xmin;
 			self.deltax = deltax;
@@ -30,6 +30,25 @@ public final class EdgeList{
 			hash[hashsize - 1] = rightEnd;
 		}
 
+    
+    public func dispose()
+    {
+        var halfEdge:Halfedge = leftEnd;
+        var prevHe:Halfedge;
+        while (halfEdge !== rightEnd)
+        {
+				prevHe = halfEdge;
+				halfEdge = halfEdge.edgeListRightNeighbor!;
+				prevHe.dispose();
+        }
+
+        for i in 0..<hashsize
+        {
+            hash[i] = nil;
+        }
+        hash.removeAll(keepCapacity: false)
+    }
+    
 		/**
 		 * Insert newHalfedge to the right of lb 
 		 * @param lb
@@ -65,7 +84,7 @@ public final class EdgeList{
 		 * @return 
 		 * 
 		 */
-		public func edgeListLeftNeighbor(p:CGPoint) -> Halfedge
+		public func edgeListLeftNeighbor(p:Point) -> Halfedge
 		{
 			var i:Int, bucket:Int;
 			var halfEdge:Halfedge?;

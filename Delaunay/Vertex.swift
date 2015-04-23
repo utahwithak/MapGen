@@ -1,10 +1,10 @@
 import Foundation
 
 public final class Vertex: ICoord{
-    public static let VERTEX_AT_INFINITY:Vertex = Vertex( x: CGFloat(Float.infinity),y: CGFloat( Float.infinity));
+    public static let VERTEX_AT_INFINITY:Vertex = Vertex( x: Double(Float.infinity),y: Double( Float.infinity));
     
     private static var pool:[Vertex] = [Vertex]();
-    private static func create(x:CGFloat, y:CGFloat)->Vertex
+    private static func create(x:Double, y:Double)->Vertex
     {
         
         if (x.isNaN || y.isNaN)
@@ -24,17 +24,17 @@ public final class Vertex: ICoord{
     
     private static var nvertices:Int = 0;
     
-    public var coord:CGPoint = CGPoint.zeroPoint;
+    public var coord:Point = Point.zeroPoint;
     private var vertexIndex:Int = 0;
     
-    public init( x:CGFloat, y:CGFloat)
+    public init( x:Double, y:Double)
     {
         refresh(x, y:y);
     }
     
-    private func refresh(x:CGFloat, y:CGFloat)->Vertex
+    private func refresh(x:Double, y:Double)->Vertex
     {
-        coord = CGPoint(x:x, y:y);
+        coord = Point(x:x, y:y);
         return self;
     }
     
@@ -65,7 +65,7 @@ public final class Vertex: ICoord{
     {
         var edge0:Edge?, edge1:Edge?, edge:Edge;
         var halfedge:Halfedge;
-        var determinant:CGFloat, intersectionX:CGFloat, intersectionY:CGFloat;
+        var determinant:Double, intersectionX:Double, intersectionY:Double;
         var rightOfSite:Bool;
         
         edge0 = halfedge0.edge;
@@ -110,11 +110,11 @@ public final class Vertex: ICoord{
     }
     
     
-    public var x:CGFloat
+    public var x:Double
         {
             return coord.x;
     }
-    public var y:CGFloat
+    public var y:Double
         {
             return coord.y;
     }

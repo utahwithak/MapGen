@@ -30,7 +30,7 @@ public final class Halfedge:Printable{
 		public var vertex:Vertex? = nil;
 
 		// the vertex's y-coordinate in the transformed Voronoi space V*
-		public var ystar:CGFloat = 0;
+		public var ystar:Double = 0;
 
 		public init(edge:Edge? = nil, lr:LR = .Unknown)
 		{
@@ -79,11 +79,11 @@ public final class Halfedge:Printable{
             Halfedge.pool.append(self);
 		}
 
-		func isLeftOf(p:CGPoint)->Bool
+		func isLeftOf(p:Point)->Bool
         {
 			var topSite:Site;
 			var rightOfSite:Bool, above:Bool, fast:Bool;
-			var dxp:CGFloat, dyp:CGFloat, dxs:CGFloat, t1:CGFloat, t2:CGFloat, t3:CGFloat, yl:CGFloat;
+			var dxp:Double, dyp:Double, dxs:Double, t1:Double, t2:Double, t3:Double, yl:Double;
 			
 			topSite = edge!.rightSite!;
 			rightOfSite = p.x > topSite.x;

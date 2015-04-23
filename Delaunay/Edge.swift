@@ -17,8 +17,8 @@ public final class Edge
     */
     static func createBisectingEdge(site0:Site, site1:Site)->Edge
     {
-        var dx:CGFloat, dy:CGFloat, absdx:CGFloat, absdy:CGFloat;
-        var a:CGFloat, b:CGFloat, c:CGFloat;
+        var dx:Double, dy:Double, absdx:Double, absdy:Double;
+        var a:Double, b:Double, c:Double;
         
         dx = site1.x - site0.x;
         dy = site1.y - site0.y;
@@ -83,8 +83,8 @@ public final class Edge
     //		// making this available to Voronoi; running out of memory in AIR so I cannot cache the bmp
     //		func makeDelaunayLineBmp()->BitmapData
     //		{
-    //			var p0:CGPoint = leftSite.coord;
-    //			var p1:CGPoint = rightSite.coord;
+    //			var p0:Point = leftSite.coord;
+    //			var p1:Point = rightSite.coord;
     //
     //			GRAPHICS.clear();
     //			// clear() resets line style back to undefined!
@@ -116,7 +116,7 @@ public final class Edge
     public func voronoiEdge()->LineSegment
     {
         if (!visible){
-            return LineSegment(p0: CGPoint.zeroPoint, p1: CGPoint.zeroPoint);
+            return LineSegment(p0: Point.zeroPoint, p1: Point.zeroPoint);
         }
         return  LineSegment(p0:clippedVertices[LR.LEFT]!, p1:clippedVertices[LR.RIGHT]!);
     }
@@ -126,7 +126,7 @@ public final class Edge
     static let DELETED:Edge = Edge();
     
     // the equation of the edge: ax + by = c
-    var a:CGFloat = 0, b:CGFloat = 0, c:CGFloat = 0;
+    var a:Double = 0, b:Double = 0, c:Double = 0;
     
     // the two Voronoi vertices that the edge connects
     //		(if one of them is nil, the edge extends to infinity)
@@ -135,10 +135,13 @@ public final class Edge
     
     func vertex(leftRight:LR)->Vertex
     {
+        assert(leftRight != .Unknown, "INVALID SET VERT!")
+
         return (leftRight == LR.LEFT) ? leftVertex! : rightVertex!;
     }
     func setVertex(leftRight:LR, v:Vertex)
     {
+        assert(leftRight != .Unknown, "INVALID SET VERT!")
         if (leftRight == LR.LEFT)
         {
             leftVertex = v;
@@ -154,15 +157,15 @@ public final class Edge
         return (leftVertex == nil || rightVertex == nil);
     }
     
-    public func sitesDistance()->CGFloat
+    public func sitesDistance()->Double
     {
-        return CGPoint.distance(leftSite!.coord, rightSite!.coord);
+        return Point.distance(leftSite!.coord, rightSite!.coord);
     }
     //
     public static func compareSitesDistances_MAX(edge0:Edge, edge1:Edge)->Bool
     {
-        var length0:CGFloat = edge0.sitesDistance();
-        var length1:CGFloat = edge1.sitesDistance();
+        var length0:Double = edge0.sitesDistance();
+        var length1:Double = edge1.sitesDistance();
         if (length0 < length1)
         {
             return true;
@@ -181,7 +184,7 @@ public final class Edge
     //
     //		// Once clipVertices() is called, this Dictionary will hold two Points
     //		// representing the clipped coordinates of the left and right ends...
-    public var clippedVertices = [LR:CGPoint]()
+    public var clippedVertices = [LR:Point]()
     
     //		// unless the entire Edge is outside the bounds.
     //		// In that case visible will be false:
@@ -262,15 +265,15 @@ public final class Edge
     * @param bounds
     *
     */
-    func clipVertices(bounds:CGRect)
+    func clipVertices(bounds:Rectangle)
     {
-        var xmin:CGFloat = bounds.minX;
-        var ymin:CGFloat = bounds.minY;
-        var xmax:CGFloat = bounds.maxX;
-        var ymax:CGFloat = bounds.maxY;
+        var xmin = Double(bounds.minX)
+        var ymin = Double(bounds.minY)
+        var xmax = Double(bounds.maxX)
+        var ymax = Double(bounds.maxY)
         
         var vertex0:Vertex?, vertex1:Vertex?;
-        var x0:CGFloat, x1:CGFloat, y0:CGFloat, y1:CGFloat;
+        var x0:Double, x1:Double, y0:Double, y1:Double;
         
         if (a == 1.0 && b >= 0.0)
         {
@@ -378,16 +381,16 @@ public final class Edge
             }
         }
         
-        clippedVertices = [LR:CGPoint]()
+        clippedVertices = [LR:Point]()
         if (vertex0 === leftVertex)
         {
-            clippedVertices[LR.LEFT] = CGPoint(x: x0, y: y0);
-            clippedVertices[LR.RIGHT] = CGPoint(x: x1, y: y1);
+            clippedVertices[LR.LEFT] = Point(x: x0, y: y0);
+            clippedVertices[LR.RIGHT] = Point(x: x1, y: y1);
         }
         else
         {
-            clippedVertices[LR.RIGHT] = CGPoint(x: x0, y: y0);
-            clippedVertices[LR.LEFT] = CGPoint(x: x1, y: y1);
+            clippedVertices[LR.RIGHT] = Point(x: x0, y: y0);
+            clippedVertices[LR.LEFT] = Point(x: x1, y: y1);
         }
     }
 }

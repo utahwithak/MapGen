@@ -13,7 +13,7 @@ public enum SpanningType{
 public func Kruskal(lineSegs:[LineSegment], type:SpanningType = .Minimum)->[LineSegment]
 {
     var lineSegments = lineSegs
-    var nodes = [CGPoint:Node]()
+    var nodes = [Point:Node]()
     var mst:[LineSegment] = [LineSegment]();
     var nodePool:[Node] = Node.pool;
 

@@ -1,12 +1,12 @@
 import Foundation
 
 public class Circle:Printable{
-    public var center:CGPoint;
-    public var radius:CGFloat;
+    public var center:Point;
+    public var radius:Double;
     
-    public init(centerX:CGFloat, centerY:CGFloat, radius:CGFloat)
+    public init(centerX:Double, centerY:Double, radius:Double)
     {
-        self.center =  CGPoint(x:centerX, y:centerY);
+        self.center =  Point(x:centerX, y:centerY);
         self.radius = radius;
     }
     

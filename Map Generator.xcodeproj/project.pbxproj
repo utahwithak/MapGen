@@ -35,6 +35,9 @@
 		463B0D071AE6D90300E0E335 /* VisibleLineSegments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463B0CFA1AE6D90300E0E335 /* VisibleLineSegments.swift */; };
 		463B0D081AE6D90300E0E335 /* Voronoi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463B0CFB1AE6D90300E0E335 /* Voronoi.swift */; };
 		463B0D091AE6D90300E0E335 /* Winding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463B0CFC1AE6D90300E0E335 /* Winding.swift */; };
+		46A1BBDF1AE8B012004E3E9D /* PM_PRNG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A1BBDE1AE8B012004E3E9D /* PM_PRNG.swift */; };
+		46A1BBE11AE8B51D004E3E9D /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A1BBE01AE8B51D004E3E9D /* Point.swift */; };
+		46A1BBE31AE8B798004E3E9D /* Rectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A1BBE21AE8B798004E3E9D /* Rectangle.swift */; };
 		46F5A6E51AE5FC200070D933 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F5A6E41AE5FC200070D933 /* AppDelegate.swift */; };
 		46F5A6E71AE5FC200070D933 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F5A6E61AE5FC200070D933 /* GameView.swift */; };
 		46F5A6E91AE5FC200070D933 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F5A6E81AE5FC200070D933 /* GameViewController.swift */; };
@@ -119,6 +122,9 @@
 		463B0CFA1AE6D90300E0E335 /* VisibleLineSegments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisibleLineSegments.swift; sourceTree = "<group>"; };
 		463B0CFB1AE6D90300E0E335 /* Voronoi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Voronoi.swift; sourceTree = "<group>"; };
 		463B0CFC1AE6D90300E0E335 /* Winding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Winding.swift; sourceTree = "<group>"; };
+		46A1BBDE1AE8B012004E3E9D /* PM_PRNG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PM_PRNG.swift; sourceTree = "<group>"; };
+		46A1BBE01AE8B51D004E3E9D /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
+		46A1BBE21AE8B798004E3E9D /* Rectangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rectangle.swift; sourceTree = "<group>"; };
 		46F5A6DF1AE5FC200070D933 /* Map Generator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Map Generator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46F5A6E31AE5FC200070D933 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		46F5A6E41AE5FC200070D933 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -231,6 +237,8 @@
 		463B0D0B1AE6D91A00E0E335 /* Geometry */ = {
 			isa = PBXGroup;
 			children = (
+				46A1BBE01AE8B51D004E3E9D /* Point.swift */,
+				46A1BBE21AE8B798004E3E9D /* Rectangle.swift */,
 				463B0CDD1AE6D8F300E0E335 /* Circle.swift */,
 				463B0CF11AE6D90300E0E335 /* LineSegment.swift */,
 				463B0CFC1AE6D90300E0E335 /* Winding.swift */,
@@ -265,6 +273,7 @@
 			isa = PBXGroup;
 			children = (
 				46F5A6E41AE5FC200070D933 /* AppDelegate.swift */,
+				46A1BBDE1AE8B012004E3E9D /* PM_PRNG.swift */,
 				46F5A6E61AE5FC200070D933 /* GameView.swift */,
 				46F5A6E81AE5FC200070D933 /* GameViewController.swift */,
 				46F5A6EA1AE5FC200070D933 /* art.scnassets */,
@@ -481,12 +490,14 @@
 				463B0CEC1AE6D8FC00E0E335 /* Halfedge.swift in Sources */,
 				463B0CEE1AE6D8FC00E0E335 /* ICoord.swift in Sources */,
 				463B0D011AE6D90300E0E335 /* selectEdgesForSitePoint.swift in Sources */,
+				46A1BBE11AE8B51D004E3E9D /* Point.swift in Sources */,
 				463B0CFF1AE6D90300E0E335 /* LR.swift in Sources */,
 				463B0CFD1AE6D90300E0E335 /* Kruskal.swift in Sources */,
 				463B0D001AE6D90300E0E335 /* Polygon.swift in Sources */,
 				463B0D031AE6D90300E0E335 /* Site.swift in Sources */,
 				463B0CEB1AE6D8FC00E0E335 /* EdgeReorderer.swift in Sources */,
 				463B0D091AE6D90300E0E335 /* Winding.swift in Sources */,
+				46A1BBE31AE8B798004E3E9D /* Rectangle.swift in Sources */,
 				463B0CDE1AE6D8F300E0E335 /* CGPointUtils.swift in Sources */,
 				463B0D061AE6D90300E0E335 /* Vertex.swift in Sources */,
 				463B0D021AE6D90300E0E335 /* selectNonIntersectingEdges.swift in Sources */,
@@ -514,6 +525,7 @@
 				46F5A6E71AE5FC200070D933 /* GameView.swift in Sources */,
 				46F5A6E91AE5FC200070D933 /* GameViewController.swift in Sources */,
 				46F5A6E51AE5FC200070D933 /* AppDelegate.swift in Sources */,
+				46A1BBDF1AE8B012004E3E9D /* PM_PRNG.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -791,6 +803,7 @@
 				463B0CD81AE6D8C300E0E335 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		463B0CD91AE6D8C300E0E335 /* Build configuration list for PBXNativeTarget "DelaunayTests" */ = {
 			isa = XCConfigurationList;
@@ -799,6 +812,7 @@
 				463B0CDB1AE6D8C300E0E335 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		46F5A6DA1AE5FC200070D933 /* Build configuration list for PBXProject "Map Generator" */ = {
 			isa = XCConfigurationList;

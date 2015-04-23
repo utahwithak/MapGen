@@ -2,14 +2,14 @@ import Foundation
 
 public class Polygon
 {
-    private var vertices:[CGPoint];
+    private var vertices:[Point];
 
-    public init(vertices:[CGPoint])
+    public init(vertices:[Point])
     {
         self.vertices = vertices;
     }
 
-    public func area() -> CGFloat
+    public func area() -> Double
     {
         return abs(signedDoubleArea() * 0.5);
     }
@@ -28,13 +28,13 @@ public class Polygon
         return Winding.NONE;
     }
 
-    private func signedDoubleArea()->CGFloat
+    private func signedDoubleArea()->Double
     {
 
         var nextIndex:Int;
         var n = vertices.count;
-        var point:CGPoint, next:CGPoint;
-        var signedDoubleArea:CGFloat = 0;
+        var point:Point, next:Point;
+        var signedDoubleArea:Double = 0;
         
         var index:Int
         for (index = 0; index < n; ++index)

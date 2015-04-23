@@ -7,8 +7,8 @@
 //
 
 import Foundation
-extension CGPoint :Hashable{
-    static func distance( lhs:CGPoint, _ rhs:CGPoint)->CGFloat{
+extension Point :Hashable{
+    static func distance( lhs:Point, _ rhs:Point)->Double{
         let dx = lhs.x - rhs.x;
         let dy = lhs.y - rhs.y;
         return sqrt((dx * dx) + (dy * dy))
@@ -20,6 +20,6 @@ extension CGPoint :Hashable{
         }
     }
 }
-public func ==(lhs: CGPoint, rhs: CGPoint) -> Bool {
+public func ==(lhs: Point, rhs: Point) -> Bool {
     return lhs.hashValue == rhs.hashValue
 }
