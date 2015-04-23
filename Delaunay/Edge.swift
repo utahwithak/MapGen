@@ -233,7 +233,7 @@ public final class Edge
         //			}
         leftVertex = nil;
         rightVertex = nil;
-        clippedVertices.removeAll(keepCapacity: true)
+        clippedVertices = nil
         sites.removeAll(keepCapacity: true)
         Edge.pool.append(self);
     }

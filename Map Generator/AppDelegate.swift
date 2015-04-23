@@ -46,11 +46,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         var voronoi:Voronoi
         var region:[Point];
         var points = AppDelegate.generateRandom(size, seed: seed)(numPoints: numPoints);
-        for (i = 0; i < 2; i++) {
+        for (i = 0; i < 3; i++) {
             voronoi = Voronoi(points: points, colors: nil, plotBounds: Rectangle(x: 0, y: 0, width: size, height: size));
             for pIn in points {
                 var p = pIn
-                println("Point:\(p)")
                 region = voronoi.region(p);
                 p.x = 0.0;
                 p.y = 0.0;

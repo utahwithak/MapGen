@@ -26,22 +26,21 @@ public class EdgeReorderer{
     
     private func reorderEdges(origEdges:[Edge], criterion:Criteria)->[Edge]
     {
-        var i:Int;
+        var i:Int = 0;
         var j:Int;
         var n:Int = origEdges.count;
-        var edge:Edge;
         // we're going to reorder the edges in order of traversal
         var done = [Bool](count:n, repeatedValue:false);
-        var nDone:Int = 0;
+        var nDone = 0;
         var newEdges = [Edge]();
         
         let useVert = criterion == Criteria.Vertex
-        i = 0;
-        edge = origEdges[i];
+        
+        var edge = origEdges[i];
         newEdges.append(edge);
         edgeOrientations.append(LR.LEFT);
-        var firstPoint:ICoord = useVert ? edge.leftVertex! : edge.leftSite!;
-        var lastPoint:ICoord  = useVert ? edge.rightVertex! : edge.rightSite!;
+        var firstPoint:ICoord? = useVert ? edge.leftVertex : edge.leftSite;
+        var lastPoint:ICoord?  = useVert ? edge.rightVertex : edge.rightSite;
         
         if (firstPoint === Vertex.VERTEX_AT_INFINITY || lastPoint === Vertex.VERTEX_AT_INFINITY)
         {
@@ -68,28 +67,28 @@ public class EdgeReorderer{
                 }
                 if (leftPoint === lastPoint)
                 {
-                    lastPoint = rightPoint!;
+                    lastPoint = rightPoint;
                     edgeOrientations.append(LR.LEFT);
                     newEdges.append(edge);
                     done[i] = true;
                 }
                 else if (rightPoint === firstPoint)
                 {
-                    firstPoint = leftPoint!;
+                    firstPoint = leftPoint;
                     edgeOrientations.insert(LR.LEFT, atIndex: 0);
                     newEdges.insert(edge,atIndex:0);
                     done[i] = true;
                 }
                 else if (leftPoint === firstPoint)
                 {
-                    firstPoint = rightPoint!;
+                    firstPoint = rightPoint;
                     edgeOrientations.insert(LR.RIGHT, atIndex:0);
                     newEdges.insert(edge, atIndex: 0)
                     done[i] = true;
                 }
                 else if (rightPoint === lastPoint)
                 {
-                    lastPoint = leftPoint!;
+                    lastPoint = leftPoint;
                     edgeOrientations.append(LR.RIGHT);
                     newEdges.append(edge);
                     done[i] = true;
