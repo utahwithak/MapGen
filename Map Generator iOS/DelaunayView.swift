@@ -11,8 +11,12 @@ import UIKit
 class DelaunayView: UIView {
     var regionPoints = [[CGPoint]]()
     var positions = [CGPoint]()
+    var triangles = [[CGPoint]]()
+    
     var pointColor = UIColor.blueColor()
     var lineColor = UIColor.blackColor()
+    
+    var triColor = UIColor.redColor()
     
     override func drawRect(dirtyRect: CGRect) {
         super.drawRect(dirtyRect)
@@ -21,8 +25,17 @@ class DelaunayView: UIView {
         for p in positions{
             CGContextFillEllipseInRect(context, DelaunayView.rectForPoint(p))
         }
+        lineColor.set()
         for region in regionPoints{
-            lineColor.set()
+            if region.count > 2{
+                var lines = region
+                CGContextAddLines(context, &lines, region.count)
+                CGContextDrawPath(context, kCGPathStroke)
+            }
+        }
+
+        triColor.set()
+        for region in triangles{
             if region.count > 2{
                 var lines = region
                 CGContextAddLines(context, &lines, region.count)
@@ -31,8 +44,8 @@ class DelaunayView: UIView {
         }
         
     }
-    static let radius:CGFloat = 5;
+    static let radius:CGFloat = 3;
     static func rectForPoint(point:CGPoint)->CGRect{
-        return CGRectMake(point.x - radius, point.y, 2 * radius, 2 * radius)
+        return CGRectMake(point.x - radius, point.y - radius, 2 * radius, 2 * radius)
     }
 }

@@ -36,6 +36,14 @@ class ViewController: UIViewController,UIScrollViewDelegate {
             self.voronoiView.regionPoints.append(region.map(converter))
             
         }
+        func siteToPoint(site:Site)->CGPoint{
+            return CGPoint(x:site.coord.x,y:site.coord.y)
+        }
+        for triangle in voronoi.triangles{
+            let points = triangle.sites.map(siteToPoint)
+            self.voronoiView.triangles.append(points)
+
+        }
     
     }
 
@@ -75,7 +83,7 @@ class ViewController: UIViewController,UIScrollViewDelegate {
             var voronoi:Voronoi
             var region:[Point];
             var points = ViewController.generateRandom(size, seed: seed)(numPoints: numPoints);
-            for (i = 0; i < 3; i++) {
+            for (i = 0; i < 1; i++) {
                 voronoi = Voronoi(points: points, colors: nil, plotBounds: Rectangle(x: 0, y: 0, width: size, height: size));
                 for pIn in points {
                     var p = pIn
