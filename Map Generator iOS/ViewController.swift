@@ -13,14 +13,14 @@ class ViewController: UIViewController,UIScrollViewDelegate {
     var voronoiView:DelaunayView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        let map = Map(size: 1024, numPoints: 2000, varient: random())
+        let map = Map(size: 2048, numPoints: 1000, varient: random())
         map.buildMap()
 
-        self.voronoiView = DelaunayView(frame: CGRectMake(0, 0, 1024, 1024))
+        self.voronoiView = DelaunayView(frame: CGRectMake(0, 0, 2048, 2048))
         self.voronoiView.backgroundColor = UIColor.clearColor()
         
         self.scrollView.addSubview(self.voronoiView)
-        self.scrollView.maximumZoomScale = 3
+        self.scrollView.maximumZoomScale = 10
         self.scrollView.minimumZoomScale = 0.01
         self.scrollView.delegate = self
         

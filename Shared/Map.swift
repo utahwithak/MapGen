@@ -156,7 +156,7 @@ class Map{
             step()
             let end = NSDate();
             let timeInterval: Double = end.timeIntervalSinceDate(start); // <<<<< Difference in seconds (double)
-            println("Finished \(name) in \(timeInterval)")
+            println("Finished... \(timeInterval)")
         }
         
         for (name, stage) in stages {
