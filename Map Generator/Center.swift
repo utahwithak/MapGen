@@ -19,8 +19,8 @@ public class Center{
     public var water:Bool = false
     public var ocean:Bool = false
     public var coast:Bool = false
-    public var boarder:Bool = false
-    public var biome = Biome.Temperate
+    public var border:Bool = false
+    public var biome = Biome.Grassland
     public var elevation:Double = 0
     public var moisture:Double = 0
     

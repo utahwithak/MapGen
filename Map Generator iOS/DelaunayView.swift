@@ -27,22 +27,14 @@ class DelaunayView: UIView {
         }
         lineColor.set()
         for region in regionPoints{
-            if region.count > 2{
+            if region.count == 2{
                 var lines = region
-                CGContextAddLines(context, &lines, region.count)
+                CGContextMoveToPoint(context, lines[0].x, lines[0].y)
+                CGContextAddLineToPoint(context, lines[1].x, lines[1].y)
                 CGContextDrawPath(context, kCGPathStroke)
             }
         }
-
-        triColor.set()
-        for region in triangles{
-            if region.count > 2{
-                var lines = region
-                CGContextAddLines(context, &lines, region.count)
-                CGContextDrawPath(context, kCGPathStroke)
-            }
-        }
-        
+  
     }
     static let radius:CGFloat = 3;
     static func rectForPoint(point:CGPoint)->CGRect{
