@@ -15,7 +15,7 @@ class ViewController: UIViewController,UIScrollViewDelegate {
         super.viewDidLoad()
 
         // Insert code here to initialize your application
-        let relaxed = generateRelaxed(2000, seed: 412342)
+        let relaxed = generateRelaxed(2000, seed: random())
         let points = relaxed(1000)
         let voronoi = Voronoi(points: points, colors: nil, plotBounds: Rectangle(x: 0, y: 0, width: 2000, height: 2000));
         self.voronoiView = DelaunayView(frame: CGRectMake(0, 0, 2000, 2000))
@@ -83,7 +83,7 @@ class ViewController: UIViewController,UIScrollViewDelegate {
             var voronoi:Voronoi
             var region:[Point];
             var points = ViewController.generateRandom(size, seed: seed)(numPoints: numPoints);
-            for (i = 0; i < 1; i++) {
+            for (i = 0; i < 3; i++) {
                 voronoi = Voronoi(points: points, colors: nil, plotBounds: Rectangle(x: 0, y: 0, width: size, height: size));
                 for pIn in points {
                     var p = pIn
