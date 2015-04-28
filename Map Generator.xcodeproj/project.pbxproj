@@ -7,16 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4650D1721AF0331000602E94 /* Biome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4650D15E1AF0331000602E94 /* Biome.swift */; };
-		4650D1731AF0331000602E94 /* Biome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4650D15E1AF0331000602E94 /* Biome.swift */; };
 		4650D17A1AF0331000602E94 /* Lava.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4650D1621AF0331000602E94 /* Lava.swift */; };
 		4650D17B1AF0331000602E94 /* Lava.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4650D1621AF0331000602E94 /* Lava.swift */; };
 		4650D17C1AF0331000602E94 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4650D1651AF0331000602E94 /* Map.swift */; };
 		4650D17D1AF0331000602E94 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4650D1651AF0331000602E94 /* Map.swift */; };
-		4650D1801AF0331000602E94 /* PerlinNoise.m in Sources */ = {isa = PBXBuildFile; fileRef = 4650D1681AF0331000602E94 /* PerlinNoise.m */; };
-		4650D1811AF0331000602E94 /* PerlinNoise.m in Sources */ = {isa = PBXBuildFile; fileRef = 4650D1681AF0331000602E94 /* PerlinNoise.m */; };
 		4650D1921AF0331000602E94 /* Watersheds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4650D1711AF0331000602E94 /* Watersheds.swift */; };
 		4650D1931AF0331000602E94 /* Watersheds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4650D1711AF0331000602E94 /* Watersheds.swift */; };
+		4650D19F1AF033CC00602E94 /* QHull.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4650D19A1AF033B900602E94 /* QHull.framework */; };
+		4650D1A01AF033D100602E94 /* QHull.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4650D19A1AF033B900602E94 /* QHull.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4650D1A81AF0348200602E94 /* PerlinNoise.m in Sources */ = {isa = PBXBuildFile; fileRef = 4650D1A71AF0348200602E94 /* PerlinNoise.m */; };
+		4650D1A91AF0348200602E94 /* PerlinNoise.m in Sources */ = {isa = PBXBuildFile; fileRef = 4650D1A71AF0348200602E94 /* PerlinNoise.m */; };
+		4650D1AF1AF034B600602E94 /* Vector3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4650D1AB1AF034B600602E94 /* Vector3.swift */; };
+		4650D1B01AF034B600602E94 /* Vector3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4650D1AB1AF034B600602E94 /* Vector3.swift */; };
+		4650D1B11AF034B600602E94 /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4650D1AC1AF034B600602E94 /* Vertex.swift */; };
+		4650D1B21AF034B600602E94 /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4650D1AC1AF034B600602E94 /* Vertex.swift */; };
+		4650D1B31AF034B600602E94 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4650D1AD1AF034B600602E94 /* Utils.swift */; };
+		4650D1B41AF034B600602E94 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4650D1AD1AF034B600602E94 /* Utils.swift */; };
+		4650D1B51AF034B600602E94 /* MeshUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4650D1AE1AF034B600602E94 /* MeshUtils.swift */; };
+		4650D1B61AF034B600602E94 /* MeshUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4650D1AE1AF034B600602E94 /* MeshUtils.swift */; };
+		4650D1B91AF0357500602E94 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4650D1B71AF0357500602E94 /* GameView.swift */; };
+		4650D1BA1AF0357500602E94 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4650D1B71AF0357500602E94 /* GameView.swift */; };
+		4650D1BB1AF0357500602E94 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4650D1B81AF0357500602E94 /* GameViewController.swift */; };
+		4650D1BC1AF0357500602E94 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4650D1B81AF0357500602E94 /* GameViewController.swift */; };
 		4685512D1AE9DF280002473E /* Center.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4685512C1AE9DF280002473E /* Center.swift */; };
 		4685512E1AE9DF280002473E /* Center.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4685512C1AE9DF280002473E /* Center.swift */; };
 		468551301AE9DF2E0002473E /* Biome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4685512F1AE9DF2E0002473E /* Biome.swift */; };
@@ -46,6 +58,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		4650D1991AF033B900602E94 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4650D1941AF033B800602E94 /* QHull.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4650D1301AF032CB00602E94;
+			remoteInfo = QHull;
+		};
+		4650D19B1AF033B900602E94 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4650D1941AF033B800602E94 /* QHull.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4650D13B1AF032CB00602E94;
+			remoteInfo = QHullTests;
+		};
+		4650D19D1AF033C900602E94 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4650D1941AF033B800602E94 /* QHull.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 4650D12F1AF032CB00602E94;
+			remoteInfo = QHull;
+		};
 		46D73A031AE971F800C92256 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 46F5A6D71AE5FC200070D933 /* Project object */;
@@ -111,6 +144,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				4650D1A01AF033D100602E94 /* QHull.framework in Embed Frameworks */,
 				46CB2A431AE97A5100B29FF7 /* DelaunayiOS.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -130,14 +164,19 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		4650D15E1AF0331000602E94 /* Biome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Biome.swift; path = Shared/Biome.swift; sourceTree = "<group>"; };
 		4650D1621AF0331000602E94 /* Lava.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Lava.swift; path = Shared/Lava.swift; sourceTree = "<group>"; };
-		4650D1631AF0331000602E94 /* Map Generator iOS-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Map Generator iOS-Bridging-Header.h"; path = "Shared/Map Generator iOS-Bridging-Header.h"; sourceTree = "<group>"; };
-		4650D1641AF0331000602E94 /* Map Generator-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Map Generator-Bridging-Header.h"; path = "Shared/Map Generator-Bridging-Header.h"; sourceTree = "<group>"; };
 		4650D1651AF0331000602E94 /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Map.swift; path = Shared/Map.swift; sourceTree = "<group>"; };
-		4650D1671AF0331000602E94 /* PerlinNoise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PerlinNoise.h; path = Shared/PerlinNoise.h; sourceTree = "<group>"; };
-		4650D1681AF0331000602E94 /* PerlinNoise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PerlinNoise.m; path = Shared/PerlinNoise.m; sourceTree = "<group>"; };
 		4650D1711AF0331000602E94 /* Watersheds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Watersheds.swift; path = Shared/Watersheds.swift; sourceTree = "<group>"; };
+		4650D1941AF033B800602E94 /* QHull.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = QHull.xcodeproj; path = ThirdParty/QHull/QHull.xcodeproj; sourceTree = "<group>"; };
+		4650D1A51AF0348100602E94 /* Map Generator iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Map Generator iOS-Bridging-Header.h"; sourceTree = "<group>"; };
+		4650D1A61AF0348200602E94 /* PerlinNoise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PerlinNoise.h; path = Shared/PerlinNoise.h; sourceTree = "<group>"; };
+		4650D1A71AF0348200602E94 /* PerlinNoise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PerlinNoise.m; path = Shared/PerlinNoise.m; sourceTree = "<group>"; };
+		4650D1AB1AF034B600602E94 /* Vector3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector3.swift; sourceTree = "<group>"; };
+		4650D1AC1AF034B600602E94 /* Vertex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vertex.swift; sourceTree = "<group>"; };
+		4650D1AD1AF034B600602E94 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		4650D1AE1AF034B600602E94 /* MeshUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeshUtils.swift; sourceTree = "<group>"; };
+		4650D1B71AF0357500602E94 /* GameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		4650D1B81AF0357500602E94 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		4685512C1AE9DF280002473E /* Center.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Center.swift; sourceTree = "<group>"; };
 		4685512F1AE9DF2E0002473E /* Biome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Biome.swift; path = Shared/Biome.swift; sourceTree = "<group>"; };
 		468551351AE9DFE90002473E /* Corner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Corner.swift; sourceTree = "<group>"; };
@@ -171,6 +210,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4650D19F1AF033CC00602E94 /* QHull.framework in Frameworks */,
 				46D73AED1AE979DA00C92256 /* DelaunayiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -203,14 +243,12 @@
 		460A83F81AEF22CB000CAAD3 /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				4650D15E1AF0331000602E94 /* Biome.swift */,
+				4650D1A61AF0348200602E94 /* PerlinNoise.h */,
+				4650D1A71AF0348200602E94 /* PerlinNoise.m */,
 				4650D1621AF0331000602E94 /* Lava.swift */,
-				4650D1631AF0331000602E94 /* Map Generator iOS-Bridging-Header.h */,
-				4650D1641AF0331000602E94 /* Map Generator-Bridging-Header.h */,
 				4650D1651AF0331000602E94 /* Map.swift */,
-				4650D1671AF0331000602E94 /* PerlinNoise.h */,
-				4650D1681AF0331000602E94 /* PerlinNoise.m */,
 				4650D1711AF0331000602E94 /* Watersheds.swift */,
+				4650D1A51AF0348100602E94 /* Map Generator iOS-Bridging-Header.h */,
 			);
 			name = Map;
 			sourceTree = "<group>";
@@ -227,8 +265,29 @@
 		4650D1191AF0325000602E94 /* QHull */ = {
 			isa = PBXGroup;
 			children = (
+				4650D1941AF033B800602E94 /* QHull.xcodeproj */,
 			);
 			name = QHull;
+			sourceTree = "<group>";
+		};
+		4650D1951AF033B800602E94 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4650D19A1AF033B900602E94 /* QHull.framework */,
+				4650D19C1AF033B900602E94 /* QHullTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4650D1AA1AF034A600602E94 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				4650D1AB1AF034B600602E94 /* Vector3.swift */,
+				4650D1AC1AF034B600602E94 /* Vertex.swift */,
+				4650D1AD1AF034B600602E94 /* Utils.swift */,
+				4650D1AE1AF034B600602E94 /* MeshUtils.swift */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 		4685511D1AE9DBE00002473E /* Graph */ = {
@@ -246,6 +305,7 @@
 			isa = PBXGroup;
 			children = (
 				46A1BBDE1AE8B012004E3E9D /* PM_PRNG.swift */,
+				4650D1AA1AF034A600602E94 /* Utils */,
 				4650D1191AF0325000602E94 /* QHull */,
 				46D73ADC1AE979C900C92256 /* Delaunay.xcodeproj */,
 				4685512F1AE9DF2E0002473E /* Biome.swift */,
@@ -261,6 +321,8 @@
 				46D739F21AE971F700C92256 /* AppDelegate.swift */,
 				46D739F41AE971F700C92256 /* ViewController.swift */,
 				46D73A101AE9721800C92256 /* DelaunayView.swift */,
+				4650D1B71AF0357500602E94 /* GameView.swift */,
+				4650D1B81AF0357500602E94 /* GameViewController.swift */,
 				46D739F61AE971F800C92256 /* Main.storyboard */,
 				46D739F91AE971F800C92256 /* Images.xcassets */,
 				46D739FB1AE971F800C92256 /* LaunchScreen.xib */,
@@ -379,6 +441,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				4650D19E1AF033C900602E94 /* PBXTargetDependency */,
 				46D73AEC1AE979D500C92256 /* PBXTargetDependency */,
 			);
 			name = "Map Generator iOS";
@@ -483,6 +546,10 @@
 					ProductGroup = 46D73ADD1AE979C900C92256 /* Products */;
 					ProjectRef = 46D73ADC1AE979C900C92256 /* Delaunay.xcodeproj */;
 				},
+				{
+					ProductGroup = 4650D1951AF033B800602E94 /* Products */;
+					ProjectRef = 4650D1941AF033B800602E94 /* QHull.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -495,6 +562,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		4650D19A1AF033B900602E94 /* QHull.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = QHull.framework;
+			remoteRef = 4650D1991AF033B900602E94 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4650D19C1AF033B900602E94 /* QHullTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = QHullTests.xctest;
+			remoteRef = 4650D19B1AF033B900602E94 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		46D73AE41AE979C900C92256 /* Delaunay.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -565,18 +646,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4650D1A91AF0348200602E94 /* PerlinNoise.m in Sources */,
 				468551371AE9DFE90002473E /* Corner.swift in Sources */,
 				468551311AE9DF2E0002473E /* Biome.swift in Sources */,
 				4685512E1AE9DF280002473E /* Center.swift in Sources */,
+				4650D1BC1AF0357500602E94 /* GameViewController.swift in Sources */,
 				46D73A111AE9721800C92256 /* DelaunayView.swift in Sources */,
+				4650D1BA1AF0357500602E94 /* GameView.swift in Sources */,
+				4650D1B41AF034B600602E94 /* Utils.swift in Sources */,
+				4650D1B21AF034B600602E94 /* Vertex.swift in Sources */,
 				4650D17B1AF0331000602E94 /* Lava.swift in Sources */,
+				4650D1B61AF034B600602E94 /* MeshUtils.swift in Sources */,
 				46D739F51AE971F700C92256 /* ViewController.swift in Sources */,
-				4650D1811AF0331000602E94 /* PerlinNoise.m in Sources */,
 				4650D17D1AF0331000602E94 /* Map.swift in Sources */,
 				4650D1931AF0331000602E94 /* Watersheds.swift in Sources */,
-				4650D1731AF0331000602E94 /* Biome.swift in Sources */,
 				46D739F31AE971F700C92256 /* AppDelegate.swift in Sources */,
 				46D73A4F1AE9729B00C92256 /* PM_PRNG.swift in Sources */,
+				4650D1B01AF034B600602E94 /* Vector3.swift in Sources */,
 				4685513A1AE9DFF20002473E /* Edge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -593,18 +679,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4650D1801AF0331000602E94 /* PerlinNoise.m in Sources */,
+				4650D1A81AF0348200602E94 /* PerlinNoise.m in Sources */,
 				468551361AE9DFE90002473E /* Corner.swift in Sources */,
 				468551301AE9DF2E0002473E /* Biome.swift in Sources */,
 				4685512D1AE9DF280002473E /* Center.swift in Sources */,
+				4650D1BB1AF0357500602E94 /* GameViewController.swift in Sources */,
 				46D739E61AE96AF000C92256 /* ViewController.swift in Sources */,
+				4650D1B91AF0357500602E94 /* GameView.swift in Sources */,
+				4650D1B31AF034B600602E94 /* Utils.swift in Sources */,
+				4650D1B11AF034B600602E94 /* Vertex.swift in Sources */,
 				4650D1921AF0331000602E94 /* Watersheds.swift in Sources */,
+				4650D1B51AF034B600602E94 /* MeshUtils.swift in Sources */,
 				46F5A6E51AE5FC200070D933 /* AppDelegate.swift in Sources */,
 				46A1BBDF1AE8B012004E3E9D /* PM_PRNG.swift in Sources */,
-				4650D1721AF0331000602E94 /* Biome.swift in Sources */,
 				4650D17C1AF0331000602E94 /* Map.swift in Sources */,
 				4650D17A1AF0331000602E94 /* Lava.swift in Sources */,
 				46D739E91AE96C1800C92256 /* DelaunayView.swift in Sources */,
+				4650D1AF1AF034B600602E94 /* Vector3.swift in Sources */,
 				468551391AE9DFF20002473E /* Edge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -620,6 +711,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		4650D19E1AF033C900602E94 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = QHull;
+			targetProxy = 4650D19D1AF033C900602E94 /* PBXContainerItemProxy */;
+		};
 		46D73A041AE971F800C92256 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 46D739ED1AE971F700C92256 /* Map Generator iOS */;

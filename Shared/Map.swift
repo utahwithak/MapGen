@@ -48,10 +48,10 @@ class Map{
     var edges = [Edge]()
     
     var seed:Int
-    init(size:Int, numPoints:Int, varient:Int){
+    init(size:Int, numPoints:Int, seed:Int, varient:Int){
         Size = Double(size)
         self.numPoints = numPoints
-        seed = random()
+        self.seed = seed
         pointSelector = Map.generateRelaxed(size, seed: seed)
         mapShape = Map.makePerlin(seed)
         mapRandom.seed = UInt(varient)
@@ -108,12 +108,12 @@ class Map{
             var landCorners = self.landCorners(self.corners)
             self.redistributeElevations(&landCorners);
             
-            // Assign elevations to non-land corners
-            for q in self.corners {
-                if (q.ocean || q.coast) {
-                    q.elevation = 0.0;
-                }
-            }
+//            // Assign elevations to non-land corners
+//            for q in self.corners {
+//                if (q.ocean || q.coast) {
+//                    q.elevation = 0.0;
+//                }
+//            }
             
             // Polygon elevations are the average of their corners
             self.assignPolygonElevations();
@@ -457,7 +457,7 @@ class Map{
                 // Every step up is epsilon over water or 1 over land. The
                 // number doesn't matter because we'll rescale the
                 // elevations later.
-                var newElevation = 0.005 + q.elevation;
+                var newElevation = 1 + q.elevation;
                 if (!q.water && !s.water) {
                     newElevation += 1;
                 }
@@ -563,7 +563,7 @@ class Map{
     
     // Determine whether a given point should be on the island or in the water.
     func inside(p:Point)->Bool {
-        return mapShape(q: Point(x: 2*(p.x/Size - 0.5), y: 2*(p.y/Size - 0.5)));
+        return mapShape(q:p);
     }
 
     
@@ -811,8 +811,10 @@ class Map{
     static func makePerlin(seed:Int)->(q:Point)->Bool {
         let perlin = PerlinNoise(seed: seed)
         func perlShape(q:Point)->Bool {
-            let c = perlin.perlin2DValueForPoint(((q.x+1)*1024), y: Double(Int((q.y+1)*128) & 0xffff))
-            return c > (0.3+0.3*q.length*q.length);
+            
+            let c = perlin.perlin2DValueForPoint(q.x, y: q.y)
+//            println("(\(q.x), \(q.y))c:\(c)")
+            return c > (0);
         };
         return perlShape
     }

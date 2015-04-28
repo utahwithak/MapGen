@@ -11,12 +11,14 @@ import DelaunayiOS
 class ViewController: UIViewController,UIScrollViewDelegate {
     @IBOutlet var scrollView:UIScrollView!
     var voronoiView:DelaunayView!
+    var map:Map!
     override func viewDidLoad() {
         super.viewDidLoad()
-        let map = Map(size: 2048, numPoints: 1000, varient: random())
+        let size = 100
+        self.map = Map(size:size, numPoints: size ,seed:1, varient: 1)
         map.buildMap()
 
-        self.voronoiView = DelaunayView(frame: CGRectMake(0, 0, 2048, 2048))
+        self.voronoiView = DelaunayView(frame: CGRectMake(0, 0, CGFloat(size), CGFloat(size)))
         self.voronoiView.backgroundColor = UIColor.clearColor()
         
         self.scrollView.addSubview(self.voronoiView)
@@ -59,6 +61,13 @@ class ViewController: UIViewController,UIScrollViewDelegate {
         
     }
 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let dest = segue.destinationViewController as? GameViewController{
+            dest.map = self.map
+        }
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
