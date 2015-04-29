@@ -38,7 +38,7 @@ class MeshUtils{
         for i in 0..<faceIndices.count{
             assert(faceIndices[i].count == 3, "INVAID TRIANGLE!")
 
-            let normal = hull.normalOfFace(i,calculate:true).toVector3().normalized;
+            let normal = hull.normalOfFace(i).toVector3().normalized;
             for k in 0..<faceIndices[i].count
             {
                 let position = vertices[faceIndices[i][k]].toVector3();
