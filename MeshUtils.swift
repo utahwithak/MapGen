@@ -37,7 +37,8 @@ class MeshUtils{
         var cur:CInt = 0;
         for i in 0..<faceIndices.count{
             assert(faceIndices[i].count == 3, "INVAID TRIANGLE!")
-            let normal = hull.normalOfFace(i).toVector3() ;
+
+            let normal = hull.normalOfFace(i,calculate:true).toVector3().normalized;
             for k in 0..<faceIndices[i].count
             {
                 let position = vertices[faceIndices[i][k]].toVector3();
@@ -46,9 +47,9 @@ class MeshUtils{
                 let vert = Vertex(position:position,normal:normal, color:Vector3(0.5,0.5,0.5))
                 verts.append(vert)
             }
-            triangles.append(cur + 2)
-            triangles.append(cur + 1)
             triangles.append(cur + 0)
+            triangles.append(cur + 1)
+            triangles.append(cur + 2)
             cur += 3
         }
 
@@ -72,7 +73,6 @@ class MeshUtils{
 //var vertices: [Vertex] = [ /* ... vertex data ... */ ]
 func createGeometry(vertices:[Vertex], triangles:[CInt])->SCNGeometry{
     let data = NSData(bytes: vertices, length: vertices.count * sizeof(Vertex))
-    
     let vertexSource = SCNGeometrySource(data: data,
         semantic: SCNGeometrySourceSemanticVertex,
         vectorCount: vertices.count,

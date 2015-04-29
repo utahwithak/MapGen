@@ -21,29 +21,35 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         // create a new scene
         let scene = SCNScene()
-        
-        // create and add an ambient light to the scene
-        let ambientLightNode = SCNNode()
-        ambientLightNode.light = SCNLight()
-        ambientLightNode.light!.type = SCNLightTypeAmbient
-        ambientLightNode.light!.color = UIColor.lightGrayColor()
-        scene.rootNode.addChildNode(ambientLightNode)
 
+        
+        
         let mapNode = SCNNode()
-        let elevationScale = 10.0;
+        let elevationScale = 2.0;
         for c in map.centers {
             var points = [Vector3]()
-            points.append(Vector3(Float(c.point.x), Float(c.point.y), Float(c.elevation * elevationScale)))
-            for edge in c.borders{                
-                if edge.v0 != nil && edge.v1 != nil{
-                    points.append(Vector3(Float(edge.v0.point.x), Float(edge.v0.point.y), Float(edge.v0.elevation * elevationScale)))
-                    points.append(Vector3(Float(edge.v1.point.x), Float(edge.v1.point.y), Float(edge.v1.elevation * elevationScale)))
+            if Float(c.elevation).isNormal{
+                points.append(Vector3(Float(c.point.x), Float(c.point.y), Float(c.elevation * elevationScale)))
+            }
+            for edge in c.borders{
+                if  let v0 = edge.v0 , let v1 = edge.v1{
+                    if Float(v1.elevation).isNaN || Float(v0.elevation).isNaN || Float(v1.elevation).isInfinite || Float(v0.elevation).isInfinite{
+                        continue;
+                    }
+                    let vec1 = Vector3(Float(v0.point.x), Float(v0.point.y), Float(v0.elevation * elevationScale))
+                    let vec2 =  Vector3(Float(v1.point.x), Float(v1.point.y), Float(v1.elevation * elevationScale))
+                    if vec1.z.isNaN || vec2.z.isNaN{
+                        continue;
+                    }
+                    points.append(vec1)
+                    points.append(vec2)
                 }
                 
                 
             }
             let filtered = points.filter{$0.z != 0 && $0.z.isNormal}
-            if filtered.count != 0{
+            
+            if filtered.count > 4{
                 let iscosphere = MeshUtils.convexHullOfPoints(points)
                 mapNode.addChildNode(iscosphere)
             }
@@ -53,6 +59,27 @@ class GameViewController: UIViewController {
         
         
         
+        
+//        var points = [Vector3]()
+//        
+//        
+//        
+//        for i in 0..<50{
+//            points.append(randomPointOnSphere() * radius/2)
+//        }
+//        
+//        
+//        
+//        let iscosphere = MeshUtils.convexHullOfPoints(points)
+//        scene.rootNode.addChildNode(iscosphere)
+
+        
+        let sphere = SCNNode()
+        sphere.geometry = SCNSphere(radius: 1)
+        let mat = SCNMaterial()
+        mat.diffuse.contents = UIColor.redColor()
+        sphere.geometry!.materials = [mat]
+        scene.rootNode.addChildNode(sphere);
 
 //        // animate the 3d object
 //        let animation = CABasicAnimation(keyPath: "rotation")
@@ -66,16 +93,16 @@ class GameViewController: UIViewController {
         
         // allows the user to manipulate the camera
         self.gameView!.allowsCameraControl = true
-        if let camera = scene.rootNode.camera{
-            camera.automaticallyAdjustsZRange = true
-        }
+//        if let camera = scene.rootNode.camera{
+//            camera.automaticallyAdjustsZRange = true
+//        }
         // show statistics such as fps and timing information
         self.gameView!.showsStatistics = true
-        gameView.autoenablesDefaultLighting = true
+        self.gameView.autoenablesDefaultLighting = true
 
 
         // configure the view
-        self.gameView!.backgroundColor = UIColor.whiteColor()
+//        self.gameView!.backgroundColor = UIColor.whiteColor()
         
        
     }
