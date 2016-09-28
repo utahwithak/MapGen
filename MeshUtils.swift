@@ -12,13 +12,13 @@ import QHull
 
 class MeshUtils{
     
-    static func convexHullOfPoints(points:[Vector3])->SCNNode{
+    static func convexHullOfPoints(_ points:[Vector3])->SCNNode{
         var p3s = [Point3d]();
         for p in points{
             p3s.append(p.toPoint3d())
         }
         
-        var hull = QuickHull3D();
+        let hull = QuickHull3D();
         hull.build (p3s);
         hull.triangulate()
 //        println ("Vertices:");
@@ -57,7 +57,7 @@ class MeshUtils{
         
         
         let node = SCNNode()
-        let geometry = createGeometry(verts, triangles)
+        let geometry = createGeometry(verts, triangles: triangles)
 //        let material = SCNMaterial()
 //        material.diffuse.contents = UIColor(red:0, green:0.55, blue:0.84, alpha:1)
 //        geometry.materials = [material]
@@ -71,39 +71,39 @@ class MeshUtils{
 
 //
 //var vertices: [Vertex] = [ /* ... vertex data ... */ ]
-func createGeometry(vertices:[Vertex], triangles:[CInt])->SCNGeometry{
-    let data = NSData(bytes: vertices, length: vertices.count * sizeof(Vertex))
+func createGeometry(_ vertices:[Vertex], triangles:[CInt])->SCNGeometry{
+    let data = Data(bytes: vertices, count: vertices.count * MemoryLayout<Vertex>.size)
     let vertexSource = SCNGeometrySource(data: data,
-        semantic: SCNGeometrySourceSemanticVertex,
+        semantic: SCNGeometrySource.Semantic.vertex,
         vectorCount: vertices.count,
-        floatComponents: true,
+        usesFloatComponents: true,
         componentsPerVector: 3,
-        bytesPerComponent: sizeof(Float),
+        bytesPerComponent: MemoryLayout<Float>.size,
         dataOffset: 0, // position is first member in Vertex
-        dataStride: sizeof(Vertex))
+        dataStride: MemoryLayout<Vertex>.size)
     
     let normalSource = SCNGeometrySource(data: data,
-        semantic: SCNGeometrySourceSemanticNormal,
+        semantic: SCNGeometrySource.Semantic.normal,
         vectorCount: vertices.count,
-        floatComponents: true,
+        usesFloatComponents: true,
         componentsPerVector: 3,
-        bytesPerComponent: sizeof(Float),
-        dataOffset: sizeof(Vector3), // one Float3 before normal in Vertex
-        dataStride: sizeof(Vertex))
+        bytesPerComponent: MemoryLayout<Float>.size,
+        dataOffset: MemoryLayout<Vector3>.size, // one Float3 before normal in Vertex
+        dataStride: MemoryLayout<Vertex>.size)
     
     
     let colorSource = SCNGeometrySource(data: data,
-        semantic: SCNGeometrySourceSemanticColor,
+        semantic: SCNGeometrySource.Semantic.color,
         vectorCount: vertices.count,
-        floatComponents: true,
+        usesFloatComponents: true,
         componentsPerVector: 3,
-        bytesPerComponent: sizeof(Float),
-        dataOffset: 2 * sizeof(Vector3) , // 2 Float3s before tcoord in Vertex
-        dataStride: sizeof(Vertex))
+        bytesPerComponent: MemoryLayout<Float>.size,
+        dataOffset: 2 * MemoryLayout<Vector3>.size , // 2 Float3s before tcoord in Vertex
+        dataStride: MemoryLayout<Vertex>.size)
     
-    let triData = NSData(bytes: triangles, length: sizeof(CInt)*triangles.count)
+    let triData = Data(bytes: triangles, count: MemoryLayout<CInt>.size*triangles.count)
     
-    let geometryElement = SCNGeometryElement(data: triData, primitiveType: .Triangles , primitiveCount:vertices.count/3 , bytesPerIndex: sizeof(CInt))
+    let geometryElement = SCNGeometryElement(data: triData, primitiveType: .triangles , primitiveCount:vertices.count/3 , bytesPerIndex: MemoryLayout<CInt>.size)
     
     return SCNGeometry(sources: [vertexSource,normalSource,colorSource], elements: [geometryElement])
 }

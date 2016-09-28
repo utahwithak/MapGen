@@ -18,14 +18,14 @@ class ViewController: NSViewController {
         let relaxed = generateRelaxed(2000, seed: 412342)
         let points = relaxed(1000)
         let voronoi = Voronoi(points: points, colors: nil, plotBounds: Rectangle(x: 0, y: 0, width: 2000, height: 2000));
-        self.voronoiView = DelaunayView(frame: CGRectMake(0, 0, 2000, 2000))
+        self.voronoiView = DelaunayView(frame: CGRect(x: 0, y: 0, width: 2000, height: 2000))
         let scrollView = NSScrollView(frame:self.view.frame);
         scrollView.documentView = self.voronoiView
         scrollView.contentView.translatesAutoresizingMaskIntoConstraints = true
         scrollView.translatesAutoresizingMaskIntoConstraints = true
         self.view.addSubview(scrollView)
         self.view.translatesAutoresizingMaskIntoConstraints = true
-        func converter(p:Point)->CGPoint{
+        func converter(_ p:Point)->CGPoint{
             return CGPoint(x: p.x, y: p.y)
         }
         
@@ -41,14 +41,14 @@ class ViewController: NSViewController {
     
     
     // Generate points at random locations
-    static func generateRandom(size:Int, seed:Int)->(numPoints:Int)->[Point] {
-        func generator(numPoints:Int)->[Point] {
+    static func generateRandom(_ size:Int, seed:Int)->(_ numPoints:Int)->[Point] {
+        func generator(_ numPoints:Int)->[Point] {
             var mapRandom = PM_PRNG();
             mapRandom.seed = UInt(seed)
             var p:Point
             var i:Int = 0
             var points = [Point]();
-            for (i = 0; i < numPoints; i++) {
+            for (i = 0; i < numPoints; i += 1) {
                 p = Point(x:Double(mapRandom.nextDoubleRange(10.0, max: Double(size)-10.0)),
                     y:Double(mapRandom.nextDoubleRange(10.0,max: Double(size)-10.0)));
                 points.append(p);
@@ -58,15 +58,15 @@ class ViewController: NSViewController {
         return generator
     }
     
-    func generateRelaxed(size:Int, seed:Int)->(Int)->[Point]{
-        func relaxedGenerator(numPoints:Int)->[Point]{
+    func generateRelaxed(_ size:Int, seed:Int)->(Int)->[Point]{
+        func relaxedGenerator(_ numPoints:Int)->[Point]{
             var i:Int
             var p:Point
             var q:Point
             var voronoi:Voronoi
             var region:[Point];
             var points = ViewController.generateRandom(size, seed: seed)(numPoints: numPoints);
-            for (i = 0; i < 10; i++) {
+            for (i = 0; i < 10; i += 1) {
                 voronoi = Voronoi(points: points, colors: nil, plotBounds: Rectangle(x: 0, y: 0, width: size, height: size));
                 for pIn in points {
                     var p = pIn

@@ -46,13 +46,13 @@ import Foundation
 * @author Michael Baczynski, www.polygonal.de
 */
 
-public class PM_PRNG
+open class PM_PRNG
 {
     /**
     * set seed with a 31 bit unsigned integer
     * between 1 and 0X7FFFFFFE inclusive. don't use 0!
     */
-    public var seed:UInt;
+    open var seed:UInt;
     
     public init()
     {
@@ -63,7 +63,7 @@ public class PM_PRNG
     * provides the next pseudorandom number
     * as an unsigned integer (31 bits)
     */
-    public func nextInt()->UInt
+    open func nextInt()->UInt
     {
         return gen();
     }
@@ -72,7 +72,7 @@ public class PM_PRNG
     * provides the next pseudorandom number
     * as a float between nearly 0 and nearly 1.0.
     */
-    public func nextDouble()->Double
+    open func nextDouble()->Double
     {
         return Double(gen()) / Double(2147483647);
     }
@@ -82,10 +82,10 @@ public class PM_PRNG
     * as an unsigned integer (31 bits) betweeen
     * a given range.
     */
-    public func nextIntRange(minIn:UInt, max maxIn:UInt)->UInt
+    open func nextIntRange(_ minIn:UInt, max maxIn:UInt)->UInt
     {
-        var min = Double(minIn) - 0.4999;
-        var max = Double(maxIn) + 0.4999;
+        let min = Double(minIn) - 0.4999;
+        let max = Double(maxIn) + 0.4999;
         return UInt(round(Double(min) + (Double(max - min) * nextDouble())));
     }
     
@@ -93,7 +93,7 @@ public class PM_PRNG
     * provides the next pseudorandom number
     * as a float between a given range.
     */
-    public func nextDoubleRange(min:Double, max:Double)->Double
+    open func nextDoubleRange(_ min:Double, max:Double)->Double
     {
         return min + ((max - min) * nextDouble());
     }
@@ -102,7 +102,7 @@ public class PM_PRNG
     * generator:
     * new-value = (old-value * 16807) mod (2^31 - 1)
     */
-    private func gen()->UInt
+    fileprivate func gen()->UInt
     {
         //integer version 1, for max int 2^46 - 1 or larger.
         seed = (seed * 16807) % 2147483647;

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-public struct Vector3:Printable, Hashable
+public struct Vector3:CustomStringConvertible, Hashable
 {
     // Static Fields
     //
@@ -120,12 +120,12 @@ public struct Vector3:Printable, Hashable
     //
     // Static Methods
     //
-    public static func angle ( from:Vector3,  to:Vector3)->Float
+    public static func angle ( _ from:Vector3,  to:Vector3)->Float
     {
-        return acos(clamp (Vector3.dot(from.normalized, rhs: to.normalized), -1, 1)) * 57.29578
+        return acos(clamp (Vector3.dot(from.normalized, rhs: to.normalized), min: -1, max: 1)) * 57.29578
     }
 
-    public static func clampMagnitude ( vector:Vector3,  maxLength:Float)->Vector3
+    public static func clampMagnitude ( _ vector:Vector3,  maxLength:Float)->Vector3
     {
         if (vector.sqrMagnitude > maxLength * maxLength)
         {
@@ -134,42 +134,42 @@ public struct Vector3:Printable, Hashable
         return vector;
     }
 
-    public static func cross (lhs:Vector3 , rhs:Vector3 )->Vector3{
+    public static func cross (_ lhs:Vector3 , rhs:Vector3 )->Vector3{
         return Vector3 (lhs.y * rhs.z - lhs.z * rhs.y, lhs.z * rhs.x - lhs.x * rhs.z, lhs.x * rhs.y - lhs.y * rhs.x);
     }
 
-    public static func distance ( a:Vector3, b:Vector3)->Float{
+    public static func distance ( _ a:Vector3, b:Vector3)->Float{
         let vector = Vector3 (a.x - b.x, a.y - b.y, a.z - b.z);
         return sqrt(vector.x * vector.x + vector.y * vector.y + vector.z * vector.z);
     }
 
-    public static func dot (lhs:Vector3 , rhs:Vector3 )->Float{
+    public static func dot (_ lhs:Vector3 , rhs:Vector3 )->Float{
         return lhs.x * rhs.x + lhs.y * rhs.y + lhs.z * rhs.z;
     }
 
 
-    public static func lerp (from:Vector3 , to:Vector3 , t tin:Float)->Vector3
+    public static func lerp (_ from:Vector3 , to:Vector3 , t tin:Float)->Vector3
     {
-        let t = clamp(tin,0,1);
+        let t = clamp(tin,min: 0,max: 1);
         return Vector3 (from.x + (to.x - from.x) * t, from.y + (to.y - from.y) * t, from.z + (to.z - from.z) * t);
     }
 
-    public static func magnitude (a:Vector3 )->Float
+    public static func magnitude (_ a:Vector3 )->Float
     {
         return sqrt(a.x * a.x + a.y * a.y + a.z * a.z);
     }
 
-    public static func max ( lhs:Vector3,  rhs:Vector3)->Vector3
+    public static func max ( _ lhs:Vector3,  rhs:Vector3)->Vector3
     {
         return Vector3 (Swift.max (lhs.x, rhs.x), Swift.max (lhs.y, rhs.y), Swift.max (lhs.z, rhs.z));
     }
 
-    public static func min ( lhs:Vector3, rhs:Vector3)->Vector3
+    public static func min ( _ lhs:Vector3, rhs:Vector3)->Vector3
     {
         return  Vector3 (Swift.min (lhs.x, rhs.x), Swift.min (lhs.y, rhs.y), Swift.min (lhs.z, rhs.z));
     }
 
-    public static func moveTowards ( current:Vector3,  target:Vector3,  maxDistanceDelta:Float)->Vector3
+    public static func moveTowards ( _ current:Vector3,  target:Vector3,  maxDistanceDelta:Float)->Vector3
     {
         let a = target - current;
         let magnitude = a.magnitude;
@@ -180,7 +180,7 @@ public struct Vector3:Printable, Hashable
         return current + a / magnitude * maxDistanceDelta;
     }
 
-    public static func normalize ( value:Vector3)->Vector3
+    public static func normalize ( _ value:Vector3)->Vector3
     {
         let num = Vector3.magnitude (value);
         if (num > 1E-05)
@@ -190,7 +190,7 @@ public struct Vector3:Printable, Hashable
         return Vector3.zero;
     }
 
-    public static func project ( vector:Vector3,  onNormal:Vector3)->Vector3
+    public static func project ( _ vector:Vector3,  onNormal:Vector3)->Vector3
     {
         let num = Vector3.dot(onNormal, rhs: onNormal);
         if (num < 1.401298E-45)
@@ -200,21 +200,21 @@ public struct Vector3:Printable, Hashable
         return onNormal * Vector3.dot(vector, rhs:onNormal) / num;
     }
 
-    public static func projectOnPlane ( vector:Vector3, planeNormal:Vector3 )->Vector3
+    public static func projectOnPlane ( _ vector:Vector3, planeNormal:Vector3 )->Vector3
     {
         return vector - Vector3.project (vector, onNormal:planeNormal);
     }
 
-    public static func reflect (inDirection:Vector3 , inNormal:Vector3 )->Vector3
+    public static func reflect (_ inDirection:Vector3 , inNormal:Vector3 )->Vector3
     {
         return -2 * Vector3.dot(inNormal,rhs: inDirection) * inNormal + inDirection;
     }
 
-    public static func scale (a:Vector3 , b:Vector3 )->Vector3{
+    public static func scale (_ a:Vector3 , b:Vector3 )->Vector3{
         return  Vector3 (a.x * b.x, a.y * b.y, a.z * b.z);
     }
 
-    public static func sqrMagnitude (a:Vector3 )->Float
+    public static func sqrMagnitude (_ a:Vector3 )->Float
     {
         return a.x * a.x + a.y * a.y + a.z * a.z;
     }
@@ -241,20 +241,20 @@ public struct Vector3:Printable, Hashable
         }
     }
 //
-    public mutating func scale (scale:Vector3)
+    public mutating func scale (_ scale:Vector3)
     {
         x = x * scale.x;
         y = y * scale.y;
         z = z * scale.z;
     }
-    public mutating func scale (scale:Float)
+    public mutating func scale (_ scale:Float)
     {
         x = x * scale;
         y = y * scale;
         z = z * scale;
     }
 
-    public mutating func set ( new_x:Float, new_y:Float,  new_z:Float)
+    public mutating func set ( _ new_x:Float, new_y:Float,  new_z:Float)
     {
         x = new_x;
         y = new_y;

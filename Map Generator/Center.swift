@@ -13,18 +13,18 @@ import Foundation
     import Delaunay
 #endif
 
-public class Center{
-    public var index:Int = 0
-    public var point:Point!
-    public var water:Bool = false
-    public var ocean:Bool = false
-    public var coast:Bool = false
-    public var border:Bool = false
-    public var biome = Biome.Grassland
-    public var elevation:Double = 0
-    public var moisture:Double = 0
+open class Center{
+    open var index:Int = 0
+    open var point:Point!
+    open var water:Bool = false
+    open var ocean:Bool = false
+    open var coast:Bool = false
+    open var border:Bool = false
+    open var biome = Biome.grassland
+    open var elevation:Double = 0
+    open var moisture:Double = 0
     
-    public var neighbors = [Center]()
-    public var borders = [Edge]()
-    public var corners = [Corner]()
+    open var neighbors = [Center]()
+    open var borders = [Edge]()
+    open var corners = [Corner]()
 }

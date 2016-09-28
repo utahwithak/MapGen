@@ -19,9 +19,8 @@ class Watersheds{
     
     // We want to mark each polygon with the corner where water would
     // exit the island.
-    func createWatersheds(map:Map){
-        var p:Center, q:Corner, s:Corner;
-    
+    func createWatersheds(_ map:Map){
+        
     // Find the lowest corner of the polygon, and set that as the
     // exit point for rain falling on this polygon
         for p in map.centers {

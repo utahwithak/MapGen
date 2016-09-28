@@ -15,7 +15,7 @@ typedef enum {
 
 @interface PerlinNoise : NSObject
 
-- (id)initWithSeed:(NSInteger)seed;
+- (nonnull instancetype)initWithSeed:(NSInteger)seed;
 - (double)perlin1DValueForPoint:(double)x;
 - (double)perlin2DValueForPoint:(double)x y:(double)y;
 

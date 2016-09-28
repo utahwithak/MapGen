@@ -55,6 +55,8 @@
 		46F5A6E51AE5FC200070D933 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F5A6E41AE5FC200070D933 /* AppDelegate.swift */; };
 		46F5A6F01AE5FC210070D933 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46F5A6EE1AE5FC210070D933 /* MainMenu.xib */; };
 		46F5A6FC1AE5FC210070D933 /* Map_GeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F5A6FB1AE5FC210070D933 /* Map_GeneratorTests.swift */; };
+		8F7EA04A1D9C3087008A0C74 /* QHull-macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F7EA0451D9C3072008A0C74 /* QHull-macOS.framework */; };
+		8F7EA04B1D9C3087008A0C74 /* QHull-macOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8F7EA0451D9C3072008A0C74 /* QHull-macOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +137,34 @@
 			remoteGlobalIDString = 46F5A6DE1AE5FC200070D933;
 			remoteInfo = "Map Generator";
 		};
+		8F7EA0441D9C3072008A0C74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4650D1941AF033B800602E94 /* QHull.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8F7EA0221D9C3055008A0C74;
+			remoteInfo = "QHull-macOS";
+		};
+		8F7EA0461D9C3072008A0C74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4650D1941AF033B800602E94 /* QHull.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8F7EA02A1D9C3055008A0C74;
+			remoteInfo = "QHull-macOSTests";
+		};
+		8F7EA0481D9C3076008A0C74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4650D1941AF033B800602E94 /* QHull.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8F7EA0211D9C3055008A0C74;
+			remoteInfo = "QHull-macOS";
+		};
+		8F7EA04C1D9C3087008A0C74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4650D1941AF033B800602E94 /* QHull.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8F7EA0211D9C3055008A0C74;
+			remoteInfo = "QHull-macOS";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -157,6 +187,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				46CB2A421AE97A4A00B29FF7 /* Delaunay.framework in Embed Frameworks */,
+				8F7EA04B1D9C3087008A0C74 /* QHull-macOS.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -227,6 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46D73AF01AE979ED00C92256 /* Delaunay.framework in Frameworks */,
+				8F7EA04A1D9C3087008A0C74 /* QHull-macOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +307,8 @@
 			children = (
 				4650D19A1AF033B900602E94 /* QHull.framework */,
 				4650D19C1AF033B900602E94 /* QHullTests.xctest */,
+				8F7EA0451D9C3072008A0C74 /* QHull-macOS.framework */,
+				8F7EA0471D9C3072008A0C74 /* QHull-macOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -479,7 +513,9 @@
 			buildRules = (
 			);
 			dependencies = (
+				8F7EA0491D9C3076008A0C74 /* PBXTargetDependency */,
 				46D73AEF1AE979E900C92256 /* PBXTargetDependency */,
+				8F7EA04D1D9C3087008A0C74 /* PBXTargetDependency */,
 			);
 			name = "Map Generator";
 			productName = "Map Generator";
@@ -516,16 +552,20 @@
 					46D739ED1AE971F700C92256 = {
 						CreatedOnToolsVersion = 6.3.1;
 						DevelopmentTeam = QV4QS82KBT;
+						LastSwiftMigration = 0800;
 					};
 					46D73A011AE971F800C92256 = {
 						CreatedOnToolsVersion = 6.3.1;
+						LastSwiftMigration = 0800;
 						TestTargetID = 46D739ED1AE971F700C92256;
 					};
 					46F5A6DE1AE5FC200070D933 = {
 						CreatedOnToolsVersion = 6.3;
+						LastSwiftMigration = 0800;
 					};
 					46F5A6F41AE5FC210070D933 = {
 						CreatedOnToolsVersion = 6.3;
+						LastSwiftMigration = 0800;
 						TestTargetID = 46F5A6DE1AE5FC200070D933;
 					};
 				};
@@ -602,6 +642,20 @@
 			fileType = wrapper.cfbundle;
 			path = DelaunayiOSTests.xctest;
 			remoteRef = 46D73AE91AE979C900C92256 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8F7EA0451D9C3072008A0C74 /* QHull-macOS.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = "QHull-macOS.framework";
+			remoteRef = 8F7EA0441D9C3072008A0C74 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8F7EA0471D9C3072008A0C74 /* QHull-macOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "QHull-macOSTests.xctest";
+			remoteRef = 8F7EA0461D9C3072008A0C74 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -736,6 +790,16 @@
 			target = 46F5A6DE1AE5FC200070D933 /* Map Generator */;
 			targetProxy = 46F5A6F61AE5FC210070D933 /* PBXContainerItemProxy */;
 		};
+		8F7EA0491D9C3076008A0C74 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "QHull-macOS";
+			targetProxy = 8F7EA0481D9C3076008A0C74 /* PBXContainerItemProxy */;
+		};
+		8F7EA04D1D9C3087008A0C74 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "QHull-macOS";
+			targetProxy = 8F7EA04C1D9C3087008A0C74 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -785,6 +849,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "Map Generator iOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -802,6 +867,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "Map Generator iOS-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -826,6 +892,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Map Generator iOS.app/Map Generator iOS";
 			};
 			name = Debug;
@@ -844,6 +911,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Map Generator iOS.app/Map Generator iOS";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -932,27 +1000,29 @@
 		46F5A7001AE5FC210070D933 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Map Generator/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Map Generator-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		46F5A7011AE5FC210070D933 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Map Generator/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Map Generator-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -972,6 +1042,7 @@
 				INFOPLIST_FILE = "Map GeneratorTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Map Generator.app/Contents/MacOS/Map Generator";
 			};
 			name = Debug;
@@ -988,6 +1059,7 @@
 				INFOPLIST_FILE = "Map GeneratorTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Map Generator.app/Contents/MacOS/Map Generator";
 			};
 			name = Release;

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-func clamp<T:Comparable>(val:T, min:T, max:T)->T{
+func clamp<T:Comparable>(_ val:T, min:T, max:T)->T{
     return val < max ? max : (val > min ? val : min)
 }
 
@@ -15,7 +15,7 @@ func randomPointOnSphere()->Vector3{
     var x:Float = 0;
     var y:Float = 0
     var z:Float = 0
-    do{
+    repeat{
         x = Float.random(min:-1,max:1)
         y = Float.random(min:-1,max:1)
         z = Float.random(min:-1,max:1)
@@ -40,7 +40,7 @@ public extension Double {
     :return: random number Double
     By DaRkDOG
     */
-    public static func random(#min: Double, max: Double) -> Double {
+    public static func random( min: Double,  max: Double) -> Double {
         return Double.random() * (max - min) + min
     }
 }
@@ -59,7 +59,7 @@ public extension Float {
     :return: random number Float
     By DaRkDOG
     */
-    public static func random(#min: Float, max: Float) -> Float {
+    public static func random( min: Float,  max: Float) -> Float {
         return Float.random() * (max - min) + min
     }
 }

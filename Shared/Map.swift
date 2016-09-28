@@ -25,7 +25,7 @@ class Map{
     // type of island, passed in when we set the island shape. The
     // islandShape function uses both of them to determine whether any
     // point should be water or land.
-    var mapShape:(q:Point)->Bool;
+    var mapShape:(_ q:Point)->Bool;
     
     // Island details are controlled by this random generator. The
     // initial map upon loading is always deterministic, but
@@ -39,7 +39,7 @@ class Map{
     // don't need Voronoi at all. HOWEVER for ease of implementation,
     // I continue to use Voronoi here, to reuse the graph building
     // code. If you're using a grid, generate the graph directly.
-    var pointSelector:(numPoints:Int)->[Point];
+    var pointSelector:(_ numPoints:Int)->[Point];
     var numPoints:Int;
     
     var points = [Point]();  // Only useful during map construction
@@ -59,10 +59,10 @@ class Map{
     }
     
     func reset(){
-        points.removeAll(keepCapacity: true)
-        centers.removeAll(keepCapacity: true)
-        corners.removeAll(keepCapacity: true)
-        edges.removeAll(keepCapacity: true)
+        points.removeAll(keepingCapacity: true)
+        centers.removeAll(keepingCapacity: true)
+        corners.removeAll(keepingCapacity: true)
+        edges.removeAll(keepingCapacity: true)
     }
     
     typealias StageStep = () -> Void
@@ -72,7 +72,7 @@ class Map{
         // Generate the initial random set of points
         stages.append(("Placing Points...",{()->Void in
             self.reset()
-            self.points = self.pointSelector(numPoints:self.numPoints)
+            self.points = self.pointSelector(self.numPoints)
         }))
         
         // Create a graph structure from the Voronoi edge list. The
@@ -87,7 +87,7 @@ class Map{
             self.buildGraph(self.points, voronoi: voronoi);
             self.improveCorners();
             voronoi.dispose();
-            self.points.removeAll(keepCapacity: true)
+            self.points.removeAll(keepingCapacity: true)
         }));
         
         stages.append(("Assign Elevations...",{()->Void in
@@ -150,17 +150,17 @@ class Map{
         }));
 
         
-        func timeIt(name:String, step:StageStep){
-            println("Starting \(name)")
-            let start = NSDate()
+        func timeIt(_ name:String, step:StageStep){
+            print("Starting \(name)")
+            let start = Date()
             step()
-            let end = NSDate();
-            let timeInterval: Double = end.timeIntervalSinceDate(start); // <<<<< Difference in seconds (double)
-            println("Finished... \(timeInterval)")
+            let end = Date();
+            let timeInterval: Double = end.timeIntervalSince(start); // <<<<< Difference in seconds (double)
+            print("Finished... \(timeInterval)")
         }
         
         for (name, stage) in stages {
-            timeIt(name, stage);
+            timeIt(name, step: stage);
         }
     }
     
@@ -170,40 +170,40 @@ class Map{
     // on low/high elevation and low/medium/high moisture. This is
     // roughly based on the Whittaker diagram but adapted to fit the
     // needs of the island map generator.
-    static func getBiome(p:Center)->Biome {
+    static func getBiome(_ p:Center)->Biome {
         if (p.ocean) {
-            return .Ocean;
+            return .ocean;
         }
         else if (p.water) {
-            if (p.elevation < 0.1){ return .Marsh};
-            if (p.elevation > 0.8){return .Ice};
-            return .Lake;
+            if (p.elevation < 0.1){ return .marsh};
+            if (p.elevation > 0.8){return .ice};
+            return .lake;
         }
         else if (p.coast) {
-            return .Beach;
+            return .beach;
         }
         else if (p.elevation > 0.8) {
-            if (p.moisture > 0.50){ return .Snow}
-            else if (p.moisture > 0.33){return .Tundra}
-            else if (p.moisture > 0.16){return .Bare}
-            return Biome.Scorched;
+            if (p.moisture > 0.50){ return .snow}
+            else if (p.moisture > 0.33){return .tundra}
+            else if (p.moisture > 0.16){return .bare}
+            return Biome.scorched;
 
         }
         else if (p.elevation > 0.6) {
-            if (p.moisture > 0.66){ return Biome.Taiga}
-            else if (p.moisture > 0.33){ return .Shrubland}
-            else{ return .TemperateDesert}
+            if (p.moisture > 0.66){ return Biome.taiga}
+            else if (p.moisture > 0.33){ return .shrubland}
+            else{ return .temperateDesert}
         }
         else if (p.elevation > 0.3) {
-            if (p.moisture > 0.83) {return Biome.TemperateRainForest}
-            else if (p.moisture > 0.50) {return Biome.TemperateDeciduousForest}
-            else if (p.moisture > 0.16){return .Grassland};
-            return .TemperateDesert;
+            if (p.moisture > 0.83) {return Biome.temperateRainForest}
+            else if (p.moisture > 0.50) {return Biome.temperateDeciduousForest}
+            else if (p.moisture > 0.16){return .grassland};
+            return .temperateDesert;
         } else {
-            if (p.moisture > 0.66) {return Biome.TropicalRainForest }
-            else if (p.moisture > 0.33) {return Biome.TropicalSeasonalForest }
-            else if (p.moisture > 0.16) {return .Grassland} ;
-            return Biome.SubtropicalDesert
+            if (p.moisture > 0.66) {return Biome.tropicalRainForest }
+            else if (p.moisture > 0.33) {return Biome.tropicalSeasonalForest }
+            else if (p.moisture > 0.16) {return .grassland} ;
+            return Biome.subtropicalDesert
         }
     }
     
@@ -219,7 +219,7 @@ class Map{
     // Create rivers along edges. Pick a random corner point, then
     // move downslope. Mark the edges and corners as rivers.
     func createRivers() {
-        for i in 0..<Int(Size/2) {
+        for _ in 0..<Int(Size/2) {
 
             var q = corners[Int(mapRandom.nextIntRange(0, max: UInt(corners.count-1)))];
             if (q.ocean || q.elevation < 0.3 || q.elevation > 0.9){
@@ -257,7 +257,7 @@ class Map{
             }
         }
         while (queue.count > 0) {
-            let q = queue.removeAtIndex(0)
+            let q = queue.remove(at: 0)
     
             for r in q.adjacent {
                 let newMoisture = q.moisture * 0.9;
@@ -293,8 +293,8 @@ class Map{
     
     
     // Change the overall distribution of moisture to be evenly distributed.
-    func redistributeMoisture(inout locations:[Corner]){
-        locations.sort{$0.moisture < $1.moisture}
+    func redistributeMoisture(_ locations:inout [Corner]){
+        locations.sort{ $0.moisture < $1.moisture }
         for i in 0..<locations.count{
             locations[i].moisture = Double(i)/Double(locations.count-1);
         }
@@ -337,12 +337,12 @@ class Map{
         // only takes 20 iterations because most points are not far from
         // a coast.  TODO: can run faster by looking at
         // p.watershed.watershed instead of p.downslope.watershed.
-        for i in 0..<100{
+        for _ in 0..<100{
             changed = false;
             for q in corners {
                 if (!q.ocean && !q.coast && !q.watershed.coast) {
-                    var r = q.downslope.watershed;
-                    if (!r.ocean) {
+                    let r = q.downslope.watershed;
+                    if (!(r?.ocean)!) {
                         q.watershed = r;
                         changed = true;
                     }
@@ -352,8 +352,8 @@ class Map{
         }
         // How big is each watershed?
         for q in corners {
-            var r = q.watershed;
-            r.watershed_size = 1 + (r.watershed_size);
+            let r = q.watershed;
+            r?.watershed_size = 1 + (r?.watershed_size)!;
         }
     }
     
@@ -375,13 +375,13 @@ class Map{
     // elevations. Specifically, we want elevation X to have frequency
     // (1-X).  To do this we will sort the corners, then set each
     // corner to its desired elevation.
-    func redistributeElevations(inout locations:[Corner]) {
+    func redistributeElevations(_ locations:inout [Corner]) {
     // SCALE_FACTOR increases the mountain area. At 1.0 the maximum
     // elevation barely shows up on the map, so we set it to 1.1.
         let SCALE_FACTOR = 1.1;
         
     
-        locations.sort{$0.elevation < $1.elevation}
+        locations.sort{ $0.elevation < $1.elevation }
         for i in 0..<locations.count{
             // Let y(x) be the total area that we want at elevation <= x.
             // We want the higher elevations to occur less than lower
@@ -407,7 +407,7 @@ class Map{
     // algorithms that work only on land.  We return an array instead
     // of a vector because the redistribution algorithms want to sort
     // this array using Array.sortOn.
-    func landCorners(corners:[Corner])->[Corner] {
+    func landCorners(_ corners:[Corner])->[Corner] {
         var locations = [Corner]();
         for q in corners {
             if (!q.ocean && !q.coast) {
@@ -450,7 +450,7 @@ class Map{
         // guarantees that rivers always have a way down to the coast by
         // going downhill (no local minima).
         while (queue.count > 0) {
-            let q =  queue.removeAtIndex(0)
+            let q =  queue.remove(at: 0)
 
         
             for s in q.adjacent {
@@ -499,7 +499,7 @@ class Map{
             p.water = (p.ocean || Double(numWater) >= Double(p.corners.count) * Map.LAKE_THRESHOLD);
         }
         while (queue.count > 0) {
-            let p = queue.removeAtIndex(0)
+            let p = queue.remove(at: 0)
             for r in p.neighbors {
                 if (r.water && !r.ocean) {
                     r.ocean = true;
@@ -541,7 +541,7 @@ class Map{
     
     // Look up a Voronoi Edge object given two adjacent Voronoi
     // polygons, or two adjacent Voronoi corners
-    func lookupEdgeFromCenter(p:Center, r:Center)->Edge? {
+    func lookupEdgeFromCenter(_ p:Center, r:Center)->Edge? {
         for edge in p.borders {
             if (edge.d0 === r || edge.d1 === r){
                 return edge;
@@ -550,7 +550,7 @@ class Map{
         return nil;
     }
     
-    func lookupEdgeFromCorner(q:Corner, s:Corner)->Edge? {
+    func lookupEdgeFromCorner(_ q:Corner, s:Corner)->Edge? {
         for edge in q.protrudes {
             if (edge.v0 === s || edge.v1 === s){
                 return edge;
@@ -562,8 +562,8 @@ class Map{
     
     
     // Determine whether a given point should be on the island or in the water.
-    func inside(p:Point)->Bool {
-        return mapShape(q:p);
+    func inside(_ p:Point)->Bool {
+        return mapShape(p);
     }
 
     
@@ -620,7 +620,7 @@ class Map{
     // edge.{v0,v1} and its dual Delaunay triangle edge edge.{d0,d1}.
     // For boundary polygons, the Delaunay edge will have one nil
     // point, and the Voronoi edge may be nil.
-    func buildGraph(points:[Point], voronoi:Voronoi) {
+    func buildGraph(_ points:[Point], voronoi:Voronoi) {
     
         var libedges = voronoi.edges
 
@@ -651,15 +651,15 @@ class Map{
         // nearby buckets. When we fail to find one, we'll create a new
         // Corner object.
         var cornerMap = [Int:[Corner]]();
-        func makeCorner(point:Point?)->Corner? {
+        func makeCorner(_ point:Point?)->Corner? {
             if (point == nil){
                 return nil;
             }
-            for var bucket = Int(point!.x) - 1; bucket <= Int(point!.x)+1; bucket++ {
+            for bucket in Int(point!.x) - 1...Int(point!.x)+1 {
                 if let array = cornerMap[bucket]{
                     for q in array {
-                        var dx = point!.x - q.point.x;
-                        var dy = point!.y - q.point.y;
+                        let dx = point!.x - q.point.x;
+                        let dy = point!.y - q.point.y;
                         if (dx*dx + dy*dy < 1e-6) {
                             return q;
                         }
@@ -681,7 +681,7 @@ class Map{
         
         // Helper functions for the following for loop; ideally these
         // would be inlined
-        func addToCenterList(inout v:[Center], x:Center?){
+        func addToCenterList(_ v:inout [Center], _ x:Center?){
             if x != nil{
                 let filtered = v.filter{$0 === x!}
                 if filtered.count == 0 {
@@ -689,7 +689,7 @@ class Map{
                 }
             }
         }
-        func addToCornerList(inout v:[Corner], x:Corner?) {
+        func addToCornerList(_ v:inout [Corner], _ x:Corner?) {
             if x != nil{
                 let filtered = v.filter{$0 === x!}
                 if filtered.count == 0{
@@ -705,7 +705,7 @@ class Map{
         
             // Fill the graph data. Make an Edge object corresponding to
             // the edge from the voronoi library.
-            var edge =  Edge();
+            let edge =  Edge();
             edge.index = edges.count
             edge.river = 0;
             edges.append(edge);
@@ -760,14 +760,14 @@ class Map{
     }
     
     // Generate points at random locations
-    static func generateRandom(size:Int, seed:Int)->(numPoints:Int)->[Point] {
-        func generator(numPoints:Int)->[Point] {
-            var mapRandom = PM_PRNG();
+    static func generateRandom(_ size:Int, seed:Int)->(_ numPoints:Int)->[Point] {
+        func generator(_ numPoints:Int)->[Point] {
+            let mapRandom = PM_PRNG();
             mapRandom.seed = UInt(seed)
             var p:Point
-            var i:Int = 0
             var points = [Point]();
-            for (i = 0; i < numPoints; i++) {
+
+            for _ in 0..<numPoints {
                 p = Point(x:Double(mapRandom.nextDoubleRange(10.0, max: Double(size)-10.0)),
                     y:Double(mapRandom.nextDoubleRange(10.0,max: Double(size)-10.0)));
                 points.append(p);
@@ -777,18 +777,16 @@ class Map{
         return generator
     }
     
-    static func generateRelaxed(size:Int, seed:Int)->(Int)->[Point]{
-        func relaxedGenerator(numPoints:Int)->[Point]{
-            var i:Int
-            var p:Point
-            var q:Point
+    static func generateRelaxed(_ size:Int, seed:Int)->(Int)->[Point]{
+        func relaxedGenerator(_ numPoints:Int)->[Point]{
+
             var voronoi:Voronoi
             var region:[Point];
-            var points = self.generateRandom(size, seed: seed)(numPoints: numPoints);
-            for (i = 0; i < 3; i++) {
+            let points = self.generateRandom(size, seed: seed)(numPoints);
+            for _ in 0..<3 {
                 voronoi = Voronoi(points: points, colors: nil, plotBounds: Rectangle(x: 0, y: 0, width: size, height: size));
-                for pIn in points {
-                    var p = pIn
+                for p in points {
+
                     region = voronoi.region(p);
                     p.x = 0.0;
                     p.y = 0.0;
@@ -808,11 +806,11 @@ class Map{
     }
     
     // The Perlin-based island combines perlin noise with the radius
-    static func makePerlin(seed:Int)->(q:Point)->Bool {
+    static func makePerlin(_ seed:Int)->(_ q:Point)->Bool {
         let perlin = PerlinNoise(seed: seed)
-        func perlShape(q:Point)->Bool {
-            
-            let c = perlin.perlin2DValueForPoint(q.x, y: q.y)
+        func perlShape(_ q:Point)->Bool {
+
+            let c = perlin.perlin2DValue(forPoint: q.x, y: q.y)
 //            println("(\(q.x), \(q.y))c:\(c)")
             return c > (0);
         };

@@ -11,28 +11,28 @@ import Cocoa
 class DelaunayView: NSView {
     var regionPoints = [[CGPoint]]()
     var positions = [CGPoint]()
-    var pointColor = NSColor.blueColor()
-    var lineColor = NSColor.blackColor()
+    var pointColor = NSColor.blue
+    var lineColor = NSColor.black
     
-    override func drawRect(dirtyRect: NSRect) {
-        super.drawRect(dirtyRect)
-        let context = NSGraphicsContext.currentContext()!.CGContext
+    override func draw(_ dirtyRect: NSRect) {
+        super.draw(dirtyRect)
+        let context = NSGraphicsContext.current()!.cgContext
         pointColor.setFill()
         for p in positions{
-            CGContextFillEllipseInRect(context, DelaunayView.rectForPoint(p))
+            context.fillEllipse(in: DelaunayView.rectForPoint(p))
         }
         for region in regionPoints{
             lineColor.set()
             if region.count > 2{
                 var lines = region
                 CGContextAddLines(context, &lines, region.count)
-                CGContextDrawPath(context, kCGPathStroke)
+                context.drawPath(using: kCGPathStroke)
             }
         }
         
     }
     static let radius:CGFloat = 5;
-    static func rectForPoint(point:CGPoint)->CGRect{
-        return CGRectMake(point.x - radius, point.y, 2 * radius, 2 * radius)
+    static func rectForPoint(_ point:CGPoint)->CGRect{
+        return CGRect(x: point.x - radius, y: point.y, width: 2 * radius, height: 2 * radius)
     }
 }

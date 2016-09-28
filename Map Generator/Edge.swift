@@ -14,10 +14,10 @@ import Foundation
     import Delaunay
 #endif
 
-public class Edge {
-    public var index:Int = 0;
-    public var d0:Center!, d1:Center!;  // Delaunay edge
-    public var v0:Corner!, v1:Corner!;  // Voronoi edge
-    public var midpoint:Point!;  // halfway between v0,v1
-    public var river:Int = 0;  // volume of water, or 0
+open class Edge {
+    open var index:Int = 0;
+    open var d0:Center!, d1:Center!;  // Delaunay edge
+    open var v0:Corner!, v1:Corner!;  // Voronoi edge
+    open var midpoint:Point!;  // halfway between v0,v1
+    open var river:Int = 0;  // volume of water, or 0
 }

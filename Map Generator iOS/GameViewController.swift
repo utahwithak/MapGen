@@ -77,7 +77,7 @@ class GameViewController: UIViewController {
         let sphere = SCNNode()
         sphere.geometry = SCNSphere(radius: 1)
         let mat = SCNMaterial()
-        mat.diffuse.contents = UIColor.redColor()
+        mat.diffuse.contents = UIColor.red
         sphere.geometry!.materials = [mat]
         scene.rootNode.addChildNode(sphere);
 

@@ -16,7 +16,7 @@
 
 @implementation PerlinNoise
 
-- (id)initWithSeed:(NSInteger)seed {
+- (nonnull instancetype)initWithSeed:(NSInteger)seed {
     if ((self = [super init])) {
         self.seed = seed;
         self.smoothing = NO;

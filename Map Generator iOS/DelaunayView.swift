@@ -13,31 +13,32 @@ class DelaunayView: UIView {
     var positions = [CGPoint]()
     var triangles = [[CGPoint]]()
     
-    var pointColor = UIColor.blueColor()
-    var lineColor = UIColor.blackColor()
+    var pointColor = UIColor.blue
+    var lineColor = UIColor.black
     
-    var triColor = UIColor.redColor()
+    var triColor = UIColor.red
     
-    override func drawRect(dirtyRect: CGRect) {
-        super.drawRect(dirtyRect)
+    override func draw(_ dirtyRect: CGRect) {
+        super.draw(dirtyRect)
         let context = UIGraphicsGetCurrentContext()
         pointColor.setFill()
         for p in positions{
-            CGContextFillEllipseInRect(context, DelaunayView.rectForPoint(p))
+            context!.fillEllipse(in: DelaunayView.rectForPoint(point: p))
         }
         lineColor.set()
         for region in regionPoints{
             if region.count == 2{
                 var lines = region
-                CGContextMoveToPoint(context, lines[0].x, lines[0].y)
-                CGContextAddLineToPoint(context, lines[1].x, lines[1].y)
-                CGContextDrawPath(context, kCGPathStroke)
+                context?.move(to: lines[0])
+                context?.addLine(to: lines[1])
+                context?.drawPath(using: .stroke)
+
             }
         }
   
     }
     static let radius:CGFloat = 3;
     static func rectForPoint(point:CGPoint)->CGRect{
-        return CGRectMake(point.x - radius, point.y - radius, 2 * radius, 2 * radius)
+        return CGRect(x: point.x - radius, y: point.y - radius, width: 2 * radius, height: 2 * radius)
     }
 }

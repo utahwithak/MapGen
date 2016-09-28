@@ -8,22 +8,22 @@
 
 import Foundation
 public enum Biome{
-    case Ocean
-    case Marsh
-    case Ice
-    case Lake
-    case Beach
-    case Snow
-    case Tundra
-    case Bare
-    case Scorched
-    case Taiga
-    case Shrubland
-    case TemperateDesert
-    case TemperateRainForest
-    case TemperateDeciduousForest
-    case Grassland
-    case TropicalRainForest
-    case TropicalSeasonalForest
-    case SubtropicalDesert
+    case ocean
+    case marsh
+    case ice
+    case lake
+    case beach
+    case snow
+    case tundra
+    case bare
+    case scorched
+    case taiga
+    case shrubland
+    case temperateDesert
+    case temperateRainForest
+    case temperateDeciduousForest
+    case grassland
+    case tropicalRainForest
+    case tropicalSeasonalForest
+    case subtropicalDesert
 }

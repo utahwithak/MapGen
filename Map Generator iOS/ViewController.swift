@@ -14,22 +14,22 @@ class ViewController: UIViewController,UIScrollViewDelegate {
     var map:Map!
     override func viewDidLoad() {
         super.viewDidLoad()
-        let size = 100
+        let size = 1000
         self.map = Map(size:size, numPoints: size ,seed:1, varient: 1)
         map.buildMap()
-
-        self.voronoiView = DelaunayView(frame: CGRectMake(0, 0, CGFloat(size), CGFloat(size)))
-        self.voronoiView.backgroundColor = UIColor.clearColor()
+        arc4random_stir()
+        self.voronoiView = DelaunayView(frame: CGRect(x: 0, y: 0, width: CGFloat(size), height: CGFloat(size)))
+        self.voronoiView.backgroundColor = UIColor.clear
         
         self.scrollView.addSubview(self.voronoiView)
         self.scrollView.maximumZoomScale = 10
         self.scrollView.minimumZoomScale = 0.01
         self.scrollView.delegate = self
         
-        func converter(p:Point)->CGPoint{
+        func converter(_ p:Point)->CGPoint{
             return CGPoint(x: p.x, y: p.y)
         }
-        func cornerConverter(e:Corner)->CGPoint{
+        func cornerConverter(_ e:Corner)->CGPoint{
             return converter(e.point)
         }
         
@@ -60,20 +60,17 @@ class ViewController: UIViewController,UIScrollViewDelegate {
 //        }
         
     }
-
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let dest = segue.destinationViewController as? GameViewController{
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let dest = segue.destination as? GameViewController{
             dest.map = self.map
         }
         
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
-    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+
+    public func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return self.voronoiView
     }
 

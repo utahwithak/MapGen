@@ -13,24 +13,24 @@ import Foundation
     import Delaunay
 #endif
 
-public class Corner{
-    public var index:Int = 0;
+public final class Corner {
+    final var index:Int = 0;
     
-    public var point:Point!;  // location
-    public var ocean = false;  // ocean
-    public var water = false;  // lake or ocean
-    public var coast = false;  // touches ocean and land polygons
-    public var border = false;  // at the edge of the map
-    public var elevation:Double = 0;  // 0.0-1.0
-    public var moisture:Double = 0;  // 0.0-1.0
+    final var point:Point!;  // location
+    final var ocean = false;  // ocean
+    final var water = false;  // lake or ocean
+    final var coast = false;  // touches ocean and land polygons
+    final var border = false;  // at the edge of the map
+    final var elevation:Double = 0;  // 0.0-1.0
+    final var moisture:Double = 0;  // 0.0-1.0
     
-    public var touches = [Center]();
-    public var protrudes = [Edge]();
-    public var adjacent = [Corner]();
+    final var touches = [Center]();
+    final var protrudes = [Edge]();
+    final var adjacent = [Corner]();
     
-    public var river:Int = 0;  // 0 if no river, or volume of water in river
-    public var downslope:Corner!;  // pointer to adjacent corner most downhill
-    public var watershed:Corner!;  // pointer to coastal corner, or null
-    public var watershed_size:Int = 0;
+    final var river:Int = 0;  // 0 if no river, or volume of water in river
+    final var downslope:Corner!;  // pointer to adjacent corner most downhill
+    final var watershed:Corner!;  // pointer to coastal corner, or null
+    final var watershed_size:Int = 0;
 
 }
