@@ -294,7 +294,7 @@ class Map{
     
     // Change the overall distribution of moisture to be evenly distributed.
     func redistributeMoisture(_ locations:inout [Corner]){
-        locations.sort{ $0.moisture < $1.moisture }
+        locations.sort(by: { $0.moisture < $1.moisture })
         for i in 0..<locations.count{
             locations[i].moisture = Double(i)/Double(locations.count-1);
         }
@@ -641,7 +641,7 @@ class Map{
         // Workaround for Voronoi lib bug: we need to call region()
         // before Edges or neighboringSites are available
         for p in centers {
-            voronoi.region(p.point);
+            _ = voronoi.region(p.point);
         }
     
         // The Voronoi library generates multiple Point objects for

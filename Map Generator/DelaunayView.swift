@@ -24,9 +24,8 @@ class DelaunayView: NSView {
         for region in regionPoints{
             lineColor.set()
             if region.count > 2{
-                var lines = region
-                CGContextAddLines(context, &lines, region.count)
-                context.drawPath(using: kCGPathStroke)
+                context.addLines(between: region)
+                context.drawPath(using: .stroke)
             }
         }
         
