@@ -7,31 +7,27 @@
 //
 
 import Foundation
-#if os(iOS)
-    import DelaunayiOS
-    #elseif os(OSX)
-    import Delaunay
-#endif
+import Delaunay
 
-class Watersheds{
-    var lowestCorner = [Int:Int]();  // polygon index -> corner index
-    var watersheds = [Int:Int]();  // polygon index -> corner index
+class Watersheds {
+    var lowestCorner = [Int:Int]()  // polygon index -> corner index
+    var watersheds = [Int:Int]()  // polygon index -> corner index
     
     // We want to mark each polygon with the corner where water would
     // exit the island.
-    func createWatersheds(_ map:Map){
+    func createWatersheds(_ map: Map) {
         
-    // Find the lowest corner of the polygon, and set that as the
-    // exit point for rain falling on this polygon
+        // Find the lowest corner of the polygon, and set that as the
+        // exit point for rain falling on this polygon
         for p in map.centers {
-            var s:Corner? = nil
-            for q in p.corners{
+            var s: Corner? = nil
+            for q in p.corners {
                 if (s == nil || q.elevation < s!.elevation) {
-                    s = q;
+                    s = q
                 }
             }
-            lowestCorner[p.index] = (s == nil) ? -1 : s!.index;
-            watersheds[p.index] = (s == nil) ? -1 : (s!.watershed == nil) ? -1 : s!.watershed.index;
+            lowestCorner[p.index] = (s == nil) ? -1 : s!.index
+            watersheds[p.index] = (s == nil) ? -1 : (s!.watershed == nil) ? -1 : s!.watershed.index
         }
     }
     

@@ -16,12 +16,14 @@ class DelaunayView: NSView {
     
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
-        let context = NSGraphicsContext.current()!.cgContext
+        
+        guard let context = NSGraphicsContext.current?.cgContext else { return }
+        
         pointColor.setFill()
         for p in positions{
             context.fillEllipse(in: DelaunayView.rectForPoint(p))
         }
-        for region in regionPoints{
+        for region in regionPoints {
             lineColor.set()
             if region.count > 2{
                 context.addLines(between: region)
@@ -30,8 +32,8 @@ class DelaunayView: NSView {
         }
         
     }
-    static let radius:CGFloat = 5;
-    static func rectForPoint(_ point:CGPoint)->CGRect{
+    static let radius:CGFloat = 5
+    static func rectForPoint(_ point: CGPoint) -> CGRect {
         return CGRect(x: point.x - radius, y: point.y, width: 2 * radius, height: 2 * radius)
     }
 }

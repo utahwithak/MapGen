@@ -7,9 +7,10 @@
 //
 
 import Foundation
+import ConvexHull
+
 struct Vertex{
-    var position:Vector3
-    var normal:Vector3
-    var color:Vector3
-//    var uv:Vector3
+    var position: Vector3
+    var normal: Vector3
+    var color: Vector3
 }

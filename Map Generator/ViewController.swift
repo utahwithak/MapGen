@@ -8,36 +8,59 @@
 
 import Cocoa
 import Delaunay
+import ConvexHull
 
 class ViewController: NSViewController {
-
+    
+    @IBOutlet weak var stackView: NSStackView!
+    @IBOutlet weak var scrollView: NSScrollView!
     var voronoiView: DelaunayView!
+    var map: Map!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Insert code here to initialize your application
-        let relaxed = generateRelaxed(2000, seed: 412342)
-        let points = relaxed(1000)
-        let voronoi = Voronoi(points: points, colors: nil, plotBounds: Rectangle(x: 0, y: 0, width: 2000, height: 2000));
         self.voronoiView = DelaunayView(frame: CGRect(x: 0, y: 0, width: 3000, height: 3000))
-        let scrollView = NSScrollView(frame:self.view.frame);
-        scrollView.documentView = self.voronoiView
-        scrollView.contentView.translatesAutoresizingMaskIntoConstraints = true
-        scrollView.translatesAutoresizingMaskIntoConstraints = true
-        self.view.addSubview(scrollView)
-        self.view.translatesAutoresizingMaskIntoConstraints = true
-        func converter(_ p:Point)->CGPoint{
-            return CGPoint(x: p.x, y: p.y)
-        }
+        self.scrollView.documentView = self.voronoiView
         
-        for p in points {
-            self.voronoiView.positions.append(converter(p))
-            let region = voronoi.region(p);
-            self.voronoiView.regionPoints.append(region.map(converter))
-            
-        }
+        self.generateMap()
+    }
 
+    func converter(_ p:Point)->CGPoint{
+        return CGPoint(x: p.x, y: p.y)
     }
     
+    private func generateMap() {
+        self.map = nil
+        self.voronoiView.positions = []
+        self.voronoiView.regionPoints = []
+        
+        // Insert code here to initialize your application
+        let size = 1000
+        
+        self.map = Map(size: size, numPoints: size, seed: Int.random(in: 0..<100), varient: 1)
+        map.buildMap()
+        
+        for c in map.centers {
+            self.voronoiView.positions.append(converter(c.point))
+
+            for edge in c.borders {
+              
+                if edge.v0 != nil && edge.v1 != nil{
+                    var borders = [CGPoint]()
+                    borders.append(converter(edge.v0.point))
+                    borders.append(converter(edge.v1.point))
+                    self.voronoiView.regionPoints.append(borders)
+                }
+            }
+        }
+        
+        self.voronoiView.setNeedsDisplay(self.voronoiView.bounds)
+    }
+    
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+        guard let vc = segue.destinationController as? GameViewController else { return }
+        vc.map = map
+    }
     
     
     // Generate points at random locations
@@ -54,6 +77,10 @@ class ViewController: NSViewController {
             return points;
         }
         return generator
+    }
+    
+    @IBAction func onRefreshButtonPressed(_ sender: Any) {
+        self.generateMap()
     }
     
     func generateRelaxed(_ size:Int, seed:Int)->(Int)->[Point]{

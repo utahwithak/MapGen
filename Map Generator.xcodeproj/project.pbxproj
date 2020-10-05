@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,12 +13,8 @@
 		4650D17D1AF0331000602E94 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4650D1651AF0331000602E94 /* Map.swift */; };
 		4650D1921AF0331000602E94 /* Watersheds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4650D1711AF0331000602E94 /* Watersheds.swift */; };
 		4650D1931AF0331000602E94 /* Watersheds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4650D1711AF0331000602E94 /* Watersheds.swift */; };
-		4650D19F1AF033CC00602E94 /* QHull.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4650D19A1AF033B900602E94 /* QHull.framework */; };
-		4650D1A01AF033D100602E94 /* QHull.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4650D19A1AF033B900602E94 /* QHull.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4650D1A81AF0348200602E94 /* PerlinNoise.m in Sources */ = {isa = PBXBuildFile; fileRef = 4650D1A71AF0348200602E94 /* PerlinNoise.m */; };
 		4650D1A91AF0348200602E94 /* PerlinNoise.m in Sources */ = {isa = PBXBuildFile; fileRef = 4650D1A71AF0348200602E94 /* PerlinNoise.m */; };
-		4650D1AF1AF034B600602E94 /* Vector3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4650D1AB1AF034B600602E94 /* Vector3.swift */; };
-		4650D1B01AF034B600602E94 /* Vector3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4650D1AB1AF034B600602E94 /* Vector3.swift */; };
 		4650D1B11AF034B600602E94 /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4650D1AC1AF034B600602E94 /* Vertex.swift */; };
 		4650D1B21AF034B600602E94 /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4650D1AC1AF034B600602E94 /* Vertex.swift */; };
 		4650D1B31AF034B600602E94 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4650D1AD1AF034B600602E94 /* Utils.swift */; };
@@ -37,8 +33,6 @@
 		468551391AE9DFF20002473E /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468551381AE9DFF20002473E /* Edge.swift */; };
 		4685513A1AE9DFF20002473E /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468551381AE9DFF20002473E /* Edge.swift */; };
 		46A1BBDF1AE8B012004E3E9D /* PM_PRNG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A1BBDE1AE8B012004E3E9D /* PM_PRNG.swift */; };
-		46CB2A421AE97A4A00B29FF7 /* Delaunay.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 46D73AE41AE979C900C92256 /* Delaunay.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		46CB2A431AE97A5100B29FF7 /* DelaunayiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 46D73AE81AE979C900C92256 /* DelaunayiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		46D739E61AE96AF000C92256 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D739E51AE96AF000C92256 /* ViewController.swift */; };
 		46D739E91AE96C1800C92256 /* DelaunayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D739E81AE96C1800C92256 /* DelaunayView.swift */; };
 		46D739F31AE971F700C92256 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D739F21AE971F700C92256 /* AppDelegate.swift */; };
@@ -49,85 +43,25 @@
 		46D73A091AE971F800C92256 /* Map_Generator_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D73A081AE971F800C92256 /* Map_Generator_iOSTests.swift */; };
 		46D73A111AE9721800C92256 /* DelaunayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D73A101AE9721800C92256 /* DelaunayView.swift */; };
 		46D73A4F1AE9729B00C92256 /* PM_PRNG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A1BBDE1AE8B012004E3E9D /* PM_PRNG.swift */; };
-		46D73AED1AE979DA00C92256 /* DelaunayiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46D73AE81AE979C900C92256 /* DelaunayiOS.framework */; };
-		46D73AF01AE979ED00C92256 /* Delaunay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46D73AE41AE979C900C92256 /* Delaunay.framework */; };
 		46F5A6E51AE5FC200070D933 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F5A6E41AE5FC200070D933 /* AppDelegate.swift */; };
-		46F5A6F01AE5FC210070D933 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46F5A6EE1AE5FC210070D933 /* MainMenu.xib */; };
 		46F5A6FC1AE5FC210070D933 /* Map_GeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F5A6FB1AE5FC210070D933 /* Map_GeneratorTests.swift */; };
-		8F7D76381E1FF0F800E01879 /* QHull.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F7D76351E1FF0F800E01879 /* QHull.framework */; };
-		8F7D76391E1FF0F800E01879 /* QHull.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8F7D76351E1FF0F800E01879 /* QHull.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DB12E04D252933C3000770D0 /* Delaunay in Frameworks */ = {isa = PBXBuildFile; productRef = DB12E04C252933C3000770D0 /* Delaunay */; };
+		DB12E052252933E6000770D0 /* ConvexHull in Frameworks */ = {isa = PBXBuildFile; productRef = DB12E051252933E6000770D0 /* ConvexHull */; };
+		DB12E05E2529340F000770D0 /* Delaunay in Frameworks */ = {isa = PBXBuildFile; productRef = DB12E05D2529340F000770D0 /* Delaunay */; };
+		DB12E0602529340F000770D0 /* ConvexHull in Frameworks */ = {isa = PBXBuildFile; productRef = DB12E05F2529340F000770D0 /* ConvexHull */; };
+		DBC1A565252B934C001EC20F /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC1A564252B934C001EC20F /* GameController.swift */; };
+		DBC1A566252B934C001EC20F /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC1A564252B934C001EC20F /* GameController.swift */; };
+		DBC1A570252B946C001EC20F /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC1A56F252B946C001EC20F /* GameViewController.swift */; };
+		DBC1A57E252B9D0F001EC20F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBC1A57D252B9D0F001EC20F /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		4650D1991AF033B900602E94 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4650D1941AF033B800602E94 /* QHull.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4650D1301AF032CB00602E94;
-			remoteInfo = QHull;
-		};
-		4650D19B1AF033B900602E94 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4650D1941AF033B800602E94 /* QHull.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4650D13B1AF032CB00602E94;
-			remoteInfo = QHullTests;
-		};
-		4650D19D1AF033C900602E94 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4650D1941AF033B800602E94 /* QHull.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 4650D12F1AF032CB00602E94;
-			remoteInfo = QHull;
-		};
 		46D73A031AE971F800C92256 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 46F5A6D71AE5FC200070D933 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 46D739ED1AE971F700C92256;
 			remoteInfo = "Map Generator iOS";
-		};
-		46D73AE31AE979C900C92256 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 46D73ADC1AE979C900C92256 /* Delaunay.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 46D73A5A1AE977FF00C92256;
-			remoteInfo = Delaunay;
-		};
-		46D73AE51AE979C900C92256 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 46D73ADC1AE979C900C92256 /* Delaunay.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 46D73A651AE977FF00C92256;
-			remoteInfo = DelaunayTests;
-		};
-		46D73AE71AE979C900C92256 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 46D73ADC1AE979C900C92256 /* Delaunay.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 46D73AAB1AE9784D00C92256;
-			remoteInfo = DelaunayiOS;
-		};
-		46D73AE91AE979C900C92256 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 46D73ADC1AE979C900C92256 /* Delaunay.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 46D73AB51AE9784D00C92256;
-			remoteInfo = DelaunayiOSTests;
-		};
-		46D73AEB1AE979D500C92256 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 46D73ADC1AE979C900C92256 /* Delaunay.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 46D73AAA1AE9784D00C92256;
-			remoteInfo = DelaunayiOS;
-		};
-		46D73AEE1AE979E900C92256 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 46D73ADC1AE979C900C92256 /* Delaunay.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 46D73A591AE977FF00C92256;
-			remoteInfo = Delaunay;
 		};
 		46F5A6F61AE5FC210070D933 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -136,65 +70,14 @@
 			remoteGlobalIDString = 46F5A6DE1AE5FC200070D933;
 			remoteInfo = "Map Generator";
 		};
-		8F7D76341E1FF0F800E01879 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4650D1941AF033B800602E94 /* QHull.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8F7EA0221D9C3055008A0C74;
-			remoteInfo = "QHull-macOS";
-		};
-		8F7D76361E1FF0F800E01879 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4650D1941AF033B800602E94 /* QHull.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8F7EA02A1D9C3055008A0C74;
-			remoteInfo = "QHull-macOSTests";
-		};
-		8F7D763A1E1FF0F800E01879 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4650D1941AF033B800602E94 /* QHull.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 8F7EA0211D9C3055008A0C74;
-			remoteInfo = "QHull-macOS";
-		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		46D73A331AE9725700C92256 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				4650D1A01AF033D100602E94 /* QHull.framework in Embed Frameworks */,
-				46CB2A431AE97A5100B29FF7 /* DelaunayiOS.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		46F5A7261AE5FC4F0070D933 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				46CB2A421AE97A4A00B29FF7 /* Delaunay.framework in Embed Frameworks */,
-				8F7D76391E1FF0F800E01879 /* QHull.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4650D1621AF0331000602E94 /* Lava.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Lava.swift; path = Shared/Lava.swift; sourceTree = "<group>"; };
 		4650D1651AF0331000602E94 /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Map.swift; path = Shared/Map.swift; sourceTree = "<group>"; };
 		4650D1711AF0331000602E94 /* Watersheds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Watersheds.swift; path = Shared/Watersheds.swift; sourceTree = "<group>"; };
-		4650D1941AF033B800602E94 /* QHull.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = QHull.xcodeproj; path = ThirdParty/QHull/QHull.xcodeproj; sourceTree = "<group>"; };
-		4650D1A51AF0348100602E94 /* Map GeneratorBridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Map GeneratorBridging-Header.h"; sourceTree = "<group>"; };
 		4650D1A61AF0348200602E94 /* PerlinNoise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PerlinNoise.h; path = Shared/PerlinNoise.h; sourceTree = "<group>"; };
 		4650D1A71AF0348200602E94 /* PerlinNoise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PerlinNoise.m; path = Shared/PerlinNoise.m; sourceTree = "<group>"; };
-		4650D1AB1AF034B600602E94 /* Vector3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector3.swift; sourceTree = "<group>"; };
 		4650D1AC1AF034B600602E94 /* Vertex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vertex.swift; sourceTree = "<group>"; };
 		4650D1AD1AF034B600602E94 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		4650D1AE1AF034B600602E94 /* MeshUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeshUtils.swift; sourceTree = "<group>"; };
@@ -218,14 +101,16 @@
 		46D73A071AE971F800C92256 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		46D73A081AE971F800C92256 /* Map_Generator_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map_Generator_iOSTests.swift; sourceTree = "<group>"; };
 		46D73A101AE9721800C92256 /* DelaunayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DelaunayView.swift; sourceTree = "<group>"; };
-		46D73ADC1AE979C900C92256 /* Delaunay.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Delaunay.xcodeproj; path = "ThirdParty/as3delaunay-Swift/Delaunay/Delaunay.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		46F5A6DF1AE5FC200070D933 /* Map Generator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Map Generator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46F5A6E31AE5FC200070D933 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		46F5A6E41AE5FC200070D933 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		46F5A6EF1AE5FC210070D933 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		46F5A6F51AE5FC210070D933 /* Map GeneratorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Map GeneratorTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46F5A6FA1AE5FC210070D933 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		46F5A6FB1AE5FC210070D933 /* Map_GeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map_GeneratorTests.swift; sourceTree = "<group>"; };
+		DB12E0852529393A000770D0 /* Map-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Map-Bridging-Header.h"; sourceTree = "<group>"; };
+		DBC1A564252B934C001EC20F /* GameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
+		DBC1A56F252B946C001EC20F /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		DBC1A57D252B9D0F001EC20F /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,8 +118,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4650D19F1AF033CC00602E94 /* QHull.framework in Frameworks */,
-				46D73AED1AE979DA00C92256 /* DelaunayiOS.framework in Frameworks */,
+				DB12E0602529340F000770D0 /* ConvexHull in Frameworks */,
+				DB12E05E2529340F000770D0 /* Delaunay in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,8 +134,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46D73AF01AE979ED00C92256 /* Delaunay.framework in Frameworks */,
-				8F7D76381E1FF0F800E01879 /* QHull.framework in Frameworks */,
+				DB12E04D252933C3000770D0 /* Delaunay in Frameworks */,
+				DB12E052252933E6000770D0 /* ConvexHull in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,7 +157,6 @@
 				4650D1621AF0331000602E94 /* Lava.swift */,
 				4650D1651AF0331000602E94 /* Map.swift */,
 				4650D1711AF0331000602E94 /* Watersheds.swift */,
-				4650D1A51AF0348100602E94 /* Map GeneratorBridging-Header.h */,
 			);
 			name = Map;
 			sourceTree = "<group>";
@@ -286,29 +170,9 @@
 			name = tests;
 			sourceTree = "<group>";
 		};
-		4650D1191AF0325000602E94 /* QHull */ = {
-			isa = PBXGroup;
-			children = (
-				4650D1941AF033B800602E94 /* QHull.xcodeproj */,
-			);
-			name = QHull;
-			sourceTree = "<group>";
-		};
-		4650D1951AF033B800602E94 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				4650D19A1AF033B900602E94 /* QHull.framework */,
-				4650D19C1AF033B900602E94 /* QHullTests.xctest */,
-				8F7D76351E1FF0F800E01879 /* QHull.framework */,
-				8F7D76371E1FF0F800E01879 /* QHull-macOSTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		4650D1AA1AF034A600602E94 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				4650D1AB1AF034B600602E94 /* Vector3.swift */,
 				4650D1AC1AF034B600602E94 /* Vertex.swift */,
 				4650D1AD1AF034B600602E94 /* Utils.swift */,
 				4650D1AE1AF034B600602E94 /* MeshUtils.swift */,
@@ -330,13 +194,13 @@
 		468551221AE9DC6B0002473E /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				DB12E0852529393A000770D0 /* Map-Bridging-Header.h */,
 				46A1BBDE1AE8B012004E3E9D /* PM_PRNG.swift */,
 				4650D1AA1AF034A600602E94 /* Utils */,
-				4650D1191AF0325000602E94 /* QHull */,
-				46D73ADC1AE979C900C92256 /* Delaunay.xcodeproj */,
 				4685512F1AE9DF2E0002473E /* Biome.swift */,
 				4685511D1AE9DBE00002473E /* Graph */,
 				460A83F81AEF22CB000CAAD3 /* Map */,
+				DBC1A564252B934C001EC20F /* GameController.swift */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -344,11 +208,11 @@
 		46D739EF1AE971F700C92256 /* Map Generator iOS */ = {
 			isa = PBXGroup;
 			children = (
+				4650D1B81AF0357500602E94 /* GameViewController.swift */,
 				46D739F21AE971F700C92256 /* AppDelegate.swift */,
 				46D739F41AE971F700C92256 /* ViewController.swift */,
 				46D73A101AE9721800C92256 /* DelaunayView.swift */,
 				4650D1B71AF0357500602E94 /* GameView.swift */,
-				4650D1B81AF0357500602E94 /* GameViewController.swift */,
 				46D739F61AE971F800C92256 /* Main.storyboard */,
 				46D739F91AE971F800C92256 /* Images.xcassets */,
 				46D739FB1AE971F800C92256 /* LaunchScreen.xib */,
@@ -382,17 +246,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		46D73ADD1AE979C900C92256 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				46D73AE41AE979C900C92256 /* Delaunay.framework */,
-				46D73AE61AE979C900C92256 /* DelaunayTests.xctest */,
-				46D73AE81AE979C900C92256 /* DelaunayiOS.framework */,
-				46D73AEA1AE979C900C92256 /* DelaunayiOSTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		46F5A6D61AE5FC200070D933 = {
 			isa = PBXGroup;
 			children = (
@@ -401,6 +254,7 @@
 				46D739EF1AE971F700C92256 /* Map Generator iOS */,
 				4650D1181AF0324000602E94 /* tests */,
 				46F5A6E01AE5FC200070D933 /* Products */,
+				DB12E05C2529340F000770D0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -421,8 +275,9 @@
 				46F5A6E41AE5FC200070D933 /* AppDelegate.swift */,
 				46D739E51AE96AF000C92256 /* ViewController.swift */,
 				46D739E81AE96C1800C92256 /* DelaunayView.swift */,
-				46F5A6EE1AE5FC210070D933 /* MainMenu.xib */,
 				46F5A6E21AE5FC200070D933 /* Supporting Files */,
+				DBC1A56F252B946C001EC20F /* GameViewController.swift */,
+				DBC1A57D252B9D0F001EC20F /* Main.storyboard */,
 			);
 			path = "Map Generator";
 			sourceTree = "<group>";
@@ -452,6 +307,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		DB12E05C2529340F000770D0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -462,15 +324,16 @@
 				46D739EA1AE971F700C92256 /* Sources */,
 				46D739EB1AE971F700C92256 /* Frameworks */,
 				46D739EC1AE971F700C92256 /* Resources */,
-				46D73A331AE9725700C92256 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				4650D19E1AF033C900602E94 /* PBXTargetDependency */,
-				46D73AEC1AE979D500C92256 /* PBXTargetDependency */,
 			);
 			name = "Map Generator iOS";
+			packageProductDependencies = (
+				DB12E05D2529340F000770D0 /* Delaunay */,
+				DB12E05F2529340F000770D0 /* ConvexHull */,
+			);
 			productName = "Map Generator iOS";
 			productReference = 46D739EE1AE971F700C92256 /* Map Generator iOS.app */;
 			productType = "com.apple.product-type.application";
@@ -500,15 +363,16 @@
 				46F5A6DB1AE5FC200070D933 /* Sources */,
 				46F5A6DC1AE5FC200070D933 /* Frameworks */,
 				46F5A6DD1AE5FC200070D933 /* Resources */,
-				46F5A7261AE5FC4F0070D933 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				46D73AEF1AE979E900C92256 /* PBXTargetDependency */,
-				8F7D763B1E1FF0F800E01879 /* PBXTargetDependency */,
 			);
 			name = "Map Generator";
+			packageProductDependencies = (
+				DB12E04C252933C3000770D0 /* Delaunay */,
+				DB12E051252933E6000770D0 /* ConvexHull */,
+			);
 			productName = "Map Generator";
 			productReference = 46F5A6DF1AE5FC200070D933 /* Map Generator.app */;
 			productType = "com.apple.product-type.application";
@@ -566,22 +430,17 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
 			mainGroup = 46F5A6D61AE5FC200070D933;
+			packageReferences = (
+				DB12E04B252933C3000770D0 /* XCRemoteSwiftPackageReference "as3delaunay-Swift" */,
+				DB12E050252933E6000770D0 /* XCRemoteSwiftPackageReference "SConvexHull" */,
+			);
 			productRefGroup = 46F5A6E01AE5FC200070D933 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 46D73ADD1AE979C900C92256 /* Products */;
-					ProjectRef = 46D73ADC1AE979C900C92256 /* Delaunay.xcodeproj */;
-				},
-				{
-					ProductGroup = 4650D1951AF033B800602E94 /* Products */;
-					ProjectRef = 4650D1941AF033B800602E94 /* QHull.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				46F5A6DE1AE5FC200070D933 /* Map Generator */,
@@ -591,65 +450,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		4650D19A1AF033B900602E94 /* QHull.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = QHull.framework;
-			remoteRef = 4650D1991AF033B900602E94 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4650D19C1AF033B900602E94 /* QHullTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = QHullTests.xctest;
-			remoteRef = 4650D19B1AF033B900602E94 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		46D73AE41AE979C900C92256 /* Delaunay.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Delaunay.framework;
-			remoteRef = 46D73AE31AE979C900C92256 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		46D73AE61AE979C900C92256 /* DelaunayTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = DelaunayTests.xctest;
-			remoteRef = 46D73AE51AE979C900C92256 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		46D73AE81AE979C900C92256 /* DelaunayiOS.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = DelaunayiOS.framework;
-			remoteRef = 46D73AE71AE979C900C92256 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		46D73AEA1AE979C900C92256 /* DelaunayiOSTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = DelaunayiOSTests.xctest;
-			remoteRef = 46D73AE91AE979C900C92256 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		8F7D76351E1FF0F800E01879 /* QHull.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = QHull.framework;
-			remoteRef = 8F7D76341E1FF0F800E01879 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		8F7D76371E1FF0F800E01879 /* QHull-macOSTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "QHull-macOSTests.xctest";
-			remoteRef = 8F7D76361E1FF0F800E01879 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		46D739EC1AE971F700C92256 /* Resources */ = {
@@ -673,7 +473,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46F5A6F01AE5FC210070D933 /* MainMenu.xib in Resources */,
+				DBC1A57E252B9D0F001EC20F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -704,10 +504,10 @@
 				4650D1B61AF034B600602E94 /* MeshUtils.swift in Sources */,
 				46D739F51AE971F700C92256 /* ViewController.swift in Sources */,
 				4650D17D1AF0331000602E94 /* Map.swift in Sources */,
+				DBC1A566252B934C001EC20F /* GameController.swift in Sources */,
 				4650D1931AF0331000602E94 /* Watersheds.swift in Sources */,
 				46D739F31AE971F700C92256 /* AppDelegate.swift in Sources */,
 				46D73A4F1AE9729B00C92256 /* PM_PRNG.swift in Sources */,
-				4650D1B01AF034B600602E94 /* Vector3.swift in Sources */,
 				4685513A1AE9DFF20002473E /* Edge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -728,10 +528,12 @@
 				468551361AE9DFE90002473E /* Corner.swift in Sources */,
 				468551301AE9DF2E0002473E /* Biome.swift in Sources */,
 				4685512D1AE9DF280002473E /* Center.swift in Sources */,
+				DBC1A570252B946C001EC20F /* GameViewController.swift in Sources */,
 				46D739E61AE96AF000C92256 /* ViewController.swift in Sources */,
 				4650D1B91AF0357500602E94 /* GameView.swift in Sources */,
 				4650D1B31AF034B600602E94 /* Utils.swift in Sources */,
 				4650D1B11AF034B600602E94 /* Vertex.swift in Sources */,
+				DBC1A565252B934C001EC20F /* GameController.swift in Sources */,
 				4650D1921AF0331000602E94 /* Watersheds.swift in Sources */,
 				4650D1B51AF034B600602E94 /* MeshUtils.swift in Sources */,
 				46F5A6E51AE5FC200070D933 /* AppDelegate.swift in Sources */,
@@ -739,7 +541,6 @@
 				4650D17C1AF0331000602E94 /* Map.swift in Sources */,
 				4650D17A1AF0331000602E94 /* Lava.swift in Sources */,
 				46D739E91AE96C1800C92256 /* DelaunayView.swift in Sources */,
-				4650D1AF1AF034B600602E94 /* Vector3.swift in Sources */,
 				468551391AE9DFF20002473E /* Edge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -755,35 +556,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		4650D19E1AF033C900602E94 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = QHull;
-			targetProxy = 4650D19D1AF033C900602E94 /* PBXContainerItemProxy */;
-		};
 		46D73A041AE971F800C92256 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 46D739ED1AE971F700C92256 /* Map Generator iOS */;
 			targetProxy = 46D73A031AE971F800C92256 /* PBXContainerItemProxy */;
 		};
-		46D73AEC1AE979D500C92256 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = DelaunayiOS;
-			targetProxy = 46D73AEB1AE979D500C92256 /* PBXContainerItemProxy */;
-		};
-		46D73AEF1AE979E900C92256 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Delaunay;
-			targetProxy = 46D73AEE1AE979E900C92256 /* PBXContainerItemProxy */;
-		};
 		46F5A6F71AE5FC210070D933 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 46F5A6DE1AE5FC200070D933 /* Map Generator */;
 			targetProxy = 46F5A6F61AE5FC210070D933 /* PBXContainerItemProxy */;
-		};
-		8F7D763B1E1FF0F800E01879 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "QHull-macOS";
-			targetProxy = 8F7D763A1E1FF0F800E01879 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -804,14 +585,6 @@
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
-		46F5A6EE1AE5FC210070D933 /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				46F5A6EF1AE5FC210070D933 /* Base */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -828,14 +601,17 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "Map Generator iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.balanceoni.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = "Map Generator iOS-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Map-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -848,13 +624,16 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Map Generator iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.balanceoni.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = "Map Generator iOS-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_OBJC_BRIDGING_HEADER = "Map-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -876,7 +655,11 @@
 				);
 				INFOPLIST_FILE = "Map Generator iOSTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.balanceoni.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -896,7 +679,11 @@
 				);
 				INFOPLIST_FILE = "Map Generator iOSTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.balanceoni.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -988,40 +775,47 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;
 		};
 		46F5A7001AE5FC210070D933 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Map Generator/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.balanceoni.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Map GeneratorBridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Map-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
 		46F5A7011AE5FC210070D933 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Map Generator/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.balanceoni.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Map GeneratorBridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_OBJC_BRIDGING_HEADER = "Map-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -1039,7 +833,11 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "Map GeneratorTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.balanceoni.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
@@ -1057,7 +855,11 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "Map GeneratorTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.balanceoni.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
@@ -1114,6 +916,48 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DB12E04B252933C3000770D0 /* XCRemoteSwiftPackageReference "as3delaunay-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SpectralDragon/as3delaunay-Swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		DB12E050252933E6000770D0 /* XCRemoteSwiftPackageReference "SConvexHull" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SpectralDragon/SConvexHull.git";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DB12E04C252933C3000770D0 /* Delaunay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DB12E04B252933C3000770D0 /* XCRemoteSwiftPackageReference "as3delaunay-Swift" */;
+			productName = Delaunay;
+		};
+		DB12E051252933E6000770D0 /* ConvexHull */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DB12E050252933E6000770D0 /* XCRemoteSwiftPackageReference "SConvexHull" */;
+			productName = ConvexHull;
+		};
+		DB12E05D2529340F000770D0 /* Delaunay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DB12E04B252933C3000770D0 /* XCRemoteSwiftPackageReference "as3delaunay-Swift" */;
+			productName = Delaunay;
+		};
+		DB12E05F2529340F000770D0 /* ConvexHull */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DB12E050252933E6000770D0 /* XCRemoteSwiftPackageReference "SConvexHull" */;
+			productName = ConvexHull;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 46F5A6D71AE5FC200070D933 /* Project object */;
 }
