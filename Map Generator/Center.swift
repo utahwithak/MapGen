@@ -7,22 +7,18 @@
 //
 
 import Foundation
-#if os(iOS)
-    import DelaunayiOS
-    #elseif os(OSX)
-    import Delaunay
-#endif
+import Delaunay
 
-open class Center{
-    open var index:Int = 0
-    open var point:Point!
-    open var water:Bool = false
-    open var ocean:Bool = false
-    open var coast:Bool = false
-    open var border:Bool = false
+open class Center {
+    open var index: Int = 0
+    open var point: Point!
+    open var water: Bool = false
+    open var ocean: Bool = false
+    open var coast: Bool = false
+    open var border: Bool = false
     open var biome = Biome.grassland
-    open var elevation:Double = 0
-    open var moisture:Double = 0
+    open var elevation: Double = 0
+    open var moisture: Double = 0
     
     open var neighbors = [Center]()
     open var borders = [Edge]()
